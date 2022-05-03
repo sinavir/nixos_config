@@ -1,3 +1,3 @@
 # nixos_config
 
-My nixos config files for several machines
+Ma config nixos pour mes machines sous nixos
