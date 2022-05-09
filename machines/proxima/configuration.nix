@@ -11,6 +11,13 @@
       ../../shared/users.nix
     ];
 
+  # Use the GRUB 2 boot loader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+
+  zramSwap.enable = true;
+
   networking.hostName = "proxima"; # Define your hostname.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
