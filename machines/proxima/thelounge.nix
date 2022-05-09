@@ -9,7 +9,7 @@
       host = "127.0.0.1";
     };
   };
-  virtualHosts."irc.sinavir.fr" = {
+  services.nginx.virtualHosts."irc.sinavir.fr" = {
     forceSSL = true;
     enableACME = true;
     locations."/" = {
