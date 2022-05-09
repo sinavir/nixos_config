@@ -8,6 +8,7 @@ in
     httpAddress = "127.0.0.1";
     httpPort = port;
     database.type = "postgres";
-    disableRegistration = false;
+    disableRegistration = true;
   };
+  services.nginx = {};
 }
