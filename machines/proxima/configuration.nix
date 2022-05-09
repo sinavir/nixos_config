@@ -24,11 +24,11 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfeces.ens3 = {
+  networking.interfaces.ens3 = {
     useDHCP = true;
     ipv6.addresses = [{
       address = "2001:41d0:404:200::81a1";
-      prefixLength = "128";
+      prefixLength = 128;
     }];
   };
   networking.defaultGateway6 = {
