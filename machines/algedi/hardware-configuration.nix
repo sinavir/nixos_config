@@ -14,44 +14,18 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "tmpfs";
-      fsType = "tmpfs";
-    };
-
-  fileSystems."/iso" =
-    { device = "/dev/disk/by-uuid/1980-01-01-00-00-00-00";
-      fsType = "iso9660";
-    };
-
-  fileSystems."/nix/.rw-store" =
-    { device = "tmpfs";
-      fsType = "tmpfs";
-    };
-
-  fileSystems."/nix/store" =
-    { device = "overlay";
-      fsType = "overlay";
-    };
-
-  fileSystems."/nix/store" =
-    { device = "/nix/store";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-
-  fileSystems."/mnt" =
     { device = "/dev/disk/by-uuid/f7a666ea-dc06-443e-aab7-f4f7b5ff6b87";
       fsType = "btrfs";
       options = [ "subvol=root" ];
     };
 
-  fileSystems."/mnt/nix/store" =
+  fileSystems."/nix/store" =
     { device = "/dev/disk/by-uuid/f7a666ea-dc06-443e-aab7-f4f7b5ff6b87";
       fsType = "btrfs";
       options = [ "subvol=nixstore" ];
     };
 
-  fileSystems."/mnt/boot" =
+  fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/46E2-9994";
       fsType = "vfat";
     };
