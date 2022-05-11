@@ -11,17 +11,27 @@
       ../../shared/users.nix
     ];
 
-  networking.hostName = "algedi"; # Define your hostname.
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-
-  # Ici la config des IPs
-
+  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = "algedi"; # Define your hostname.
+
+  networking.useDHCP = false;
+  networking.interfaces.ens18 = {
+    useDHCP = true;
+    ipv6 = {
+      addresses = [{
+        address = "2001:470:1f13:187:b256:8cb7:beb0:9d45";
+        prefix = 64;
+      }];
+    };
+  };
+  networking.interfaces.ens19.useDHCP = true;
+
+  security.sudo.wheelNeedsPassword = false;
+
+
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
