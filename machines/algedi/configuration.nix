@@ -9,6 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../shared/users.nix
+      ../../shared/wireguard.nix
+      ../../modules/me.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -18,7 +20,7 @@
   me.lan.ipv4 = "10.0.0.2";
   me.lan.prefixSize4 = 24;
   me.lan.ipv6 = "2001:470:1f13:128::3";
-  me.lan.prefixSize4 = 64;
+  me.lan.prefixSize6 = 64;
 
   networking.hostName = "algedi"; # Define your hostname.
 

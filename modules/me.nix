@@ -11,7 +11,7 @@
       prefixSize4 = lib.mkOption {
         type = lib.types.int;
       };
-      prefixSize4 = lib.mkOption {
+      prefixSize6 = lib.mkOption {
         type = lib.types.int;
       };
     };

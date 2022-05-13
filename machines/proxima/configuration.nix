@@ -23,7 +23,7 @@
   me.lan.ipv4 = "10.0.0.1";
   me.lan.prefixSize4 = 24;
   me.lan.ipv6 = "2001:470:1f13:128::1";
-  me.lan.prefixSize4 = 64;
+  me.lan.prefixSize6 = 64;
 
   security.sudo.wheelNeedsPassword = false;
 
