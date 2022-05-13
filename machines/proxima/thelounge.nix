@@ -2,13 +2,14 @@
 {
   services.thelounge = {
     enable = true;
-    private = true;
     port = 9000;
     extraConfig = {
       reverseProxy = true;
       host = "127.0.0.1";
+      public = false;
     };
   };
+  services.nginx.enable = true;
   services.nginx.virtualHosts."irc.sinavir.fr" = {
     forceSSL = true;
     enableACME = true;
@@ -17,4 +18,5 @@
       proxyWebsockets = true;
     };
   };
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 }

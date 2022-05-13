@@ -10,12 +10,15 @@
       ./hardware-configuration.nix
       ../../shared/users.nix
       ./thelounge.nix
+      ./zerobin.nix
     ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+
+  security.sudo.wheelNeedsPassword = false;
 
   zramSwap.enable = true;
 
@@ -36,7 +39,11 @@
     address = "2001:41d0:404:200::1";
     interface = "ens3";
   };
-      
+
+  security.acme = {
+    email = "hackens@clipper.ens.fr";
+    acceptTerms = true;
+  };      
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
