@@ -15,6 +15,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  me.lan.ipv4 = "10.0.0.2";
+  me.lan.prefixSize4 = 24;
+  me.lan.ipv6 = "2001:470:1f13:128::3";
+  me.lan.prefixSize4 = 64;
+
   networking.hostName = "algedi"; # Define your hostname.
 
   networking.useDHCP = false;
