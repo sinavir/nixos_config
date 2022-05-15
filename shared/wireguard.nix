@@ -3,7 +3,7 @@
 let
   peers = [
         {
-          publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./keys/algedi);
+          publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/algedi);
           allowedIPs = [ "10.100.0.2/32" "2001:470:1f13:128::2/128" ];
           endpoint = "rz.sinavir.fr:51820";
         }
@@ -12,7 +12,7 @@ let
         #  allowedIPs = [ "10.100.0.3/32" "2001:470:1f13:128::3/128" ];
         #}
         {
-          publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./keys/proxima);
+          publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/proxima);
           allowedIPs = [ "10.100.0.1/32" "2001:470:1f13:128::1/128" ];
           endpoint = "sinavir.fr:51820";
         }
