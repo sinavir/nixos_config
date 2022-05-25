@@ -53,9 +53,10 @@
 
   home-manager.users.maurice = import ./hm-maurice.nix;
 
-  users.users.maurice.extraGroups = [ "audio" "networkmanager" "video" ];
-
-  
+  users.users.maurice = {
+    extraGroups = [ "audio" "networkmanager" "video" ];
+    hashedPassword = "$6$sKY5c.ui.GaeZNtP$TOCJXXdieguUTlYkktbvqZJbiZrx26OWb.M8bvlRYhjP/BFn9eZtqZdzUbICsT36mtgbN4GfGyAtu5FPo6DZm.";
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
