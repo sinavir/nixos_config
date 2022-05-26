@@ -12,6 +12,7 @@
       ./thelounge.nix
       ./zerobin.nix
       ./mail.nix
+      ./static-website.nix
       ../../shared/wireguard.nix
       ../../modules/me.nix
     ];
