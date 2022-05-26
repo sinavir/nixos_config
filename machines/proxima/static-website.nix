@@ -1,8 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [
-    <agenix/modules/age.nix>
-  ];
   services.nginx = {
     enable = true;
     virtualHosts."sinavir.fr" = {
@@ -12,7 +9,7 @@
       locations = {
         "plans-ens" = {
           autoindex = true;
-          basicAuthFile = age.secrets."plans-ens".path;
+          basicAuth = "admin:$apr1$QV9o3xS.$Xx/Bkv59sBKdumYmC2FW4.";
           extraConfig = "autoindex on;";
         };
       };

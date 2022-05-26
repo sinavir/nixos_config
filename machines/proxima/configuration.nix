@@ -14,6 +14,8 @@
       ./mail.nix
       ./static-website.nix
       ../../shared/wireguard.nix
+      ../../shared/secrets
+      <agenix/modules/age.nix>
       ../../modules/me.nix
     ];
 
