@@ -19,7 +19,7 @@
     version = 2;
     device = "nodev";
     efiSupport = true;
-    enavleCryptodisk = true;
+    enableCryptodisk = true;
   };
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
@@ -36,6 +36,7 @@
     font = "Lat2-Terminus16";
     keyMap = "fr";
   };
+  fonts.enableDefaultFonts = true;
 
   services.printing.enable = true;
 
