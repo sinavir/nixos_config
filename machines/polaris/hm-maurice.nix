@@ -1,5 +1,6 @@
 { pkgs, lib, ... }:
 {
+  nixpkgs.config.allowUnfree = true;
   services = {
     gpg-agent.enable = true;
     gpg-agent.pinentryFlavor = "tty";
@@ -85,6 +86,7 @@
     texlive.combined.scheme-full
     mpv
     pulsemixer
+    discord
   ];
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";

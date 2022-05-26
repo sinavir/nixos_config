@@ -23,12 +23,15 @@
   };
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
+  nixpkgs.config.allowUnfree = true;
+
   time.timeZone = "Europe/Amsterdam";
 
   networking.hostName = "polaris"; # Define your hostname.
   networking.useDHCP = false;
   networking.interfaces.enp2s0.useDHCP = true;
   networking.interfaces.wlp3s0.useDHCP = true;
+  networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -50,6 +53,7 @@
     htop
   ];
   programs.vim.defaultEditor = true;
+  programs.ssh.startAgent = true;
   hardware.opengl.enable = true;
 
   home-manager.users.maurice = import ./hm-maurice.nix;
