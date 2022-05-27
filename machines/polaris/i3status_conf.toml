@@ -1,0 +1,69 @@
+# vi:syntax=toml
+
+[theme]
+name = "plain"
+[theme.overrides]
+separator = ""
+# base16-i3status-rust (https://github.com/mystfox/base16-i3status-rust)
+idle_bg = "#1d2021"
+idle_fg = "#d5c4a1"
+info_bg = "#8ec07c"
+info_fg = "#1d2021"
+good_bg = "#b8bb26"
+good_fg = "#1d2021"
+warning_bg = "#fabd2f"
+warning_fg = "#1d2021"
+critical_bg = "#fb4934"
+critical_fg = "#1d2021"
+
+[icons]
+name = "awesome5"
+
+[[block]]
+block = "custom_dbus"
+name = "isKFetOpen"
+initial_text = "🍺 N/A"
+
+[[block]]
+block = "cpu"
+format = "{utilization:1}"
+info = 50
+warning = 50
+
+[[block]]
+block = "memory"
+format_mem = "{mem_used_percents:1}"
+format_swap = "{swap_used_percents:1}"
+
+[[block]]
+block = "disk_space"
+format = "{icon} {percentage:1}"
+info_type = "used"
+warning = 80
+alert = 90
+
+[[block]]
+block = "networkmanager"
+interface_name_include = ["wlp3s0", "enp0s1"]
+device_format = "{icon}{ap}"
+
+[[block]]
+block = "battery"
+
+[[block]]
+block = "sound"
+format = "{volume:1}"
+device_kind = "source"
+
+[[block]]
+block = "sound"
+format = "{volume:1}"
+headphones_indicator = true
+show_volume_when_muted = true
+
+[[block]]
+block = "time"
+format = "%x %X"
+interval = 1
+locale = "en_DK"
+icons_format = " "

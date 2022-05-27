@@ -10,6 +10,7 @@
       <home-manager/nixos>
       ./hardware-configuration.nix
       ../../shared/users.nix
+      ./kfet-open.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -40,6 +41,9 @@
     keyMap = "fr";
   };
   fonts.enableDefaultFonts = true;
+  fonts.fonts = [
+    pkgs.font-awesome
+  ];
 
   services.printing.enable = true;
 
@@ -53,13 +57,22 @@
     htop
   ];
   programs.vim.defaultEditor = true;
+  programs.wireshark.enable = true;
+  programs.wireshark.package = pkgs.wireshark;
   programs.ssh.startAgent = true;
+  #programs.gnupg = {
+  #  agent = {
+  #    enable = true;
+  #    pinentryFlavor = "curses";
+  #  };
+  #  package = pkgs.gnupg.override { pinentry = pkgs.pinentry; };
+  #};
   hardware.opengl.enable = true;
 
   home-manager.users.maurice = import ./hm-maurice.nix;
 
   users.users.maurice = {
-    extraGroups = [ "audio" "networkmanager" "video" ];
+    extraGroups = [ "wireshark" "audio" "networkmanager" "video" ];
     hashedPassword = "$6$sKY5c.ui.GaeZNtP$TOCJXXdieguUTlYkktbvqZJbiZrx26OWb.M8bvlRYhjP/BFn9eZtqZdzUbICsT36mtgbN4GfGyAtu5FPo6DZm.";
   };
 
