@@ -51,13 +51,14 @@
       '';
     };
     zathura.enable=true;
-    alacritty = {
+    kitty = {
       enable=true;
+      extraConfig = "enable_audio_bell no";
     };
     bash = {
       enable = true;
       shellAliases = {
-        ll = "ls -larth";
+        s = "kitty +kitten ssh";
       };
     };
   };
@@ -71,13 +72,14 @@
       focus.followMouse = "no";
       # gaps
       input = {
+        "*" = { xkb_numlock = "enable"; };
         "type:keyboard" = { xkb_layout = "fr"; };
         "type:touchpad" = { tap = "enabled"; };
       };
       keybindings = let 
         mod = config.wayland.windowManager.sway.config.modifier;
-        term = "alacritty";
         menu = config.wayland.windowManager.sway.config.menu;
+        term = config.wayland.windowManager.sway.config.terminal;
       in {
         "${mod}+Return" = "exec ${term}";
         "${mod}+Shift+q" = "kill";
@@ -88,13 +90,13 @@
         "${mod}+Shift+e" = "swaymsg exit";
 
         "${mod}+h" = "focus left";
-        "${mod}+k" = "focus down";
-        "${mod}+j" = "focus up";
+        "${mod}+j" = "focus down";
+        "${mod}+k" = "focus up";
         "${mod}+l" = "focus right";
 
         "${mod}+Shift+h" = "move left";
-        "${mod}+Shift+k" = "move down";
-        "${mod}+Shift+j" = "move up";
+        "${mod}+Shift+j" = "move down";
+        "${mod}+Shift+k" = "move up";
         "${mod}+Shift+l" = "move right";
 
         "${mod}+ampersand" = "workspace 1";
@@ -150,13 +152,13 @@
 
         "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
-        "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
-        "XF86MonBrightnessUp" = "exec brightnessctl set +5%";
+        "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+        "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
 
-        "XF86AudioPlay" = "exec playerctl play-pause";
-        "XF86AudioNext" = "exec playerctl next";
-        "XF86AudioPrev" = "exec playerctl previous";
-        "XF86RFKill" = "exec alacritty -e nmtui";
+        #"XF86AudioPlay" = "exec playerctl play-pause";
+        #"XF86AudioNext" = "exec playerctl next";
+        #"XF86AudioPrev" = "exec playerctl previous";
+        "XF86RFKill" = "exec ${term} -e nmtui";
         "XF86Search" = "exec ${pkgs.xdg-utils}/bin/xdg-open https://search.nixos.org";
       };
         
@@ -165,7 +167,7 @@
       menu = "${pkgs.wofi}/bin/wofi -i --show run";
       modifier = "Mod4";
       output = { "*" = { bg = "${./menou1.JPG} fill"; }; };
-      terminal = "alacritty";
+      terminal = "kitty";
       bars = [{
         position = "top";
         statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${./i3status_conf.toml}";
@@ -174,6 +176,7 @@
     };
   };
   home.packages = with pkgs; [
+    swaylock
     firefox-wayland
     musescore
     thunderbird
@@ -188,6 +191,7 @@
   ];
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
+    TERM = "xterm-256color";
   };
   xdg.enable = true;
   home.file = {
@@ -197,5 +201,6 @@
       rev = "09b4d4a720cb780a156fd487188bf192b58aa174";
       sha256 = "0l39gf0aivdbsqr3dqqa4mql8kkypggy3z0bgpzr96z17b6ylwj4";
     };
+    ".config/swaylock/config".source = pkgs.substituteAll { src = ./swaylockConfig; photo = ./menou1.JPG; };
   };
 }

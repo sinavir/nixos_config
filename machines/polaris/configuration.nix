@@ -48,7 +48,13 @@
   services.printing.enable = true;
 
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    extraConfig = ''
+      load-module module-null-sink sink_name=rtp
+      load-module module-rtp-send source=rtp.monitor
+    '';
+  };
 
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -67,13 +73,14 @@
   #  };
   #  package = pkgs.gnupg.override { pinentry = pkgs.pinentry; };
   #};
+  security.pam.services.swaylock = {};
   hardware.opengl.enable = true;
 
   home-manager.users.maurice = import ./hm-maurice.nix;
 
   users.users.maurice = {
     extraGroups = [ "wireshark" "audio" "networkmanager" "video" ];
-    hashedPassword = "$6$sKY5c.ui.GaeZNtP$TOCJXXdieguUTlYkktbvqZJbiZrx26OWb.M8bvlRYhjP/BFn9eZtqZdzUbICsT36mtgbN4GfGyAtu5FPo6DZm.";
+    hashedPassword = "$6$0g0qYLeYeYt/.CCJ$ZCUiB/oV65XX1pu40.Ldq9zCxqIqeIInqZ2EcLES6AZ7bXQZvQAyBJ1gx7uMXgWjrB7JibO/uaYf.yOyKI0JS1";
   };
 
   # This value determines the NixOS release from which the default
@@ -83,6 +90,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
-
 }
-
