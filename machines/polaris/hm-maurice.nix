@@ -42,9 +42,9 @@
       extraConfig = ''
         set mouse=""
 
-        " set termguicolors
-        " colorscheme base16-atelier-seaside
-        " let g:airline_theme='base16_atelier_seaside'
+        set termguicolors
+        colorscheme base16-bright
+        let g:airline_theme='base16_bright'
 
         set noesckeys
         set incsearch
@@ -66,9 +66,17 @@
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true ;
-    config = {
+    config = let
+        fontsize = 9.0;
+        themeColors = import ./base16-bright.nix;
+      in
+      {
       # assigns = {};
 
+      fonts = {
+        names = [ "monospace" "FontAwesome5Free" ];
+        size = fontsize;
+      };
       focus.followMouse = "no";
       # gaps
       input = {
@@ -76,6 +84,7 @@
         "type:keyboard" = { xkb_layout = "fr"; };
         "type:touchpad" = { tap = "enabled"; };
       };
+      
       keybindings = let 
         mod = config.wayland.windowManager.sway.config.modifier;
         menu = config.wayland.windowManager.sway.config.menu;
@@ -170,9 +179,54 @@
       terminal = "kitty";
       bars = [{
         position = "top";
+        fonts = {
+          names = [ "monospace" "FontAwesome5Free" ];
+          size = fontsize;
+        };
+        colors = {
+          background = "${themeColors.base00}";
+          separator =  "${themeColors.base01}";
+          statusline = "${themeColors.base04}";
+          focusedWorkspace =   { border = "${themeColors.base0A}"; background = "${themeColors.base0A}"; text = "${themeColors.base00}"; };
+          activeWorkspace =    { border = "${themeColors.base03}"; background = "${themeColors.base03}"; text = "${themeColors.base00}"; };
+          inactiveWorkspace =  { border = "${themeColors.base01}"; background = "${themeColors.base01}"; text = "${themeColors.base05}"; };
+          urgentWorkspace =    { border = "${themeColors.base08}"; background = "${themeColors.base08}"; text = "${themeColors.base00}"; };
+          bindingMode =        { border = "${themeColors.base05}"; background = "${themeColors.base05}"; text = "${themeColors.base00}"; };
+        };
         statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${./i3status_conf.toml}";
         hiddenState = "show";
       }];
+      colors = {
+        focused = {
+          border = "${themeColors.base05}";
+          background = "${themeColors.base0A}";
+          text = "${themeColors.base00}";
+          indicator = "${themeColors.base0A}";
+          childBorder = "${themeColors.base0A}";
+        };
+        focusedInactive = {
+          border = "${themeColors.base01}";
+          background = "${themeColors.base01}";
+          text = "${themeColors.base05}";
+          indicator = "${themeColors.base03}";
+          childBorder = "${themeColors.base01}";
+        };
+        unfocused = {
+          border = "${themeColors.base01}";
+          background = "${themeColors.base00}";
+          text = "${themeColors.base05}";
+          indicator = "${themeColors.base01}";
+          childBorder = "${themeColors.base01}";
+
+        };
+        urgent =
+          { border = "${themeColors.base08}";
+          background = "${themeColors.base08}";
+          text = "${themeColors.base00}";
+          indicator = "${themeColors.base08}";
+          childBorder = "${themeColors.base08}";
+        };
+      };
     };
   };
   home.packages = with pkgs; [
