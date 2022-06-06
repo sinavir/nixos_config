@@ -153,7 +153,7 @@
         "${mod}+t" = "border toggle";
         "${mod}+r" = "mode \"resize\"";
 
-        "Print" = "exec ${pkgs.grim}/bin/grim -g $(${pkgs.slurp}/bin/slurp -d) - | wl-clip";
+        "Print" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -d)\" - | wl-copy";
 
         "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
         "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
