@@ -33,6 +33,7 @@
   networking.interfaces.enp2s0.useDHCP = true;
   networking.interfaces.wlp3s0.useDHCP = true;
   networking.networkmanager.enable = true;
+  networking.networkmanager.logLevel = "DEBUG";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
