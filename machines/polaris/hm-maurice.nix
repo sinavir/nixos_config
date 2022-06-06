@@ -16,7 +16,7 @@
     git = {
       enable = true;
       userName  = "sinavir";
-      userEmail = "maurice.debray@ens.psl.eu";
+      userEmail = "sinavir@sinavir.fr";
       aliases = {
         co = "checkout";
         ci = "commit";
