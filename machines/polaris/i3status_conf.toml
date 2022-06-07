@@ -47,6 +47,9 @@ block = "net"
 format = "{ssid} {signal_strength} {ip}/{ipv6} {speed_down;K*b} {speed_up;K*b}"
 
 [[block]]
+block = "backlight"
+
+[[block]]
 block = "battery"
 
 [[block]]
