@@ -6,7 +6,7 @@
       ./hardware-configuration.nix
       ../../shared/users.nix
       ./users.nix
-      ./syncthing.nix
+      ../../shared/syncthing.nix
       ./nat.nix
       ./sound.nix
       ./crux.nix

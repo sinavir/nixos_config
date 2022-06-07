@@ -10,6 +10,7 @@
       <home-manager/nixos>
       ./hardware-configuration.nix
       ../../shared/users.nix
+      ../../shared/syncthing.nix
       ./kfet-open.nix
     ];
 
