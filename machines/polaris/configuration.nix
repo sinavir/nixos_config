@@ -36,6 +36,10 @@
   networking.networkmanager.enable = true;
   networking.networkmanager.logLevel = "DEBUG";
 
+  services.syncthing.user = "maurice";
+  services.syncthing.group = "maurice";
+  services.syncthing.dataDir = "/home/maurice";
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
@@ -45,6 +49,7 @@
   fonts.enableDefaultFonts = true;
   fonts.fonts = [
     pkgs.font-awesome
+    pkgs.helvetica-neue-lt-std
   ];
 
   services.printing.enable = true;
