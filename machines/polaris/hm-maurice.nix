@@ -1,4 +1,15 @@
 { config, pkgs, lib, ... }:
+let
+  website = pkgs.writeShellScriptBin "website"
+    ''
+    dir=$(dirname $1)
+    file=$(basename $1)
+    rnd=$(xxd -p -l 16 /dev/random)
+    
+    ssh sinavir.fr "cat > site/$dir/$rnd-$file"
+    echo "https://sinavir.fr/$dir/$rnd-$file"
+    '';
+in
 {
   nixpkgs.config.allowUnfree = true;
   services = {
@@ -59,6 +70,7 @@
       enable = true;
       shellAliases = {
         s = "kitty +kitten ssh";
+        zat = "zathura";
       };
     };
   };
@@ -230,7 +242,14 @@
     };
   };
   home.packages = with pkgs; [
+    imv
+    (python39.withPackages (ps: [
+      ps.numpy
+      ps.scipy
+      ps.matplotlib
+    ]))
     swaylock
+    signal-desktop
     firefox-wayland
     musescore
     thunderbird
@@ -242,6 +261,8 @@
     discord
     xdg-utils
     mako
+    keepassxc
+    website
   ];
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
