@@ -33,7 +33,7 @@ in
       # Note: The private key can also be included inline via the privateKey option,
       # but this makes the private key world-readable; thus, using privateKeyFile is
       # recommended.
-      privateKeyFile = "/var/lib/wg/private";
+      privateKeyFile = config.age.secrets."wg-${config.networking.hostName}".path;
 
       inherit peers;
     };

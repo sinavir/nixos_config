@@ -16,6 +16,7 @@
       ../../shared/users.nix
       ../../shared/syncthing.nix
       ../../shared/secrets
+      ../../shared/wireguard.nix
       ../../modules/me.nix
       ./kfet-open.nix
     ];
@@ -35,7 +36,7 @@
 
   time.timeZone = "Europe/Amsterdam";
 
-
+  age.identityPaths = [ "/home/maurice/.ssh/id_ed25519" ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";

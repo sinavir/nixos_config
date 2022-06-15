@@ -3,5 +3,5 @@ let
   readPubkeys = user: builtins.filter (k: k != "") (lib.splitString "\n" (builtins.readFile (../pubkeys + "/${user}.keys")));
 in
 {
-  #"xxx.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
+  "wg-polaris.age".publicKeys = (readPubkeys "maurice");
 }
