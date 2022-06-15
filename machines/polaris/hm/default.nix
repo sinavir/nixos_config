@@ -11,6 +11,10 @@ let
     '';
 in
 {
+  imports = [
+    ./ssh-config.nix
+    ./git.nix
+  ];
   nixpkgs.config.allowUnfree = true;
   services = {
     gpg-agent.enable = true;
@@ -23,18 +27,6 @@ in
     gpg = {
       enable = true;
       package = pkgs.gnupg.override { pinentry = pkgs.pinentry; };
-    };
-    git = {
-      enable = true;
-      userName  = "sinavir";
-      userEmail = "sinavir@sinavir.fr";
-      aliases = {
-        co = "checkout";
-        ci = "commit";
-        br = "branch --all -v";
-        st = "status";
-        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all";
-      };
     };
     vim = {
       enable = true;

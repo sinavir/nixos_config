@@ -83,7 +83,7 @@
   security.pam.services.swaylock = {};
   hardware.opengl.enable = true;
 
-  home-manager.users.maurice = import ./hm-maurice.nix;
+  home-manager.users.maurice = import ./hm;
 
   users.users.maurice = {
     extraGroups = [ "wireshark" "audio" "networkmanager" "video" ];
