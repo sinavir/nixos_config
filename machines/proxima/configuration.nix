@@ -15,7 +15,6 @@
       ./static-website.nix
       ../../shared/wireguard.nix
       ../../shared/secrets
-      <agenix/modules/age.nix>
       ../../modules/me.nix
     ];
 
@@ -28,12 +27,12 @@
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sdb"; # or "nodev" for efi only
 
+  security.sudo.wheelNeedsPassword = false;
+
   me.lan.ipv4 = "10.100.0.1";
   me.lan.prefixSize4 = 24;
   me.lan.ipv6 = "2001:470:1f13:128::1";
   me.lan.prefixSize6 = 64;
-
-  security.sudo.wheelNeedsPassword = false;
 
   networking.hostName = "proxima"; # Define your hostname.
 
@@ -54,7 +53,7 @@
   };
 
   security.acme = {
-    email = "hackens@clipper.ens.fr";
+    email = "sinavir@sinavir.fr";
     acceptTerms = true;
   };      
 

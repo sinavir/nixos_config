@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../../shared/users.nix
       ../../shared/wireguard.nix
+      ../../shared/secrets
       ../../modules/me.nix
     ];
 
