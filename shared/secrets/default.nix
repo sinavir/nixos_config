@@ -8,4 +8,5 @@
   ];
 
   age.secrets."wg-polaris".file = ./wg-polaris.age;
+  age.secrets."wg-algedi".file = ./wg-algedi.age;
 }
