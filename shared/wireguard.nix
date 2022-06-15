@@ -4,16 +4,16 @@ let
   peers = [
         {
           publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/algedi);
-          allowedIPs = [ "10.100.0.2/32" "2001:470:1f13:128::2/128" ];
+          allowedIPs = [ "10.100.0.0/24" "2001:470:1f13:128::/64" ];
           endpoint = "rz.sinavir.fr:51820";
         }
         {
           publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/polaris);
-          allowedIPs = [ "10.100.0.3/32" "2001:470:1f13:128::3/128" ];
+          allowedIPs = [ "10.100.0.3/32" "2001:470:1f13:128::/64" ];
         }
         {
           publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/proxima);
-          allowedIPs = [ "10.100.0.1/32" "2001:470:1f13:128::1/128" ];
+          allowedIPs = [ "10.100.0.1/32" "2001:470:1f13:128::/64" ];
           endpoint = "sinavir.fr:51820";
         }
       ];
@@ -24,17 +24,8 @@ in
     wg0 = {
       # Determines the IP address and subnet of the server's end of the tunnel interface.
       ips = [ "${config.me.lan.ipv4}/${toString config.me.lan.prefixSize4}" "${config.me.lan.ipv6}/${toString config.me.lan.prefixSize6}" ];
-
-      # The port that WireGuard listens to. Must be accessible by the client.
       listenPort = 51820;
-
-      # Path to the private key file.
-      #
-      # Note: The private key can also be included inline via the privateKey option,
-      # but this makes the private key world-readable; thus, using privateKeyFile is
-      # recommended.
       privateKeyFile = config.age.secrets."wg-${config.networking.hostName}".path;
-
       inherit peers;
     };
   };
