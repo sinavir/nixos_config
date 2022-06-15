@@ -10,6 +10,8 @@
       <home-manager/nixos>
       ./hardware-configuration.nix
       ../../shared/users.nix
+      ../../shared/syncthing.nix
+      ./kfet-open.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -32,6 +34,11 @@
   networking.interfaces.enp2s0.useDHCP = true;
   networking.interfaces.wlp3s0.useDHCP = true;
   networking.networkmanager.enable = true;
+  networking.networkmanager.logLevel = "DEBUG";
+
+  services.syncthing.user = "maurice";
+  services.syncthing.group = "maurice";
+  services.syncthing.dataDir = "/home/maurice";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -40,11 +47,21 @@
     keyMap = "fr";
   };
   fonts.enableDefaultFonts = true;
+  fonts.fonts = [
+    pkgs.font-awesome
+    pkgs.helvetica-neue-lt-std
+  ];
 
   services.printing.enable = true;
 
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    extraConfig = ''
+      load-module module-null-sink sink_name=rtp channels=1
+      load-module module-rtp-send destination_ip=10.0.0.1 source=rtp.monitor
+    '';
+  };
 
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -53,14 +70,24 @@
     htop
   ];
   programs.vim.defaultEditor = true;
+  programs.wireshark.enable = true;
+  programs.wireshark.package = pkgs.wireshark;
   programs.ssh.startAgent = true;
+  #programs.gnupg = {
+  #  agent = {
+  #    enable = true;
+  #    pinentryFlavor = "curses";
+  #  };
+  #  package = pkgs.gnupg.override { pinentry = pkgs.pinentry; };
+  #};
+  security.pam.services.swaylock = {};
   hardware.opengl.enable = true;
 
   home-manager.users.maurice = import ./hm-maurice.nix;
 
   users.users.maurice = {
-    extraGroups = [ "audio" "networkmanager" "video" ];
-    hashedPassword = "$6$sKY5c.ui.GaeZNtP$TOCJXXdieguUTlYkktbvqZJbiZrx26OWb.M8bvlRYhjP/BFn9eZtqZdzUbICsT36mtgbN4GfGyAtu5FPo6DZm.";
+    extraGroups = [ "wireshark" "audio" "networkmanager" "video" ];
+    hashedPassword = "$6$0g0qYLeYeYt/.CCJ$ZCUiB/oV65XX1pu40.Ldq9zCxqIqeIInqZ2EcLES6AZ7bXQZvQAyBJ1gx7uMXgWjrB7JibO/uaYf.yOyKI0JS1";
   };
 
   # This value determines the NixOS release from which the default
@@ -70,6 +97,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
-
 }
-
