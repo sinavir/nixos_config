@@ -9,8 +9,14 @@
     [ # Include the results of the hardware scan.
       <home-manager/nixos>
       ./hardware-configuration.nix
+      ./syncthing.nix
+      ./networking.nix
+      ./sound.nix
+      ./user.nix
       ../../shared/users.nix
       ../../shared/syncthing.nix
+      ../../shared/secrets
+      ../../modules/me.nix
       ./kfet-open.nix
     ];
 
@@ -29,16 +35,7 @@
 
   time.timeZone = "Europe/Amsterdam";
 
-  networking.hostName = "polaris"; # Define your hostname.
-  networking.useDHCP = false;
-  networking.interfaces.enp2s0.useDHCP = true;
-  networking.interfaces.wlp3s0.useDHCP = true;
-  networking.networkmanager.enable = true;
-  networking.networkmanager.logLevel = "DEBUG";
 
-  services.syncthing.user = "maurice";
-  services.syncthing.group = "maurice";
-  services.syncthing.dataDir = "/home/maurice";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -54,41 +51,20 @@
 
   services.printing.enable = true;
 
-  sound.enable = true;
-  hardware.pulseaudio = {
-    enable = true;
-    extraConfig = ''
-      load-module module-null-sink sink_name=rtp channels=1
-      load-module module-rtp-send destination_ip=10.0.0.1 source=rtp.monitor
-    '';
-  };
-
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
     htop
   ];
+
   programs.vim.defaultEditor = true;
-  programs.wireshark.enable = true;
-  programs.wireshark.package = pkgs.wireshark;
   programs.ssh.startAgent = true;
-  #programs.gnupg = {
-  #  agent = {
-  #    enable = true;
-  #    pinentryFlavor = "curses";
-  #  };
-  #  package = pkgs.gnupg.override { pinentry = pkgs.pinentry; };
-  #};
   security.pam.services.swaylock = {};
   hardware.opengl.enable = true;
 
   home-manager.users.maurice = import ./hm;
 
-  users.users.maurice = {
-    extraGroups = [ "wireshark" "audio" "networkmanager" "video" ];
-    hashedPassword = "$6$0g0qYLeYeYt/.CCJ$ZCUiB/oV65XX1pu40.Ldq9zCxqIqeIInqZ2EcLES6AZ7bXQZvQAyBJ1gx7uMXgWjrB7JibO/uaYf.yOyKI0JS1";
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -96,5 +72,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.11"; # Did you read the comment?
+  system.stateVersion = "22.05"; # Did you read the comment?
 }

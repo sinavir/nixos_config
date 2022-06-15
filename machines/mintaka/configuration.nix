@@ -7,6 +7,7 @@
       ../../shared/users.nix
       ./users.nix
       ../../shared/syncthing.nix
+      ../../shared/secrets
       ./nat.nix
       ./sound.nix
       ./crux.nix
