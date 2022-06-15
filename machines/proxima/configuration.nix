@@ -13,6 +13,8 @@
       ./zerobin.nix
       ./mail.nix
       ./static-website.nix
+      ./nginx.nix
+      #./piwigo.nix
       ../../shared/wireguard.nix
       ../../shared/secrets
       <agenix/modules/age.nix>
@@ -75,6 +77,7 @@
     wget
     git
     htop
+    (pkgs.callPackage <agenix/pkgs/agenix.nix> {})
   ];
   programs.vim.defaultEditor = true;
 

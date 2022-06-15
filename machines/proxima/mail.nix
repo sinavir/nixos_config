@@ -32,4 +32,19 @@
     # down nginx and opens port 80.
     certificateScheme = 3;
   };
+  services.roundcube = {
+     enable = true;
+     hostName = "mail.sinavir.fr";
+     extraConfig = ''
+       # starttls needed for authentication, so the fqdn required to match
+       # the certificate
+       $config['smtp_server'] = "tls://${config.mailserver.fqdn}";
+       $config['smtp_user'] = "%u";
+       $config['smtp_pass'] = "%p";
+     '';
+  };
+
+  services.nginx.enable = true;
+
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
