@@ -13,6 +13,8 @@
       ./zerobin.nix
       ./mail.nix
       ./static-website.nix
+      ./nginx.nix
+      #./piwigo.nix
       ../../shared/wireguard.nix
       ../../shared/secrets
       ../../modules/me.nix
@@ -74,12 +76,14 @@
     wget
     git
     htop
+    (pkgs.callPackage <agenix/pkgs/agenix.nix> {})
   ];
   programs.vim.defaultEditor = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.openssh.passwordAuthentication = false;
+  programs.ssh.startAgent = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
