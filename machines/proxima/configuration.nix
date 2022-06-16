@@ -54,6 +54,10 @@
     interface = "ens3";
   };
 
+  boot.kernel.sysctl = {
+    "net.ipv4.conf.wg0.forwarding" = true;
+  };
+
   security.acme = {
     email = "sinavir@sinavir.fr";
     acceptTerms = true;

@@ -9,7 +9,7 @@ let
         }
         {
           publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/polaris);
-          allowedIPs = [ "10.100.0.0/24" "2001:470:1f13:128::/64" ];
+          allowedIPs = [ "10.100.0.3/32" "2001:470:1f13:128::3/128" ];
         }
         {
           publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/proxima);
