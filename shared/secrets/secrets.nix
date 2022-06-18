@@ -7,4 +7,6 @@ in
   "wg-polaris.age".publicKeys = (readPubkeys "maurice");
   "wg-proxima.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
   "wg-mintaka.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "mintaka");
+  "wg-led-proxima.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
+
 }
