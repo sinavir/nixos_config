@@ -1,16 +1,20 @@
 { config, ... }:
 {
   imports = [ ../modules/shared.nix ];
-  wg = {
+  shared.wg = {
     peers = {
       algedi = {
         publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/algedi);
-        allowedIPs = [ "${config.shared.wg.all4}2/24" "${config.shared.wg.all6}2/64" ];
+        allowedIPs = [ "${config.shared.wg.all4}2/32" "${config.shared.wg.all6}2/128" ];
         endpoint = "rz.sinavir.fr:51820";
+      };
+      mintaka = {
+        publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/mintaka);
+        allowedIPs = [ "${config.shared.wg.all4}4/32" "${config.shared.wg.all6}4/128" ];
       };
       polaris = {
         publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/polaris);
-        allowedIPs = [ "${config.shared.wg.all4}3/24" "${config.shared.wg.all6}3/64" ];
+        allowedIPs = [ "${config.shared.wg.all4}3/32" "${config.shared.wg.all6}3/128" ];
       };
       proxima = {
         publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/proxima);

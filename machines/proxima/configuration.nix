@@ -15,10 +15,8 @@
       ./static-website.nix
       ./nginx.nix
       #./piwigo.nix
-      ../../shared/shared.nix
       ./wireguard.nix
       ../../shared/secrets
-      ../../modules/me.nix
     ];
 
   # Use the GRUB 2 boot loader.
