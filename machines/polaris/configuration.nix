@@ -60,6 +60,9 @@
 
   programs.vim.defaultEditor = true;
   programs.ssh.startAgent = true;
+  services.openssh.permitRootLogin = "no";
+  services.openssh.enable = true;
+  services.openssh.passwordAuthentication = false;
   security.pam.services.swaylock = {};
   hardware.opengl.enable = true;
 
