@@ -1,7 +1,7 @@
 { config, ... }:
 {
   imports = [ ../modules/shared.nix ];
-  wg = {
+  shared.wg = {
     peers = {
       algedi = {
         publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/algedi);

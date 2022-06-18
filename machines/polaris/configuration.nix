@@ -17,7 +17,6 @@
       ../../shared/syncthing.nix
       ../../shared/secrets
       ./wireguard.nix
-      ../../modules/me.nix
       ./kfet-open.nix
     ];
 

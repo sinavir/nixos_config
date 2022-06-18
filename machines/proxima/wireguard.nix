@@ -1,5 +1,6 @@
 { pkgs, config, ... }:
 {
+  imports = [ ../../shared/shared.nix ];
   networking.wireguard.interfaces = {
     # "wg0" is the network interface name. You can name the interface arbitrarily.
     wg0 = {
