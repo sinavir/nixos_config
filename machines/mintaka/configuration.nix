@@ -8,6 +8,7 @@
       ./users.nix
       ../../shared/syncthing.nix
       ../../shared/secrets
+      ./wireguard.nix
       ./nat.nix
       ./sound.nix
       ./crux.nix
