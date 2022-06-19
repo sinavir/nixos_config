@@ -5,28 +5,23 @@
 
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/f7a666ea-dc06-443e-aab7-f4f7b5ff6b87";
+    { device = "/dev/disk/by-uuid/337ddf29-ed0a-4305-a47d-6a35e3c9a516";
       fsType = "btrfs";
-      options = [ "subvol=root" ];
     };
 
-  fileSystems."/nix/store" =
-    { device = "/dev/disk/by-uuid/f7a666ea-dc06-443e-aab7-f4f7b5ff6b87";
-      fsType = "btrfs";
-      options = [ "subvol=nixstore" ];
-    };
+  boot.initrd.luks.devices."mainfs".device = "/dev/disk/by-uuid/78c720c7-be4f-4476-b212-7967f757cdf7";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/46E2-9994";
+    { device = "/dev/disk/by-uuid/248D-7005";
       fsType = "vfat";
     };
 

@@ -9,6 +9,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./keycloak.nix
+      ./overlays.nix
       ../../shared/users.nix
       ../../shared/secrets
     ];
@@ -20,11 +22,9 @@
   networking.hostName = "elnath"; # Define your hostname.
 
   networking.useDHCP = false;
-  networking.interfaces.ens19.useDHCP = true;
+  networking.interfaces.eno1.useDHCP = true;
 
   security.sudo.wheelNeedsPassword = false;
-
-  services.keycloak.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
