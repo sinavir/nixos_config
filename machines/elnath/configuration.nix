@@ -9,10 +9,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./keycloak.nix
+      #./keycloak.nix
       ./overlays.nix
       ../../shared/users.nix
-      ../../shared/secrets
+      #../../shared/secrets
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -57,6 +57,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.11"; # Did you read the comment?
+  system.stateVersion = "22.05"; # Did you read the comment?
 
 }
