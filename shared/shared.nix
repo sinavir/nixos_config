@@ -21,6 +21,10 @@
         allowedIPs = [ "${config.shared.wg.all4}0/24" "${config.shared.wg.all6}0/64" ];
         endpoint = "sinavir.fr:51820";
       };
+      ap-unifi = {
+        publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/ap-unifi);
+        allowedIPs = [ "10.100.5.0/24" ];
+      };
     };
     all4 = "10.100.1.";
     all6 = "2001:470:1f13:128::";

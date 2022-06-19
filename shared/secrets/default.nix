@@ -13,5 +13,6 @@
     (lib.mkIf (config.networking.hostName == "proxima") {"wg-proxima".file = ./wg-proxima.age;})
     (lib.mkIf (config.networking.hostName == "mintaka") {"wg-mintaka".file = ./wg-proxima.age;})
     #(lib.mkIf (config.networking.hostName == "elnath") { "keycloakDBPassword".file = ./keycloak-db-password.age;})
+    (lib.mkIf (config.networking.hostName == "proxima") {"wg-led-proxima".file = ./wg-led-proxima.age;})
   ];
 }
