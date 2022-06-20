@@ -9,14 +9,18 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      #./keycloak.nix
-      ./overlays.nix
+      ./keycloak.nix
       ../../shared/users.nix
       #../../shared/secrets
     ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.grub = {
+    enable = true;
+    version = 2;
+    device = "nodev";
+    efiSupport = true;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "elnath"; # Define your hostname.
@@ -48,7 +52,6 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.openssh.passwordAuthentication = false;
   programs.ssh.startAgent = true;
 
   # This value determines the NixOS release from which the default
