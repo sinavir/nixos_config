@@ -11,7 +11,7 @@
       ./hardware-configuration.nix
       ./keycloak.nix
       ../../shared/users.nix
-      #../../shared/secrets
+      ../../shared/secrets
     ];
 
   # Use the systemd-boot EFI boot loader.

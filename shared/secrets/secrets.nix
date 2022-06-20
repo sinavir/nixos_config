@@ -7,7 +7,10 @@ in
   "wg-polaris.age".publicKeys = (readPubkeys "maurice");
   "wg-proxima.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
   "wg-mintaka.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "mintaka");
-  #"keycloak-db-password.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "elnath");
+  "wg-elnath.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "elnath");
+  "keycloak-db-password.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "elnath");
   "wg-led-proxima.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
+  "hackens-lan-167-key.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "elnath");
+  "maurice-vpn-005-key.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "elnath");
 
 }

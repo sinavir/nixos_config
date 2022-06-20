@@ -12,7 +12,19 @@
     (lib.mkIf (config.networking.hostName == "algedi") {"wg-algedi".file = ./wg-algedi.age;})
     (lib.mkIf (config.networking.hostName == "proxima") {"wg-proxima".file = ./wg-proxima.age;})
     (lib.mkIf (config.networking.hostName == "mintaka") {"wg-mintaka".file = ./wg-proxima.age;})
-    #(lib.mkIf (config.networking.hostName == "elnath") { "keycloakDBPassword".file = ./keycloak-db-password.age;})
+    (lib.mkIf (config.networking.hostName == "elnath") { "keycloakDBPassword".file = ./keycloak-db-password.age;})
+    (lib.mkIf (config.networking.hostName == "elnath") { "hackensKey" = {
+      file = ./hackens-lan-167-key.age;
+      owner = "nginx";
+      group = "nginx";
+    };
+    })
+    (lib.mkIf (config.networking.hostName == "elnath") { "mauriceVpnKey" = {
+      file = ./maurice-vpn-167-key.age;
+      owner = "nginx";
+      group = "nginx";
+    };
+    })
     (lib.mkIf (config.networking.hostName == "proxima") {"wg-led-proxima".file = ./wg-led-proxima.age;})
     (lib.mkIf (config.networking.hostName == "mintaka") {"wg-mintaka".file = ./wg-mintaka.age;})
   ];
