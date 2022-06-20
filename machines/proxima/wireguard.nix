@@ -27,6 +27,6 @@
   };
   networking.firewall.trustedInterfaces = [ "wg-led" ];
   networking.firewall = {
-    allowedUDPPorts = [ 51845 ]; # Clients and peers can use the same port, see listenport
+    allowedUDPPorts = [ 51820 51845 ]; # Clients and peers can use the same port, see listenport
   };
 }
