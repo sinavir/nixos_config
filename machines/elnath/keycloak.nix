@@ -17,13 +17,23 @@
     enable = true;
     recommendedProxySettings = true;
     virtualHosts."192.168.1.167" = {
-      addSSL = true;
+      listen = [{ addr = "192.168.1.167"; port = 443; }];
+      forceSSL = true;
       sslCertificate = ../../shared/hackens-lan-167.crt;
       sslCertificateKey = config.age.secrets.hackensKey.path;
       locations."/" = {
         proxyPass = "http://localhost:8080";
       };
     };
+    virtualHosts."10.100.1.5" = {
+      listen = [{ addr = "10.100.1.5"; port = 443; }];
+      forceSSL = true;
+      sslCertificate = ../../shared/maurice-vpn-005.crt;
+      sslCertificateKey = config.age.secrets.mauriceVpnKey.path;
+      locations."/" = {
+        proxyPass = "http://localhost:8080";
+      };
+    };
   };
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 443 ];
 }

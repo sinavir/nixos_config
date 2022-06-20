@@ -25,7 +25,7 @@
         publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/ap-unifi);
         allowedIPs = [ "10.100.5.0/24" ];
       };
-      mintaka = {
+      elnath = {
         publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/elnath);
         allowedIPs = [ "${config.shared.wg.all4}5/32" "${config.shared.wg.all6}5/128" ];
       };

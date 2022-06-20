@@ -10,6 +10,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./keycloak.nix
+      ./wireguard.nix
       ../../shared/users.nix
       ../../shared/secrets
     ];
