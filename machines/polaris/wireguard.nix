@@ -10,6 +10,7 @@
       privateKeyFile = config.age.secrets."wg-${config.networking.hostName}".path;
       peers = [
         (config.shared.wg.peers.proxima // { persistentKeepalive = 25; })
+        (config.shared.wg.peers.elnath // { persistentKeepalive = 25; })
       ];
     };
   };

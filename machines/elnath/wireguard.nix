@@ -7,7 +7,8 @@
       listenPort = 51820;
       privateKeyFile = config.age.secrets."wg-${config.networking.hostName}".path;
       peers = [
-        (config.shared.wg.peers.proxima // { persistentKeepalive = 25; })
+        (config.shared.wg.peers.proxima)
+        (config.shared.wg.peers.polaris)
       ];
     };
   };
