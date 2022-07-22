@@ -19,5 +19,8 @@
     "sas" = {
       hostname = "mdebray@sas.eleves.ens.fr";
     };
+    "git.rz.ens.wtf" = {
+      addressFamily = "inet";
+    };
   };
 }

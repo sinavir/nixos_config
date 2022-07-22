@@ -51,6 +51,8 @@ in
 
         set noesckeys
         set incsearch
+
+        let g:vimtex_view_method = 'zathura'
       '';
     };
     zathura.enable=true;
@@ -133,6 +135,12 @@ in
         "${mod}+Shift+underscore" = "move container to workspace 8";
         "${mod}+Shift+ccedilla" = "move container to workspace 9";
         "${mod}+Shift+agrave" = "move container to workspace 10";
+        
+        "${mod}+Control+Shift+Right" = "move workspace to output right";
+        "${mod}+Control+Shift+Left" = "move workspace to output left";
+        "${mod}+Control+Shift+Down" = "move workspace to output down";
+        "${mod}+Control+Shift+Up" = "move workspace to output up";
+
 
         "${mod}+b" = "splith";
         "${mod}+v" = "splitv";
@@ -235,6 +243,8 @@ in
   };
   home.packages = with pkgs; [
     imv
+    xournalpp
+    freecad
     (python39.withPackages (ps: [
       ps.numpy
       ps.scipy
@@ -255,6 +265,9 @@ in
     mako
     keepassxc
     website
+    gnome3.adwaita-icon-theme
+    krita
+    virt-manager
   ];
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";

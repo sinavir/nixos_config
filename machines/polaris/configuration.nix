@@ -10,9 +10,11 @@
       <home-manager/nixos>
       ./hardware-configuration.nix
       ./syncthing.nix
+      ./virt-manager.nix
       ./networking.nix
       ./sound.nix
       ./user.nix
+      ./radicale.nix
       ../../shared/users.nix
       ../../shared/syncthing.nix
       ../../shared/secrets
@@ -36,7 +38,6 @@
   time.timeZone = "Europe/Amsterdam";
 
   age.identityPaths = [ "/home/maurice/.ssh/id_ed25519" ];
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
@@ -56,6 +57,9 @@
     wget
     git
     htop
+    unzip
+    traceroute
+    dig
   ];
 
   programs.vim.defaultEditor = true;
@@ -67,7 +71,6 @@
   hardware.opengl.enable = true;
 
   home-manager.users.maurice = import ./hm;
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
