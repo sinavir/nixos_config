@@ -11,6 +11,8 @@
       ../../shared/users.nix
       ./wireguard.nix
       ./radicale.nix
+      ./nginx.nix
+      ./static-website.nix
       ../../shared/secrets
     ];
 

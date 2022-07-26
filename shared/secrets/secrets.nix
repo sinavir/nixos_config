@@ -12,7 +12,6 @@ in
   "wg-led-proxima.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
   "hackens-lan-167-key.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "elnath");
   "maurice-vpn-005-key.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "elnath");
-
   "radicale-htpasswd.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "algedi");
-
+  "plans-passwd.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
 }

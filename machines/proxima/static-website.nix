@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 {
   services.nginx = {
     enable = true;
@@ -8,8 +8,11 @@
       root = "/var/lib/sinavir.fr";
       locations = {
         "/plans-ens" = {
-          basicAuthFile = pkgs.writeText "htpasswd-plans-ens" "admin:$apr1$QV9o3xS.$Xx/Bkv59sBKdumYmC2FW4.";
           extraConfig = "autoindex on;";
+	  basicAuthFile = config.age.secrets.plansPasswd.path;
+        };
+        "/rz" = {
+          proxyPass = "http://10.100.1.2";
         };
       };
     };

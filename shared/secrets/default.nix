@@ -16,12 +16,24 @@
     };
     })
 
+
+
     (lib.mkIf (config.networking.hostName == "algedi") {"wg-algedi".file = ./wg-algedi.age;})
 
-    (lib.mkIf (config.networking.hostName == "proxima") {"wg-proxima".file = ./wg-proxima.age;})
-    (lib.mkIf (config.networking.hostName == "proxima") {"wg-led-proxima".file = ./wg-led-proxima.age;})
+
+    (lib.mkIf (config.networking.hostName == "proxima") {
+      "wg-proxima".file = ./wg-proxima.age;
+      "wg-led-proxima".file = ./wg-led-proxima.age;
+      "plansPasswd" = {
+        file = ./plans-passwd.age;
+        owner = "nginx";
+        group = "nginx";
+      };
+    })
+
 
     (lib.mkIf (config.networking.hostName == "mintaka") {"wg-mintaka".file = ./wg-mintaka.age;})
+
 
     (lib.mkIf (config.networking.hostName == "elnath") {"wg-elnath".file = ./wg-elnath.age;})
     (lib.mkIf (config.networking.hostName == "elnath") { "keycloakDBPassword".file = ./keycloak-db-password.age;})

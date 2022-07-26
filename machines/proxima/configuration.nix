@@ -10,8 +10,9 @@
       ./hardware-configuration.nix
       ../../shared/users.nix
       ./thelounge.nix
-      ./zerobin.nix
+      #./zerobin.nix
       ./mail.nix
+      ./cal-ens.nix
       ./static-website.nix
       ./nginx.nix
       #./piwigo.nix
