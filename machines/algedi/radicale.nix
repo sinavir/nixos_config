@@ -10,10 +10,10 @@
       };
     };
     rights = {
-      rentree = {
-        user = ".*";
-        collection = "rentree";
-        permissions = "i";
+      root = {
+        user = ".+";
+        collection = "";
+        permissions = "R";
       };
       principal = {
         user = ".+";
@@ -25,6 +25,11 @@
         collection = "{user}/[^/]+";
         permissions = "rw";
       };
+      rentree = {
+        user = ".*";
+        collection = "rentree/[^/]+";
+        permissions = "i";
+      };
     };
   };
   services.nginx = {
@@ -35,12 +40,12 @@
       locations = {
         "/radicale/" = {
           proxyPass = "http://localhost:5232/";
-          extraConfig = """
+          extraConfig = ''
             proxy_set_header  X-Script-Name /radicale;
             proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header  Host $http_host;
+            proxy_set_header  Host $host;
             proxy_pass_header Authorization;
-          """;
+          '';
         };
       };
     };

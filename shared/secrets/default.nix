@@ -9,12 +9,6 @@
 
   age.secrets = lib.mkMerge [
     (lib.mkIf (config.networking.hostName == "polaris") {"wg-polaris".file = ./wg-polaris.age;})
-    (lib.mkIf (config.networking.hostName == "polaris") {"radicale-htpasswd" = {
-      file = ./radicale-htpasswd.age;
-      owner = "radicale";
-      group = "radicale";
-    };
-    })
 
 
 

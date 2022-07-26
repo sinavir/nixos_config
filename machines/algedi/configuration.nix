@@ -10,7 +10,6 @@
       ./hardware-configuration.nix
       ../../shared/users.nix
       ./wireguard.nix
-      ./radicale.nix
       ./nginx.nix
       ./static-website.nix
       ../../shared/secrets
@@ -57,6 +56,11 @@
     htop
   ];
   programs.vim.defaultEditor = true;
+ 
+  security.acme = {
+    email = "sinavir@sinavir.fr";
+    acceptTerms = true;
+  };    
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
