@@ -13,7 +13,7 @@
         };
         "/CD_Fanf" = {
           extraConfig = "autoindex on;";
-          basicAuthFile = ./cd_fanf_passwd;
+          basicAuthFile = config.age.secrets.cdFanfPasswd.path;
           proxyPass = "http://10.100.1.2";
         };
       };
