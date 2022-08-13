@@ -14,7 +14,6 @@
       ./networking.nix
       ./sound.nix
       ./user.nix
-      ./radicale.nix
       ../../shared/users.nix
       ../../shared/syncthing.nix
       ../../shared/secrets
