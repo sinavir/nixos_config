@@ -1,0 +1,10 @@
+#!/bin/sh
+
+oldwd=$(pwd)
+
+cd /etc/nixos
+git pull
+git add .
+git commit -m "$(date)"
+git push
+nixos-rebuild switch
