@@ -14,6 +14,7 @@
       ./networking.nix
       ./sound.nix
       ./user.nix
+      ./radicale.nix
       ../../shared/users.nix
       ../../shared/syncthing.nix
       ../../shared/secrets
@@ -47,6 +48,7 @@
   fonts.fonts = [
     pkgs.font-awesome
     pkgs.helvetica-neue-lt-std
+    pkgs.aegyptus
   ];
 
   services.printing.enable = true;

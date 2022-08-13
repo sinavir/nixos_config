@@ -5,15 +5,15 @@
     settings = {
       auth = {
         type = "htpasswd";
-        htpasswd_filename = ./radicale_passwd;
+        htpasswd_filename = builtins.toString ./radicale_passwd;
         htpasswd_encryption = "bcrypt";
       };
     };
     rights = {
-      rentree = {
-        user = ".*";
-        collection = "rentree";
-        permissions = "i";
+      root = {
+        user = ".+";
+        collection = "";
+        permissions = "R";
       };
       principal = {
         user = ".+";
@@ -24,6 +24,11 @@
         user = ".+";
         collection = "{user}/[^/]+";
         permissions = "rw";
+      };
+      rentree = {
+        user = ".*";
+        collection = "rentree/[^/]+";
+        permissions = "i";
       };
     };
   };

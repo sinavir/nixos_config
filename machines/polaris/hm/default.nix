@@ -14,11 +14,13 @@ in
   imports = [
     ./ssh-config.nix
     ./git.nix
+    ./swayidle.nix
   ];
   nixpkgs.config.allowUnfree = true;
   services = {
     gpg-agent.enable = true;
     gpg-agent.pinentryFlavor = "tty";
+    
   };
   programs = {
     password-store = {
@@ -160,7 +162,7 @@ in
         "${mod}+Shift+m" = "move scratchpad";
         "${mod}+m" = "scratchpad show";
 
-        "${mod}+i" = "exec swaylock";
+        "${mod}+i" = "exec ${pkgs.swaylock}/bin/swaylock";
         "${mod}+shift+i" = "exec systemctl suspend";
         "${mod}+t" = "border toggle";
         "${mod}+r" = "mode \"resize\"";
@@ -250,7 +252,6 @@ in
       ps.scipy
       ps.matplotlib
     ]))
-    swaylock
     signal-desktop
     firefox-wayland
     musescore
@@ -267,6 +268,7 @@ in
     website
     gnome3.adwaita-icon-theme
     krita
+    inkscape
     virt-manager
   ];
   home.sessionVariables = {
