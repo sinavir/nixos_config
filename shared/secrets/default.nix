@@ -23,6 +23,11 @@
         owner = "nginx";
         group = "nginx";
       };
+      "cdFanfPasswd" = {
+        file = ./cdfanf-passwd.age;
+        owner = "nginx";
+        group = "nginx";
+      };
     })
 
 
