@@ -11,7 +11,9 @@
           extraConfig = "autoindex on;";
 	  basicAuthFile = config.age.secrets.plansPasswd.path;
         };
-        "/rz" = {
+        "/CD_Fanf" = {
+          extraConfig = "autoindex on;";
+          basicAuthFile = ./cd_fanf_passwd
           proxyPass = "http://10.100.1.2";
         };
       };

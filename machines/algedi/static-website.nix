@@ -7,8 +7,7 @@
       root = "/var/lib/proxy.sinavir.fr";
       listen = [ {addr = "10.100.1.2"; port = 80; } ];
       locations = {
-        "/rz/76127651-CD_vashfol/" = {
-          alias = "/var/lib/proxy.sinavir.fr/76127651-CD_fanf/";
+        "/CD_Fanf/" = {
           extraConfig = "autoindex on;";
         };
       };
