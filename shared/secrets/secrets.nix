@@ -13,4 +13,5 @@ in
   "hackens-lan-167-key.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "elnath");
   "maurice-vpn-005-key.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "elnath");
   "plans-passwd.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
+  "cdfanf-passwd.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
 }
