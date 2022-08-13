@@ -13,7 +13,7 @@
         };
         "/CD_Fanf" = {
           extraConfig = "autoindex on;";
-          basicAuthFile = ./cd_fanf_passwd
+          basicAuthFile = ./cd_fanf_passwd;
           proxyPass = "http://10.100.1.2";
         };
       };
