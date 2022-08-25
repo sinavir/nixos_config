@@ -34,6 +34,7 @@ in
       enable = true;
       plugins = with pkgs.vimPlugins; [
         vim-addon-nix
+        vim-go
         vim-airline
         vim-airline-themes
         ultisnips
