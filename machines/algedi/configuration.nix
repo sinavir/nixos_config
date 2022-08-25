@@ -30,7 +30,7 @@
         prefixLength = 64;
       }];
     };
-    mtu = 1500;
+    mtu = 1350;
   };
   networking.interfaces.ens19.useDHCP = true;
 
