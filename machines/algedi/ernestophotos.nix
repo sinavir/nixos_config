@@ -7,8 +7,10 @@
       forceSSL = true;
       enableACME = true;
       root = "/var/lib/ernestophotos/public";
-      index = "index.php";
       locations = {
+        "/" = {
+          index = "index.php";
+        };
         "/index.php" = {
           extraConfig = ''
             try_files /$1 /index.php?/$1 /index.php =404;
