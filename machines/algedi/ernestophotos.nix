@@ -6,11 +6,11 @@
     virtualHosts."photos.ernestophone.fr" = {
       forceSSL = true;
       enableACME = true;
-      root = "/var/lib/ernestophotos/public";
+      root = "/var/lib/ernestophotos/public/";
       locations = {
         "/index.php" = {
           fastcgiParams = {
-            SCRIPT_FILENAME   = "$document_root$fastcgi_script_name";
+            SCRIPT_FILENAME = "$document_root$fastcgi_script_name";
           };
           extraConfig = ''
             fastcgi_split_path_info ^(.+?\.php)(/.*)$;
@@ -29,7 +29,6 @@
             rewrite ^/(.*)$ /index.php?/$1 last;
             break;
         }
-        access_log /var/log/nginx/lychee.access.log;
       '';
     };
   };
