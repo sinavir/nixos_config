@@ -13,6 +13,7 @@
       ./nginx.nix
       ./static-website.nix
       ./ernestophotos.nix
+      ./ernestodirection.nix
       ../../shared/secrets
     ];
 
