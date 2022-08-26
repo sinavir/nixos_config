@@ -46,7 +46,7 @@
       }];
       routes = [{
         address = "0.0.0.0";
-        prefixLegth = 0;
+        prefixLength = 0;
       }];
     };
   };
