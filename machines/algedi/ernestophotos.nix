@@ -8,7 +8,7 @@
       enableACME = true;
       root = "/var/lib/ernestophotos/public";
       locations = {
-        "/installer/assets" = {
+        "^~ /installer/assets" = {
            tryFiles = "$uri =404";
         };
         "~ ^/(.*)$" = {
