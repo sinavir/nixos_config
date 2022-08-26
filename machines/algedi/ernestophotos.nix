@@ -29,6 +29,8 @@
       "pm.min_spare_servers" = 5;
       "pm.max_spare_servers" = 20;
       "pm.max_requests" = 500;
+      "listen.owner" = config.services.nginx.user;
+      "listen.group" = config.services.nginx.group;
     };
   };
   networking.firewall.allowedTCPPorts = [ 80 443 ];
