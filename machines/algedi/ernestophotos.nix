@@ -6,7 +6,6 @@
       forceSSL = true;
       enableACME = true;
       root = "/var/lib/ernestophotos/public";
-      index = "index.php";
       locations = {
         "~ ^/(.*)$" = {
           extraConfig = ''
