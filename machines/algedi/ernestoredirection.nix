@@ -5,7 +5,7 @@
     virtualHosts."ernestophone.fr" = {
       enableACME = true;
       addSSL = true;
-      extraConfig = "return 302 https://ernestophone.ens.fr;";
+      locations."/".return = "302 https://ernestophone.ens.fr";
     };
   };
 }
