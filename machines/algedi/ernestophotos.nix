@@ -8,9 +8,6 @@
       enableACME = true;
       root = "/var/lib/ernestophotos/public";
       locations = {
-        "/" = {
-          index = "index.php";
-        };
         "/index.php" = {
           extraConfig = ''
             try_files /$1 /index.php?/$1 /index.php =404;
@@ -24,6 +21,7 @@
         };
       };
       extraConfig = ''
+        index index.php;
         if (!-e $request_filename)
         {
             rewrite ^/(.*)$ /index.php?/$1 last;
