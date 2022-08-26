@@ -8,7 +8,7 @@
       enableACME = true;
       root = "/var/lib/ernestophotos/public/";
       locations = {
-        "/index.php" = {
+        "^~ /index.php" = {
           fastcgiParams = {
             SCRIPT_FILENAME = "$document_root$fastcgi_script_name";
           };
