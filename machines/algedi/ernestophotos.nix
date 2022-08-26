@@ -2,7 +2,7 @@
 {
   services.nginx = {
     enable = true;
-    logError = "stderr info";
+    logError = "stderr debug";
     virtualHosts."photos.ernestophone.fr" = {
       forceSSL = true;
       enableACME = true;
