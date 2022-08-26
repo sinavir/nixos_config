@@ -12,6 +12,7 @@
       ./wireguard.nix
       ./nginx.nix
       ./static-website.nix
+      ./ernestophotos.nix
       ../../shared/secrets
     ];
 
@@ -30,7 +31,10 @@
         prefixLength = 64;
       }];
     };
-    mtu = 1350;
+    mtu = 1450;
+  };
+  networking.interfaces.wg0 = {
+    mtu = 1270;
   };
   networking.interfaces.ens19.useDHCP = true;
 
