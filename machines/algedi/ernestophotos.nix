@@ -6,10 +6,11 @@
       forceSSL = true;
       enableACME = true;
       root = "/var/lib/ernestophotos/public";
+      index = "index.php";
       locations = {
         "~ ^/(.*)$" = {
           extraConfig = ''
-            try_files $uri /index.php?/$1 =404;
+            try_files /$1 /index.php?/$1 =404;
             fastcgi_pass unix:${config.services.phpfpm.pools."ernestophotos".socket};
             fastcgi_index index.php;
           '';
