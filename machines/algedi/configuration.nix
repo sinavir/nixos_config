@@ -31,12 +31,22 @@
         prefixLength = 64;
       }];
     };
-    mtu = 1450;
+    mtu = 1350;
   };
   networking.interfaces.wg0 = {
     mtu = 1270;
   };
+  networking.defaultGateway = { interface = "ens21"; };
   networking.interfaces.ens19.useDHCP = true;
+  networking.interfaces.ens21 = {
+    useDHCP = false;
+    ipv4 = {
+      addresses = [{
+        address = "45.13.104.28";
+        prefixLength = 32;
+      }];
+    };
+  };
 
   security.sudo.wheelNeedsPassword = false;
 
