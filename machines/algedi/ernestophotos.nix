@@ -9,6 +9,9 @@
       root = "/var/lib/ernestophotos/public";
       locations = {
         "/index.php" = {
+          fastcgiParams = {
+            SCRIPT_FILENAME   = "$document_root$fastcgi_script_name";
+          };
           extraConfig = ''
             fastcgi_split_path_info ^(.+?\.php)(/.*)$;
             fastcgi_pass unix:${config.services.phpfpm.pools."ernestophotos".socket};
