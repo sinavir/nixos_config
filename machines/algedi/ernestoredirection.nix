@@ -6,6 +6,6 @@
       enableACME = true;
       addSSL = true;
       extraConfig = "return 302 https://fanfare.ens.psl.eu;";
-    }:
+    };
   };
 }
