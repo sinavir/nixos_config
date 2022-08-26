@@ -18,7 +18,7 @@
     };
   };
   services.phpfpm.pools."ernestophotos" = {
-    user = congif.services.nginx.user;
+    user = config.services.nginx.user;
     group = config.services.nginx.group;
     phpPackage = pkgs.php81.withExtensions ({ enabled, all }:
       enabled ++ [ all.imagick all.bcmath all.mbstring all.gd]);
