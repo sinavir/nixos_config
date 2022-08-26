@@ -45,7 +45,8 @@
         prefixLength = 32;
       }];
       routes = [{
-        address = "default";
+        address = "0.0.0.0";
+        prefixLegth = 0;
       }];
     };
   };
