@@ -5,7 +5,7 @@
     virtualHosts."ernestophone.fr" = {
       enableACME = true;
       addSSL = true;
-      extraConfig = "return 302 https://fanfare.ens.psl.eu;";
+      extraConfig = "return 302 https://ernestophone.ens.fr;";
     };
   };
 }
