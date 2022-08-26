@@ -8,16 +8,7 @@
       enableACME = true;
       root = "/var/lib/ernestophotos/public";
       locations = {
-        "^~ /installer/assets" = {
-           tryFiles = "$uri =404";
-        };
-        "^~ /dist" = {
-           tryFiles = "$uri =404";
-        };
-        "^~ /uploads" = {
-           tryFiles = "$uri =404";
-        };
-        "~ ^/(.*)$" = {
+        "/index.php" = {
           extraConfig = ''
             try_files /$1 /index.php?/$1 /index.php =404;
             fastcgi_split_path_info ^(.+?\.php)(/.*)$;
@@ -25,7 +16,17 @@
             fastcgi_index index.php;
           '';
         };
+        "~ [^/]\.php(/|$)" = {
+           return = "403";
+        };
       };
+      extraConfig = ''
+        if (!-e $request_filename)
+        {
+            rewrite ^/(.*)$ /index.php?/$1 last;
+            break;
+        }
+      '';
     };
   };
   services.phpfpm.pools."ernestophotos" = {
