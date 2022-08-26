@@ -29,6 +29,7 @@
             rewrite ^/(.*)$ /index.php?/$1 last;
             break;
         }
+        access_log /var/log/nginx/lychee.access.log;
       '';
     };
   };
