@@ -10,7 +10,7 @@
       locations = {
         "~ ^/(.*)$" = {
           extraConfig = ''
-            try_files /$1 /index.php?/$1 =404;
+            try_files /$1 /index.php?/$1 =401;
             fastcgi_split_path_info ^(.+?\.php)(/.*)$;
             fastcgi_pass unix:${config.services.phpfpm.pools."ernestophotos".socket};
             fastcgi_index index.php;
