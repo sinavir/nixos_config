@@ -11,7 +11,7 @@
       ./wireguard.nix
       ./nat.nix
       ./sound.nix
-      ./crux.nix
+      #./crux.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -20,7 +20,6 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
-  boot.loader.systemd-boot.enable = true;
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "nodev"; # or "nodev" for efi only
 
@@ -58,6 +57,7 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.openssh.passwordAuthentication = false;
+  programs.ssh.startAgent = true;
 
 
   # Pour faire marcher sway
@@ -69,6 +69,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.11"; # Did you read the comment?
+  system.stateVersion = "22.05"; # Did you read the comment?
 
 }
