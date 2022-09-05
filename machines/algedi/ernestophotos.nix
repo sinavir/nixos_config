@@ -47,6 +47,7 @@
       "listen.owner" = config.services.nginx.user;
       "listen.group" = config.services.nginx.group;
     };
+    phpEnv."PATH" = lib.makeBinPath [ pkgs.ffmpeg ]
   };
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
