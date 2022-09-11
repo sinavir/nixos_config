@@ -277,7 +277,13 @@ in
     TERM = "xterm-256color";
   };
   xdg.enable = true;
-  home.file = {
+  home.file = let
+      nicetabs = pkgs.writeText "nicetabs.vim" ''
+        setlocal expandtab
+        setlocal shiftwidth=2
+        setlocal softtabstop=2
+        '';
+  in {
     ".vim/UltiSnips/".source = pkgs.fetchFromGitHub {
       owner = "sinavir";
       repo = "ultisnip-snippets";
@@ -285,11 +291,7 @@ in
       sha256 = "0l39gf0aivdbsqr3dqqa4mql8kkypggy3z0bgpzr96z17b6ylwj4";
     };
     ".config/swaylock/config".source = pkgs.substituteAll { src = ./swaylockConfig; photo = ./menou1.JPG; };
-    ".vim/after/ftplugin/javascript.vim".source = pkgs.writeText "javascript.vim" ''
-      setlocal expandtab
-      setlocal shiftwidth=2
-      setlocal softtabstop=2
-      '';
-
+    ".vim/after/ftplugin/javascript.vim".source = nicetabs;
+    ".vim/after/ftplugin/html.vim".source = nicetabs;
   };
 }
