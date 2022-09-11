@@ -53,11 +53,10 @@ in
         set noesckeys
         set incsearch
 
+        set mouse=''
+
         let g:vimtex_view_method = 'zathura'
       '';
-      settings = {
-        mouse = "";
-      };
     };
     zathura.enable=true;
     kitty = {
