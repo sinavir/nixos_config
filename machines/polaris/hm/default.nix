@@ -46,8 +46,6 @@ in
         number = true;
       };
       extraConfig = ''
-        set mouse=""
-
         set termguicolors
         colorscheme base16-bright
         let g:airline_theme='base16_bright'
@@ -57,6 +55,9 @@ in
 
         let g:vimtex_view_method = 'zathura'
       '';
+      settings = {
+        mouse = "";
+      };
     };
     zathura.enable=true;
     kitty = {
@@ -285,5 +286,11 @@ in
       sha256 = "0l39gf0aivdbsqr3dqqa4mql8kkypggy3z0bgpzr96z17b6ylwj4";
     };
     ".config/swaylock/config".source = pkgs.substituteAll { src = ./swaylockConfig; photo = ./menou1.JPG; };
+    ".vim/after/ftplugin/javascript.vim".source = pkgs.writeText "javascript.vim" ''
+      setlocal expandtab
+      setlocal shiftwidth=2
+      setlocal softtabstop=2
+      '';
+
   };
 }
