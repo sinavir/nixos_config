@@ -53,7 +53,7 @@ in
         set noesckeys
         set incsearch
 
-        set mouse=''
+        set mouse='\'
 
         let g:vimtex_view_method = 'zathura'
       '';
