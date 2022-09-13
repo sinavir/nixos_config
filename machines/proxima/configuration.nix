@@ -13,6 +13,7 @@
       #./zerobin.nix
       ./mail.nix
       ./cal-ens.nix
+      ./kfet-proxy.nix 
       ./static-website.nix
       ./nginx.nix
       #./piwigo.nix
