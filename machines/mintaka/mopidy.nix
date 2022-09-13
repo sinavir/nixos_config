@@ -7,7 +7,7 @@
       mopidy-local
       mopidy-youtube
       mopidy-musicbox-webclient
-      mopidy-MPD
+      mopidy-mpd
     ];
     configuration = ''
       [file]
