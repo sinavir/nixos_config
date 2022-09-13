@@ -5,5 +5,10 @@
     extensionPackages = with pkgs; [
       mopidy-iris
     ];
+    configuration = ''
+      [file]
+      enabled = true
+      media_dirs = /var/lib/mopidy|Music
+    '';
   };
 }
