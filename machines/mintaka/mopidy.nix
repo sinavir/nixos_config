@@ -10,6 +10,9 @@
       [file]
       enabled = true
       media_dirs = /var/lib/mopidy/music|Music
+      
+      [local]
+      media_dir = /var/lib/mopidy/music
     '';
   };
 }
