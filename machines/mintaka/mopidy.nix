@@ -5,6 +5,7 @@
     extensionPackages = with pkgs; [
       mopidy-iris
       mopidy-local
+      mopidy-youtube
     ];
     configuration = ''
       [file]
