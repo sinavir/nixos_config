@@ -6,6 +6,7 @@
       mopidy-iris
       mopidy-local
       mopidy-youtube
+      mopidy-mopify
     ];
     configuration = ''
       [file]
