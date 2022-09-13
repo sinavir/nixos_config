@@ -13,6 +13,9 @@
       
       [local]
       media_dir = /var/lib/mopidy/music
+
+      [audio]
+      output = pulsesink server=127.0.0.1
     '';
   };
 }
