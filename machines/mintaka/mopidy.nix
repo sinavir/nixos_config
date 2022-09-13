@@ -3,7 +3,6 @@
   services.mopidy = {
     enable = true;
     extensionPackages = with pkgs; [
-      mopidy-iris
       mopidy-local
       mopidy-youtube
       mopidy-musicbox-webclient
@@ -11,8 +10,7 @@
     ];
     configuration = ''
       [file]
-      enabled = true
-      media_dirs = /var/lib/mopidy/music|Music
+      enabled = false
       
       [local]
       media_dir = /var/lib/mopidy/music
