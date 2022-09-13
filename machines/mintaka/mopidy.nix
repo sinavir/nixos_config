@@ -4,6 +4,7 @@
     enable = true;
     extensionPackages = with pkgs; [
       mopidy-local
+      mopidy-mopify
       mopidy-youtube
       mopidy-musicbox-webclient
       mopidy-mpd
