@@ -8,7 +8,7 @@
     configuration = ''
       [file]
       enabled = true
-      media_dirs = /var/lib/mopidy|Music
+      media_dirs = /var/lib/mopidy/music|Music
     '';
   };
 }
