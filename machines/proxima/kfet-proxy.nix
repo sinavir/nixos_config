@@ -1,7 +1,7 @@
 { config, ... }:
 {
   services.nginx = {
-    virtualhosts."kfet.sinavir.fr" = {
+    virtualHosts."kfet.sinavir.fr" = {
       enableACME = true;
       forceSSL = true;
       root = ./kfet-proxy-src;
