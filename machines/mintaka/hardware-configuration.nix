@@ -26,7 +26,7 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/a7a71cb5-2f81-4690-bb0a-0a4758794e3f"; }
+    [ { device = "/dev/disk/by-uuid/9bb9e6dd-8ac4-4136-ba67-b9c257a2229b"; }
     ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
