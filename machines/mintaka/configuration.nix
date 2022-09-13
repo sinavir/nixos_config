@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./mopidy.nix
       ../../shared/users.nix
       ./users.nix
       ../../shared/syncthing.nix

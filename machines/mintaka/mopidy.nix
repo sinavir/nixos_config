@@ -1,0 +1,4 @@
+{ ... }:
+{
+  services.mopidy.enable = true;
+}
