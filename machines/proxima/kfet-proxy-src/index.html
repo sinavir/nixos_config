@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>F-Fêt ouverte ?</title>
+<style>
+#main {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15vw;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.red {
+  background-color: red;
+  color: white;
+}
+
+.orange {
+  background-color: orange;
+  color: black;
+}
+
+
+.green {
+  background-color: green;
+  color: white;
+}
+
+p {
+  overflow: hidden;
+}
+
+.orange > #orange {
+  display: block;
+}
+
+#orange {
+  display: none;
+}
+
+.green > #green {
+  display: block;
+}
+
+#green {
+  display: none;
+}
+
+.red > #red {
+  display: block;
+}
+
+#red {
+  display: none;
+}
+</style>
+  </head>
+  <body>
+    <div id="main" class="green">
+      <p id="orange">Undefined</p>
+      <p id="red">Closed</p>
+      <p id="green">Open</p>
+    </div>
+    <script>
+// Créer une connexion WebSocket
+const socket = new WebSocket('wss://kfet.sinavir.fr');
+const div = document.getElementById("main");
+
+// Écouter les messages
+socket.addEventListener('message', function (event) {
+  console.log('Voici un message du serveur', event.data);
+  switch (JSON.parse(event.data).status) {
+    case "opened":
+      div.className = "green";
+      break;
+    case "closed":
+      div.className = "red";
+      break;
+    default:
+      div.className = "orange";
+  }
+});
+</script>
+  </body>
+</html>
