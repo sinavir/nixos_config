@@ -6,7 +6,8 @@
       mopidy-iris
       mopidy-local
       mopidy-youtube
-      mopidy-mopify
+      mopidy-musicbox-webclient
+      mopidy-MPD
     ];
     configuration = ''
       [file]
