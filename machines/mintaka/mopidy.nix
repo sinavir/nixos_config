@@ -4,6 +4,8 @@
     enable = true;
     extensionPackages = with pkgs; [
       mopidy-iris
+      mopidy-local
+      mopidy-spotify
     ];
     configuration = ''
       [file]
