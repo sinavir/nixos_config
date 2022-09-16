@@ -4,6 +4,6 @@
     user = "maurice";
     group = "maurice";
     dataDir = "/home/maurice";
+    openDefaultPorts = true;
   };
-  networking.firewall.allowedTCPPorts = [ 22000 ];
 }
