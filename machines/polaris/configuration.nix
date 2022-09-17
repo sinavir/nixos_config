@@ -60,6 +60,7 @@
     unzip
     traceroute
     dig
+    tree
   ];
 
   programs.vim.defaultEditor = true;
