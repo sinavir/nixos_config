@@ -1,4 +1,5 @@
 #!/bin/sh
+set -xe
 
 cd /etc/nixos
 git pull
