@@ -15,6 +15,7 @@ in
     ./ssh-config.nix
     ./git.nix
     ./swayidle.nix
+    ./discord.nix
   ];
   nixpkgs.config.allowUnfree = true;
   services = {
