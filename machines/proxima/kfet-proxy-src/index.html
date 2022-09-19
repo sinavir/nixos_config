@@ -70,14 +70,14 @@ p {
 </style>
   </head>
   <body>
-    <div id="main" class="green">
+    <div id="main" class="orange">
       <p id="orange">Undefined</p>
       <p id="red">Closed</p>
       <p id="green">Open</p>
     </div>
     <script>
 // Créer une connexion WebSocket
-const socket = new WebSocket('wss://kfet.sinavir.fr');
+const socket = new WebSocket('wss://kfet.sinavir.fr/ws/');
 const div = document.getElementById("main");
 
 // Écouter les messages
