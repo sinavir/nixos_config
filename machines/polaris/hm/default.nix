@@ -42,6 +42,7 @@ in
         vimtex
         vim-fugitive
         base16-vim
+        vim-wayland-clipboard
       ];
       settings = {
         number = true;
