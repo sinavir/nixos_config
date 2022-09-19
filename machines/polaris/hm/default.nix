@@ -273,6 +273,7 @@ in
     krita
     inkscape
     virt-manager
+    notion-app-enhanced
   ];
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
