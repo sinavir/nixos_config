@@ -1,7 +1,10 @@
 #!/bin/sh
 set -xe
 
-cd /etc/nixos
+SCRIPT=$(realpath "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
+
+cd $SCRIPTPATH
 git pull
 nixos-rebuild switch
 git add .
