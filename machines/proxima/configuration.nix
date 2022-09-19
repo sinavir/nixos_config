@@ -55,7 +55,7 @@
   };
 
   security.acme = {
-    email = "sinavir@sinavir.fr";
+    defaults.email = "sinavir@sinavir.fr";
     acceptTerms = true;
   };      
 
