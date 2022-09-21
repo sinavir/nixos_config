@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>F-Fêt ouverte ?</title>
+    <title>Ouverture K-Fêt</title>
 <style>
 #main {
   margin: 0;
@@ -71,9 +71,9 @@ p {
   </head>
   <body>
     <div id="main" class="orange">
-      <p id="orange">Undefined</p>
-      <p id="red">Closed</p>
-      <p id="green">Open</p>
+      <p id="orange">Non défini</p>
+      <p id="red">Fermé</p>
+      <p id="green">Ouvert</p>
     </div>
     <script>
 // Créer une connexion WebSocket
@@ -86,12 +86,15 @@ socket.addEventListener('message', function (event) {
   switch (JSON.parse(event.data).status) {
     case "opened":
       div.className = "green";
+      document.title = "🟢 Ouvert | K-Fêt";
       break;
     case "closed":
       div.className = "red";
+      document.title = "🔴 Fermé | K-Fêt";
       break;
     default:
       div.className = "orange";
+      document.title = "🟠 Indéfini | K-Fêt";
   }
 });
 </script>
