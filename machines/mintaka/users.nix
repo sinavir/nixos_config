@@ -9,6 +9,9 @@
     isNormalUser = true;
     home = "/backups";
     createHome = true;
+    openssh.authorizedKeys.keyFiles = [
+        ./../../shared/pubkeys/maurice.keys
+      ];
   };
   #imports = [ <home-manager/nixos> ];
   #home-manager.users.maurice = import ./hm-maurice.nix;
