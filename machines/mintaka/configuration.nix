@@ -53,6 +53,7 @@
     wget
     tmux
     git
+    borgbackup
     htop
   ];
   programs.vim.defaultEditor = true;
