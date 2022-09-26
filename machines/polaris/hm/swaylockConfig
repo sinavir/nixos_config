@@ -1,7 +1,6 @@
 bs-hl-color=FFFF00FF
 ignore-empty-password
 image=@photo@
-indicator
 indicator-caps-lock
 indicator-radius=95
 indicator-thickness=10
