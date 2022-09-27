@@ -32,7 +32,13 @@
 
 
     (lib.mkIf (config.networking.hostName == "mintaka") {"wg-mintaka".file = ./wg-mintaka.age;})
-    (lib.mkIf (config.networking.hostName == "algedi") {"radicale".file = ./radicale.age;})
+    (lib.mkIf (config.networking.hostName == "algedi") {
+      "radicale" = {
+        file = ./radicale.age;
+        owner = "radicale";
+        group = "radicale";
+      };
+    })
 
 
     (lib.mkIf (config.networking.hostName == "elnath") {"wg-elnath".file = ./wg-elnath.age;})
