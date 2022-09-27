@@ -14,5 +14,5 @@ in
   "maurice-vpn-005-key.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "elnath");
   "plans-passwd.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
   "cdfanf-passwd.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
-  "radicale.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "mintaka");
+  "radicale.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "algedi");
 }

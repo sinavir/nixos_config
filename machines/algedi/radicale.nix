@@ -5,7 +5,7 @@
     settings = {
       auth = {
         type = "htpasswd";
-        htpasswd_filename = config.age.secrets."radicale-htpasswd".path;
+        htpasswd_filename = config.age.secrets."radicale".path;
         htpasswd_encryption = "bcrypt";
       };
     };
