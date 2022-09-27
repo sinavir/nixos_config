@@ -3,7 +3,7 @@
   services.swayidle = {
     enable = true;
     timeouts = [
-      { timeout = 900; command = "${pkgs.swaylock}/bin/swaylock"; }
+      { timeout = 900; command = "${pkgs.swaylock}/bin/swaylock -f"; }
       {
         timeout = 120;
         command = "swaymsg \"output * dpms off\"";
@@ -11,8 +11,8 @@
       }
     ];
     events = [
-      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock"; }
-      { event = "lock"; command = "${pkgs.swaylock}/bin/swaylock"; }
+      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -f"; }
+      { event = "lock"; command = "${pkgs.swaylock}/bin/swaylock -f"; }
     ];
   };
 }

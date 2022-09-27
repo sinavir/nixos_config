@@ -63,4 +63,5 @@
       sha256 = "0l39gf0aivdbsqr3dqqa4mql8kkypggy3z0bgpzr96z17b6ylwj4";
     };
   };
+  home.stateVersion = "unstable";
 }

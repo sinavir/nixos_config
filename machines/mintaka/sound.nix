@@ -6,7 +6,6 @@ in
   sound.enable = true;
   hardware.pulseaudio = {
     enable = true;
-    systemWide = true;
-    extraConfig = "load-module module-rtp-recv latency_msec=${latency} sap_address=10.0.0.1";
+    extraConfig = "load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1";
   };
 }

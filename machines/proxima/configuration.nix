@@ -13,6 +13,7 @@
       #./zerobin.nix
       ./mail.nix
       ./cal-ens.nix
+      ./kfet-proxy.nix 
       ./static-website.nix
       ./nginx.nix
       #./piwigo.nix
@@ -54,7 +55,7 @@
   };
 
   security.acme = {
-    email = "sinavir@sinavir.fr";
+    defaults.email = "sinavir@sinavir.fr";
     acceptTerms = true;
   };      
 
@@ -74,6 +75,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     git
+    screen
     htop
     (pkgs.callPackage <agenix/pkgs/agenix.nix> {})
   ];

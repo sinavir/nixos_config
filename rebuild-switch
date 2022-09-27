@@ -1,12 +1,12 @@
 #!/bin/sh
+set -xe
 
-oldwd=$(pwd)
+SCRIPT=$(realpath "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
 
-cd /etc/nixos
+cd $SCRIPTPATH
 git pull
+sudo nixos-rebuild switch
 git add .
 git commit -m "$(date)"
 git push
-nixos-rebuild switch
-
-cd $oldwd

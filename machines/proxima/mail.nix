@@ -24,6 +24,9 @@
            "contact@sinavir.fr"
            "@sinavir.fr"
          ];
+         catchAll = [
+           "sinavir.fr"
+         ];
          quota="5G";
        };
     };

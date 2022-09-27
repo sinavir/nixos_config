@@ -15,6 +15,7 @@ in
     ./ssh-config.nix
     ./git.nix
     ./swayidle.nix
+    ./discord.nix
   ];
   nixpkgs.config.allowUnfree = true;
   services = {
@@ -41,19 +42,20 @@ in
         vimtex
         vim-fugitive
         base16-vim
+        vim-wayland-clipboard
       ];
       settings = {
         number = true;
       };
       extraConfig = ''
-        set mouse=""
-
         set termguicolors
         colorscheme base16-bright
         let g:airline_theme='base16_bright'
 
         set noesckeys
         set incsearch
+
+        set mouse=""
 
         let g:vimtex_view_method = 'zathura'
       '';
@@ -271,13 +273,20 @@ in
     krita
     inkscape
     virt-manager
+    notion-app-enhanced
   ];
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
     TERM = "xterm-256color";
   };
   xdg.enable = true;
-  home.file = {
+  home.file = let
+      nicetabs = pkgs.writeText "nicetabs.vim" ''
+        setlocal expandtab
+        setlocal shiftwidth=2
+        setlocal softtabstop=2
+        '';
+  in {
     ".vim/UltiSnips/".source = pkgs.fetchFromGitHub {
       owner = "sinavir";
       repo = "ultisnip-snippets";
@@ -285,5 +294,7 @@ in
       sha256 = "0l39gf0aivdbsqr3dqqa4mql8kkypggy3z0bgpzr96z17b6ylwj4";
     };
     ".config/swaylock/config".source = pkgs.substituteAll { src = ./swaylockConfig; photo = ./menou1.JPG; };
+    ".vim/after/ftplugin/javascript.vim".source = nicetabs;
+    ".vim/after/ftplugin/html.vim".source = nicetabs;
   };
 }
