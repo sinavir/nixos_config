@@ -25,11 +25,6 @@
         collection = "{user}/[^/]+";
         permissions = "rw";
       };
-      rentree = {
-        user = ".*";
-        collection = "rentree/[^/]+";
-        permissions = "i";
-      };
     };
   };
   services.nginx = {
