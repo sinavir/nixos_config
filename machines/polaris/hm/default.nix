@@ -70,6 +70,7 @@ in
       shellAliases = {
         s = "kitty +kitten ssh";
         zat = "zathura";
+        nsp = "nix-shell -p";
       };
     };
   };

@@ -16,6 +16,7 @@
       ./ernestophotos.nix
       ./ernestoredirection.nix
       ../../shared/secrets
+      ../../shared/autoUpgrade.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
