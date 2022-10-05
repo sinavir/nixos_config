@@ -33,7 +33,7 @@
         "${mod}+a" = "exec firefox";
 
         "${mod}+Shift+c" = "reload";
-        "${mod}+Shift+e" = "swaymsg exit";
+        "${mod}+Shift+e" = "exit";
 
         "${mod}+h" = "focus left";
         "${mod}+j" = "focus down";
