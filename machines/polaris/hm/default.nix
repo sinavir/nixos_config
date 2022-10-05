@@ -73,6 +73,11 @@ in
         zat = "zathura";
         nsp = "nix-shell -p";
       };
+      profileExtra = ''
+        if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+          exec sway
+        fi
+      '';
     };
   };
 
