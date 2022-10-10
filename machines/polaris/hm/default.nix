@@ -109,6 +109,7 @@ in
     inkscape
     virt-manager
     notion-app-enhanced
+    vlc
   ];
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
