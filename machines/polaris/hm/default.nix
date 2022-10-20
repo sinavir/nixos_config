@@ -44,6 +44,16 @@ in
         vim-fugitive
         base16-vim
         vim-wayland-clipboard
+        (pkgs.vimUtils.buildVimPluginFrom2Nix {
+          pname = "vim-lark-syntax";
+          version = "2020-09-18";
+          src = pkgs.fetchFromGitHub {
+            owner = "lark-parser";
+            repo = "vim-lark-syntax";
+            rev = "80891559f5686b5d2a897cc25628fdf5a2d0aff0";
+            sha256 = "sha256-FlgguTfMbhh4q1f+eVnb+Q9OmlSM+w148ZJp4t6zdYo=";
+          };
+        })
       ];
       settings = {
         number = true;
