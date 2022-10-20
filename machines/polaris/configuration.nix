@@ -22,9 +22,6 @@
       ./kfet-open.nix
     ];
 
-services.xserver.enable = true;
-services.xserver.displayManager.gdm.enable = true;
-services.xserver.desktopManager.gnome.enable = true;
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = {
