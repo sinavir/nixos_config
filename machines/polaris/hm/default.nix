@@ -44,6 +44,7 @@ in
         vim-fugitive
         base16-vim
         vim-wayland-clipboard
+        vim-svelte
         (pkgs.vimUtils.buildVimPluginFrom2Nix {
           pname = "vim-lark-syntax";
           version = "2020-09-18";
