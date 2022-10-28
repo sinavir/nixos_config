@@ -3,7 +3,7 @@
   users.mutableUsers = false;
   users.users.maurice = {
     extraGroups = lib.mkForce [ "audio" "video" "wheel" "pulse-access" ]; # Enable ‘sudo’ for the user.
-    hashedPassword = "$6$D6yIxKZ1GM37vKGh$On0hJnxptVpUePDqP20.fG5GmWWGTObqrhOu7Caxz5WTqnCmS8rXx0r02k/G6/0.9ciso.BTN4/bkEWDYOvRS/";
+    hashedPassword = "$6$0g0qYLeYeYt/.CCJ$ZCUiB/oV65XX1pu40.Ldq9zCxqIqeIInqZ2EcLES6AZ7bXQZvQAyBJ1gx7uMXgWjrB7JibO/uaYf.yOyKI0JS1";
   };
   users.users.borg = {
     isNormalUser = true;
@@ -13,6 +13,6 @@
         ./../../shared/pubkeys/maurice.keys
       ];
   };
-  #imports = [ <home-manager/nixos> ];
-  #home-manager.users.maurice = import ./hm-maurice.nix;
+  imports = [ <home-manager/nixos> ];
+  home-manager.users.maurice = import ./hm;
 }

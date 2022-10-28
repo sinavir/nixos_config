@@ -4,7 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./mopidy.nix
+      # ./mopidy.nix
       ../../shared/users.nix
       ./users.nix
       ../../shared/syncthing.nix
@@ -39,12 +39,18 @@
 
   security.sudo.wheelNeedsPassword = false;
 
+  nixpkgs.config.allowUnfree = true;
   # i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
     keyMap = "fr";
   };
   fonts.enableDefaultFonts = true;
+  fonts.fonts = [
+    pkgs.font-awesome
+    pkgs.helvetica-neue-lt-std
+    pkgs.aegyptus
+  ];
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -66,7 +72,8 @@
 
 
   # Pour faire marcher sway
-  # hardware.opengl.enable = true;
+  hardware.opengl.enable = true;
+  security.pam.services.swaylock = {};
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
