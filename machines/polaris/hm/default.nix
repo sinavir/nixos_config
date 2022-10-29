@@ -143,5 +143,6 @@ in
     ".config/swaylock/config".source = pkgs.substituteAll { src = ./swaylockConfig; photo = ./menou1.JPG; };
     ".vim/after/ftplugin/javascript.vim".source = nicetabs;
     ".vim/after/ftplugin/html.vim".source = nicetabs;
+    ".vim/after/ftplugin/svelte.vim".source = nicetabs;
   };
 }
