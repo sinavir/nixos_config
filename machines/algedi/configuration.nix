@@ -16,6 +16,7 @@
       ./ernestophotos.nix
       ./ernestoredirection.nix
       ./secrets
+      ./netdata.nix
       ../../shared/autoUpgrade.nix
     ];
 
