@@ -1,0 +1,11 @@
+{
+  "name": "K-Fêt ouverte",
+  "icons": [{
+    "src": "favicon.png",
+    "sizes": "96x96"
+  }],
+  "scope": "/",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "black"
+}
