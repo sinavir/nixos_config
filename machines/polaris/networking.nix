@@ -6,7 +6,6 @@
   networking.interfaces.wlp3s0.useDHCP = true;
   networking.networkmanager.enable = true;
   networking.nameservers = [
-        "1.1.1.1"
-            "8.8.8.8"
-              ];
+    "1.1.1.1"
+  ];
 }

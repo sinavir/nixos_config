@@ -18,7 +18,7 @@
       ./nginx.nix
       #./piwigo.nix
       ./wireguard.nix
-      ../../shared/secrets
+      ./secrets
     ];
 
   # Use the GRUB 2 boot loader.

@@ -15,7 +15,7 @@
       ./static-website.nix
       ./ernestophotos.nix
       ./ernestoredirection.nix
-      ../../shared/secrets
+      ./secrets
       ../../shared/autoUpgrade.nix
     ];
 
