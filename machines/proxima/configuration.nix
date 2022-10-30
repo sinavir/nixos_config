@@ -19,6 +19,7 @@
       #./piwigo.nix
       ./wireguard.nix
       ./secrets
+      ./kfet-open-recorder.nix
     ];
 
   # Use the GRUB 2 boot loader.
