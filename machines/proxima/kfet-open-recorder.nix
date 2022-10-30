@@ -4,6 +4,7 @@ in
 {
   systemd.services.kfet-open-recorder = {
     script = ''
+      echo $STATE_DIRECTORY
       ${ws-scraper}/bin/ws-scraper \
         wss://cof.ens.fr/ws/k-fet/open \
         $STATE_DIRECTORY/kfet-open-recorder/db.sqlite
