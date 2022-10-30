@@ -6,7 +6,7 @@ in
     script = ''
       ${ws-scraper}/bin/ws-scrapper \
         wss://cof.ens.fr/ws/k-fet/open \
-        $STATE_DIRECTORY/db.sqlite
+        $STATE_DIRECTORY/kfet-open-recorder/db.sqlite
       '';
     serviceConfig = {
       DynamicUser = true;
