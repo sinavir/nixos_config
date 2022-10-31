@@ -6,8 +6,8 @@ buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "sinavir";
     repo = "ws-scraper";
-    rev = "b766503db4653a3566a079a2462deb775606b130";
-    sha256 = "sha256-huchXhYvXjAxep/8gQC5L4LECN+WJXpSlXSARWZxw9Y=";
+    rev = "5cceaae90b5066db80de6374fb51a12382d36b86";
+    sha256 = "sha256-xadxI6HK+aKYfCm2ljeIybW28eo8vEgzburCVm7JSIU=";
   };
   propagatedBuildInputs = builtins.trace "${aiosqlite}" [ aiosqlite websockets ];
 }
