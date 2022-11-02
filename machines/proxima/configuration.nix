@@ -31,6 +31,8 @@
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sdb"; # or "nodev" for efi only
 
+  programs.mosh.enable = true;
+
   security.sudo.wheelNeedsPassword = false;
 
   networking.hostName = "proxima"; # Define your hostname.
