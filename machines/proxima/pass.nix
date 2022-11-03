@@ -13,7 +13,7 @@
     };
     environmentFile = config.age.secrets."vaultwarden.env".path;
   };
-  services.nginx.virtualHosts."pass." = {
+  services.nginx.virtualHosts."pass.sinavir.fr" = {
     forceSSL = true;
     enableACME = true;
     locations."/" = {
