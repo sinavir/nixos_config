@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../shared/users.nix
+      ./pass.nix
       ./thelounge.nix
       #./zerobin.nix
       ./mail.nix
