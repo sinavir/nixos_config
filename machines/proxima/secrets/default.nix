@@ -24,5 +24,10 @@
       owner = "vaultwarden";
       group = "vaultwarden";
     };
+    "vaultMailPass" = {
+      file = ./vaultMailPass.age;
+      owner = "dovecot2";
+      group = "dovecot2";
+    };
   };
 }

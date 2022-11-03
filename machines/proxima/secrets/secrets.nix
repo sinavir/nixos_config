@@ -7,4 +7,5 @@ in
   "plans-passwd.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
   "cdfanf-passwd.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
   "vaultwarden.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
+  "vaultMailPass.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
 }

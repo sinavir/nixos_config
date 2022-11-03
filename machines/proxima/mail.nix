@@ -29,6 +29,13 @@
          ];
          quota="5G";
        };
+      "vaultwarden@sinavir.fr" = {
+         hashedPasswordFile = config.age.secrets."vaultMailPass".path;
+         aliases = [
+           "vaultwarden@sinavir.fr"
+         ];
+         quota="5G";
+       };
     };
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped

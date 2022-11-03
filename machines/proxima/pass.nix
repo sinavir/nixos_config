@@ -2,7 +2,7 @@
 {
   services.vaultwarden = {
     enable = true;
-    config = {
+    config = rec {
       DOMAIN = "https://pass.sinavir.fr";
       WEBSOCKET_ENABLED = true;
       WEBSOCKET_PORT = 10500;
@@ -11,6 +11,9 @@
       ROCKET_ADDRESS = "127.0.0.1";
       LOG_FILE = "/var/log/vaultwarden";
       SIGNUPS_VERIFY = true;
+      SMTP_HOST = "mail.sinavir.fr";
+      SMTP_FROM = "vaultwarden@sinavir.fr";
+      SMTP_USERNAME = SMTP_FROM;
     };
     environmentFile = config.age.secrets."vaultwarden.env".path;
   };
