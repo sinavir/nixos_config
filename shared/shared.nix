@@ -21,6 +21,11 @@
         allowedIPs = [ "${config.shared.wg.all4}0/24" "${config.shared.wg.all6}0/64" ];
         endpoint = "sinavir.fr:51820";
       };
+      elnath = {
+        publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/elnath);
+        allowedIPs = [ "${config.shared.wg.all4}8/24" "${config.shared.wg.all6}8/64" ];
+        endpoint = "51.210.243.54:51820";
+      };
     };
     all4 = "10.100.1.";
     all6 = "2001:470:1f13:128::";

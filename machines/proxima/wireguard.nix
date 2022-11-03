@@ -12,6 +12,7 @@
         config.shared.wg.peers.algedi
         config.shared.wg.peers.polaris
         config.shared.wg.peers.mintaka
+        config.shared.wg.peers.elnath
       ];
     };
   };
