@@ -6,6 +6,7 @@
       DOMAIN = "https://pass.sinavir.fr";
       WEBSOCKET_ENABLED = true;
       WEBSOCKET_PORT = 10500;
+      SIGNUPS_ALLOWED=false;
       ROCKET_PORT = 10501;
       ROCKET_ADDRESS = "127.0.0.1";
       LOG_FILE = "/var/log/vaultwarden";
