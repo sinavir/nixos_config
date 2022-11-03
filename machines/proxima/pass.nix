@@ -1,0 +1,32 @@
+{ pkgs, config, ... }:
+{
+  services.vaultwarden = {
+    enable = true;
+    config = {
+      DOMAIN = "https://pass.sinavir.fr";
+      WEBSOCKET_ENABLED = true;
+      WEBSOCKET_PORT = 10500;
+      ROCKET_PORT = 10501;
+      ROCKET_ADDRESS = "127.0.0.1";
+      LOG_FILE = "/var/log/vaultwarden";
+      SIGNUPS_VERIFY = true;
+    };
+    environmentFile = config.age.secrets."vaultwarden.env".path;
+  };
+  services.nginx.virtualHosts."pass." = {
+    forceSSL = true;
+    enableACME = true;
+    locations."/" = {
+      proxyPass = "http://localhost:10501";
+      proxyWebsockets = true;
+    };
+    locations."/notifications/hub" = {
+      proxyPass = "http://localhost:10500";
+      proxyWebsockets = true;
+    };
+    locations."/notifications/hub/negotiate" = {
+      proxyPass = "http://localhost:10501";
+      proxyWebsockets = true;
+    };
+  };
+}

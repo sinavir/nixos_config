@@ -19,5 +19,10 @@
       owner = "nginx";
       group = "nginx";
     };
+    "vaultwarden.env" = {
+      file = ./vaultwarden.age;
+      owner = "vaultwarden";
+      group = "vaultwarden";
+    };
   };
 }
