@@ -7,6 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      ./headscale.nix
       ./hardware-configuration.nix
       ../../shared/users.nix
       ./pass.nix
