@@ -22,6 +22,8 @@
       ./kfet-open.nix
     ];
 
+  services.tailscale.enable = true;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = {
