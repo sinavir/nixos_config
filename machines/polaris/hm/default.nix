@@ -37,6 +37,7 @@ in
       plugins = with pkgs.vimPlugins; [
         vim-addon-nix
         vim-go
+        rust-vim
         vim-airline
         vim-airline-themes
         ultisnips
