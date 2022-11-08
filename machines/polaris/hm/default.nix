@@ -103,6 +103,7 @@ in
         let g:ale_python_flake8_executable = '${pkgs.python310Packages.flake8}/bin/pylint'
         let g:ale_rust_rustfmt_executable = '${pkgs.rustfmt}/bin/rustfmt'
         let g:ale_rust_analyzer_executable = '${pkgs.rust-analyzer}/bin/rust-analyzer'
+        let g:ale_fix_on_save = 1
 
       '';
     };
