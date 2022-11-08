@@ -78,8 +78,8 @@ in
         \   ],
         \}
 
-        let g:ale_python_black_executable = '${pkgs.black}'
-        let g:ale_python_isort_executable = '${pkgs.python310Packages.isort}'
+        let g:ale_python_black_executable = '${pkgs.black}/bin/black'
+        let g:ale_python_isort_executable = '${pkgs.python310Packages.isort}/bin/isort'
       '';
     };
     zathura.enable=true;
