@@ -71,15 +71,39 @@ in
         set mouse=""
 
         let g:vimtex_view_method = 'zathura'
+        let g:vimtex_quickfix_ignore_filters = [
+            \ "Underfull",
+            \ "Overfull",
+            \ "Package siunitx Warning: Detected the \"physics\" package",
+            \ "float specifier changed to"
+            \]
         let g:ale_fixers = {
         \   'python': [
         \       'black',
         \       'isort',
         \   ],
+        \   'rust': [
+        \       'rustfmt',
+        \       'trim_whitespace',
+        \       'remove_trailing_lines'
+        \   ] ,
+        \}
+
+        let g:ale_linter = {
+        \   'python': [
+        \       'pylint',
+        \   ],
+        \   'rust': [
+        \       'analyzer',
+        \   ],
         \}
 
         let g:ale_python_black_executable = '${pkgs.black}/bin/black'
         let g:ale_python_isort_executable = '${pkgs.python310Packages.isort}/bin/isort'
+        let g:ale_python_flake8_executable = '${pkgs.python310Packages.flake8}/bin/pylint'
+        let g:ale_rust_rustfmt_executable = '${pkgs.rustfmt}/bin/rustfmt'
+        let g:ale_rust_analyzer_executable = '${pkgs.rust-analyzer}/bin/rust-analyzer'
+
       '';
     };
     zathura.enable=true;
