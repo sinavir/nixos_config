@@ -77,6 +77,9 @@ in
         \       'isort',
         \   ],
         \}
+
+        let g:ale_python_black_executable = '${pkgs.black}'
+        let g:ale_python_isort_executable = '${pkgs.python310Packages.isort}'
       '';
     };
     zathura.enable=true;
