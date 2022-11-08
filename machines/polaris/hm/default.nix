@@ -71,6 +71,12 @@ in
         set mouse=""
 
         let g:vimtex_view_method = 'zathura'
+        let g:ale_fixers = {
+        \   'python': [
+        \       'black',
+        \       'isort',
+        \   ],
+        \}
       '';
     };
     zathura.enable=true;
