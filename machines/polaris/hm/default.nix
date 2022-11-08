@@ -89,7 +89,7 @@ in
         \   ] ,
         \}
 
-        let g:ale_linter = {
+        let g:ale_linters = {
         \   'python': [
         \       'pylint',
         \   ],
