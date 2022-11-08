@@ -37,7 +37,6 @@ in
       plugins = with pkgs.vimPlugins; [
         vim-addon-nix
         vim-go
-        rust-vim
         vim-airline
         vim-airline-themes
         ultisnips
@@ -46,6 +45,7 @@ in
         base16-vim
         vim-wayland-clipboard
         vim-svelte
+        ale
         (pkgs.vimUtils.buildVimPluginFrom2Nix {
           pname = "vim-lark-syntax";
           version = "2020-09-18";
