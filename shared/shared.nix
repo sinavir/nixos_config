@@ -23,8 +23,8 @@
       };
       elnath = {
         publicKey = builtins.replaceStrings ["\n"] [""] (builtins.readFile ./wg_keys/elnath);
-        allowedIPs = [ "${config.shared.wg.all4}8/24" "${config.shared.wg.all6}8/64" ];
-        endpoint = "90.27.132.115:51820";
+        allowedIPs = [ "${config.shared.wg.all4}8/32" "${config.shared.wg.all6}8/128" ];
+        #endpoint = "90.27.132.115:51820";
       };
     };
     all4 = "10.100.1.";

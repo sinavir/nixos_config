@@ -16,6 +16,9 @@
           basicAuthFile = config.age.secrets.cdFanfPasswd.path;
           proxyPass = "http://10.100.1.2";
         };
+        "/k-fet/open/raw_open/" = {
+          proxyPass = "http://localhost:7899/";
+        };
       };
     };
   };

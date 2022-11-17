@@ -7,14 +7,12 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./headscale.nix
       ./hardware-configuration.nix
       ../../shared/users.nix
       ./pass.nix
       ./thelounge.nix
       #./zerobin.nix
       ./mail.nix
-      ./cal-ens.nix
       ./kfet-proxy.nix 
       ./static-website.nix
       ./nginx.nix
