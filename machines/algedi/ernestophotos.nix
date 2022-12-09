@@ -16,6 +16,7 @@
             fastcgi_split_path_info ^(.+?\.php)(/.*)$;
             fastcgi_pass unix:${config.services.phpfpm.pools."ernestophotos".socket};
             fastcgi_index index.php;
+            client_max_body_size 100M;
           '';
         };
         "~ [^/]\.php(/|$)" = {
@@ -37,6 +38,10 @@
     group = config.services.nginx.group;
     phpPackage = pkgs.php81.withExtensions ({ enabled, all }:
       enabled ++ [ all.imagick all.bcmath all.mbstring all.gd]);
+    phpOptions = ''
+      upload_max_filesize = 100M
+      post_max_size = 100M
+      '';
     settings = {
       "pm" = "dynamic";
       "pm.max_children" = 75;

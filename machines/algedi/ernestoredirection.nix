@@ -7,5 +7,10 @@
       addSSL = true;
       locations."/".return = "302 https://ernestophone.ens.fr";
     };
+    virtualHosts."ernestoburo.ernestophone.fr" = {
+      enableACME = true;
+      addSSL = true;
+      root = ./ernestoburo;
+    };
   };
 }
