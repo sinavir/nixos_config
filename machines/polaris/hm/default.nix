@@ -129,6 +129,7 @@ in
 
   home.packages = with pkgs; [
     imv
+    libreoffice
     xournalpp
     freecad
     (python39.withPackages (ps: [

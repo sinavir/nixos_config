@@ -1,6 +1,0 @@
-#!/bin/sh
-
-SCRIPT=$(realpath "$0")
-SCRIPTPATH=$(dirname "$SCRIPT")
-
-ln -s $SCRIPTPATH/machines/$1/configuration.nix $2/etc/nixos/configuration.nix

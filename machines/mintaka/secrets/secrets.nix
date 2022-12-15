@@ -1,5 +1,5 @@
 let
-  lib = (import <nixpkgs> {}).lib;
+  lib = (import ../../../nix/mintaka-nixpkgs.nix {}).lib;
   readPubkeys = user: builtins.filter (k: k != "") (lib.splitString "\n" (builtins.readFile (../../../shared/pubkeys + "/${user}.keys")));
 in
 {
