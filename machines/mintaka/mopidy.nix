@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   services.mopidy = {
     enable = true;
     extensionPackages = with pkgs; [
@@ -12,7 +11,7 @@
     configuration = ''
       [file]
       enabled = false
-      
+
       [local]
       media_dir = /var/lib/mopidy/music
 

@@ -1,31 +1,23 @@
 { config, pkgs, lib, ... }:
 let
-  website = pkgs.writeShellScriptBin "website"
-    ''
+  website = pkgs.writeShellScriptBin "website" ''
     dir=$(dirname $1)
     file=$(basename $1)
     rnd=$(xxd -p -l 16 /dev/random)
-    
+
     ssh sinavir.fr "cat > site/$dir/$rnd-$file"
     echo "https://sinavir.fr/$dir/$rnd-$file"
-    '';
-in
-{
-  imports = [
-    ./ssh-config.nix
-    ./git.nix
-    ./discord.nix
-  ];
+  '';
+in {
+  imports = [ ./ssh-config.nix ./git.nix ./discord.nix ];
   nixpkgs.config.allowUnfree = true;
   services = {
     gpg-agent.enable = true;
     gpg-agent.pinentryFlavor = "tty";
-    
+
   };
   programs = {
-    password-store = {
-      enable = true;
-    };
+    password-store = { enable = true; };
     gpg = {
       enable = true;
       package = pkgs.gnupg.override { pinentry = pkgs.pinentry; };
@@ -43,9 +35,7 @@ in
         base16-vim
         vim-wayland-clipboard
       ];
-      settings = {
-        number = true;
-      };
+      settings = { number = true; };
       extraConfig = ''
         set termguicolors
         colorscheme base16-bright
@@ -59,9 +49,9 @@ in
         let g:vimtex_view_method = 'zathura'
       '';
     };
-    zathura.enable=true;
+    zathura.enable = true;
     kitty = {
-      enable=true;
+      enable = true;
       extraConfig = "enable_audio_bell no";
     };
     bash = {
@@ -75,12 +65,11 @@ in
 
   wayland.windowManager.sway = {
     enable = true;
-    wrapperFeatures.gtk = true ;
+    wrapperFeatures.gtk = true;
     config = let
-        fontsize = 9.0;
-        themeColors = import ./base16-bright.nix;
-      in
-      {
+      fontsize = 9.0;
+      themeColors = import ./base16-bright.nix;
+    in {
       # assigns = {};
 
       fonts = {
@@ -94,8 +83,8 @@ in
         "type:keyboard" = { xkb_layout = "fr"; };
         "type:touchpad" = { tap = "enabled"; };
       };
-      
-      keybindings = let 
+
+      keybindings = let
         mod = config.wayland.windowManager.sway.config.modifier;
         menu = config.wayland.windowManager.sway.config.menu;
         term = config.wayland.windowManager.sway.config.terminal;
@@ -139,12 +128,11 @@ in
         "${mod}+Shift+underscore" = "move container to workspace 8";
         "${mod}+Shift+ccedilla" = "move container to workspace 9";
         "${mod}+Shift+agrave" = "move container to workspace 10";
-        
+
         "${mod}+Control+Shift+Right" = "move workspace to output right";
         "${mod}+Control+Shift+Left" = "move workspace to output left";
         "${mod}+Control+Shift+Down" = "move workspace to output down";
         "${mod}+Control+Shift+Up" = "move workspace to output up";
-
 
         "${mod}+b" = "splith";
         "${mod}+v" = "splitv";
@@ -167,26 +155,32 @@ in
         "${mod}+i" = "exec ${pkgs.swaylock}/bin/swaylock";
         "${mod}+shift+i" = "exec systemctl suspend";
         "${mod}+t" = "border toggle";
-        "${mod}+r" = "mode \"resize\"";
+        "${mod}+r" = ''mode "resize"'';
 
-        "Print" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -d)\" - | wl-copy";
+        "Print" = ''
+          exec ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -d)" - | wl-copy'';
 
-        "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-        "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioRaiseVolume" =
+          "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" =
+          "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
         "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
 
-        "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+        "XF86AudioMicMute" =
+          "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
-        "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
-        "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
+        "XF86MonBrightnessDown" =
+          "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+        "XF86MonBrightnessUp" =
+          "exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
 
         #"XF86AudioPlay" = "exec playerctl play-pause";
         #"XF86AudioNext" = "exec playerctl next";
         #"XF86AudioPrev" = "exec playerctl previous";
         "XF86RFKill" = "exec ${term} -e nmtui";
-        "XF86Search" = "exec ${pkgs.xdg-utils}/bin/xdg-open https://search.nixos.org";
+        "XF86Search" =
+          "exec ${pkgs.xdg-utils}/bin/xdg-open https://search.nixos.org";
       };
-        
 
       # Quel magnifique font d'écran
       menu = "${pkgs.wofi}/bin/wofi -i --show run";
@@ -201,15 +195,36 @@ in
         };
         colors = {
           background = "${themeColors.base00}";
-          separator =  "${themeColors.base01}";
+          separator = "${themeColors.base01}";
           statusline = "${themeColors.base04}";
-          focusedWorkspace =   { border = "${themeColors.base0A}"; background = "${themeColors.base0A}"; text = "${themeColors.base00}"; };
-          activeWorkspace =    { border = "${themeColors.base03}"; background = "${themeColors.base03}"; text = "${themeColors.base00}"; };
-          inactiveWorkspace =  { border = "${themeColors.base01}"; background = "${themeColors.base01}"; text = "${themeColors.base05}"; };
-          urgentWorkspace =    { border = "${themeColors.base08}"; background = "${themeColors.base08}"; text = "${themeColors.base00}"; };
-          bindingMode =        { border = "${themeColors.base05}"; background = "${themeColors.base05}"; text = "${themeColors.base00}"; };
+          focusedWorkspace = {
+            border = "${themeColors.base0A}";
+            background = "${themeColors.base0A}";
+            text = "${themeColors.base00}";
+          };
+          activeWorkspace = {
+            border = "${themeColors.base03}";
+            background = "${themeColors.base03}";
+            text = "${themeColors.base00}";
+          };
+          inactiveWorkspace = {
+            border = "${themeColors.base01}";
+            background = "${themeColors.base01}";
+            text = "${themeColors.base05}";
+          };
+          urgentWorkspace = {
+            border = "${themeColors.base08}";
+            background = "${themeColors.base08}";
+            text = "${themeColors.base00}";
+          };
+          bindingMode = {
+            border = "${themeColors.base05}";
+            background = "${themeColors.base05}";
+            text = "${themeColors.base00}";
+          };
         };
-        statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${./i3status_conf.toml}";
+        statusCommand =
+          "${pkgs.i3status-rust}/bin/i3status-rs ${./i3status_conf.toml}";
         hiddenState = "show";
       }];
       colors = {
@@ -235,8 +250,8 @@ in
           childBorder = "${themeColors.base01}";
 
         };
-        urgent =
-          { border = "${themeColors.base08}";
+        urgent = {
+          border = "${themeColors.base08}";
           background = "${themeColors.base08}";
           text = "${themeColors.base00}";
           indicator = "${themeColors.base08}";
@@ -249,11 +264,7 @@ in
     imv
     xournalpp
     freecad
-    (python39.withPackages (ps: [
-      ps.numpy
-      ps.scipy
-      ps.matplotlib
-    ]))
+    (python39.withPackages (ps: [ ps.numpy ps.scipy ps.matplotlib ]))
     signal-desktop
     firefox-wayland
     musescore
@@ -280,11 +291,11 @@ in
   };
   xdg.enable = true;
   home.file = let
-      nicetabs = pkgs.writeText "nicetabs.vim" ''
-        setlocal expandtab
-        setlocal shiftwidth=2
-        setlocal softtabstop=2
-        '';
+    nicetabs = pkgs.writeText "nicetabs.vim" ''
+      setlocal expandtab
+      setlocal shiftwidth=2
+      setlocal softtabstop=2
+    '';
   in {
     ".vim/UltiSnips/".source = pkgs.fetchFromGitHub {
       owner = "sinavir";
@@ -292,7 +303,10 @@ in
       rev = "09b4d4a720cb780a156fd487188bf192b58aa174";
       sha256 = "0l39gf0aivdbsqr3dqqa4mql8kkypggy3z0bgpzr96z17b6ylwj4";
     };
-    ".config/swaylock/config".source = pkgs.substituteAll { src = ./swaylockConfig; photo = ./menou1.JPG; };
+    ".config/swaylock/config".source = pkgs.substituteAll {
+      src = ./swaylockConfig;
+      photo = ./menou1.JPG;
+    };
     ".vim/after/ftplugin/javascript.vim".source = nicetabs;
     ".vim/after/ftplugin/html.vim".source = nicetabs;
   };

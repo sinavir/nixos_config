@@ -1,8 +1,6 @@
 { ... }:
-let
-  port = 3000;
-in
-{
+let port = 3000;
+in {
   services.gitea = {
     enable = true;
     httpAddress = "127.0.0.1";
@@ -10,5 +8,5 @@ in
     database.type = "postgres";
     disableRegistration = true;
   };
-  services.nginx = {};
+  services.nginx = { };
 }

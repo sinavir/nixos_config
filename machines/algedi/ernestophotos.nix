@@ -1,5 +1,4 @@
-{ pkgs, lib, config, ... }:
-{
+{ pkgs, lib, config, ... }: {
   services.nginx = {
     enable = true;
     logError = "stderr debug";
@@ -14,14 +13,14 @@
           };
           extraConfig = ''
             fastcgi_split_path_info ^(.+?\.php)(/.*)$;
-            fastcgi_pass unix:${config.services.phpfpm.pools."ernestophotos".socket};
+            fastcgi_pass unix:${
+              config.services.phpfpm.pools."ernestophotos".socket
+            };
             fastcgi_index index.php;
             client_max_body_size 100M;
           '';
         };
-        "~ [^/]\.php(/|$)" = {
-           return = "403";
-        };
+        "~ [^/].php(/|$)" = { return = "403"; };
       };
       extraConfig = ''
         index index.php;
@@ -37,11 +36,11 @@
     user = config.services.nginx.user;
     group = config.services.nginx.group;
     phpPackage = pkgs.php81.withExtensions ({ enabled, all }:
-      enabled ++ [ all.imagick all.bcmath all.mbstring all.gd]);
+      enabled ++ [ all.imagick all.bcmath all.mbstring all.gd ]);
     phpOptions = ''
       upload_max_filesize = 100M
       post_max_size = 100M
-      '';
+    '';
     settings = {
       "pm" = "dynamic";
       "pm.max_children" = 75;

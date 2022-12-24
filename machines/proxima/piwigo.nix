@@ -1,5 +1,4 @@
-{ pkgs, config, ... }:
-{
+{ pkgs, config, ... }: {
   services.nginx = {
     enable = true;
     virtualHosts."sinavir.fr" = {
@@ -13,9 +12,7 @@
             fastcgi_pass unix:${config.services.phpfpm.pools."piwigo".socket};
           '';
         };
-        "/photos" = {
-          root = "/var/lib/piwigo";
-        };
+        "/photos" = { root = "/var/lib/piwigo"; };
       };
     };
   };
@@ -26,8 +23,8 @@
   services.phpfpm.pools."piwigo" = {
     user = "piwigo";
     group = config.services.nginx.group;
-    phpPackage = pkgs.php74.withExtensions ({ enabled, all }:
-      enabled ++ [ all.imagick ]);
+    phpPackage =
+      pkgs.php74.withExtensions ({ enabled, all }: enabled ++ [ all.imagick ]);
     settings = {
       "listen.owner" = "piwigo";
       "listen.group" = config.services.nginx.group;

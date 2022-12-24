@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   services.nginx = {
     virtualHosts."kfet.sinavir.fr" = {
       enableACME = true;

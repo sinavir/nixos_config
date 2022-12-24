@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   services.syncthing = {
     user = "maurice";
     group = "maurice";

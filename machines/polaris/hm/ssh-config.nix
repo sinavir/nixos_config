@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   programs.ssh.enable = true;
   programs.ssh.matchBlocks = {
     "proxima" = {
@@ -20,8 +19,6 @@
       user = "mdebray";
       hostname = "sas.eleves.ens.fr";
     };
-    "git.rz.ens.wtf" = {
-      addressFamily = "inet";
-    };
+    "git.rz.ens.wtf" = { addressFamily = "inet"; };
   };
 }

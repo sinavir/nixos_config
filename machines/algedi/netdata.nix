@@ -1,6 +1,1 @@
-{ pkgs, lib, config, ... }:
-{
-  services.netdata = {
-    enable = true;
-  };
-}
+{ pkgs, lib, config, ... }: { services.netdata = { enable = true; }; }

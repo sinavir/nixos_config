@@ -5,20 +5,19 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../shared/users.nix
-      ./wireguard.nix
-      ./radicale.nix
-      ./nginx.nix
-      ./static-website.nix
-      ./ernestophotos.nix
-      ./ernestoredirection.nix
-      ./secrets
-      ./netdata.nix
-      ../../shared/autoUpgrade.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../shared/users.nix
+    ./wireguard.nix
+    ./radicale.nix
+    ./nginx.nix
+    ./static-website.nix
+    ./ernestophotos.nix
+    ./ernestoredirection.nix
+    ./secrets
+    ./netdata.nix
+    ../../shared/autoUpgrade.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -54,11 +53,8 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-
-
   # Set your time zone.
   time.timeZone = "Europe/Paris";
-
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
@@ -75,11 +71,11 @@
     htop
   ];
   programs.vim.defaultEditor = true;
- 
+
   security.acme = {
     defaults.email = "sinavir@sinavir.fr";
     acceptTerms = true;
-  };    
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

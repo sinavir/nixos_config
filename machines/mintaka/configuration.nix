@@ -1,20 +1,19 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      # ./mopidy.nix
-      ../../shared/users.nix
-      ./users.nix
-      ../../shared/syncthing.nix
-      ./secrets
-      ../../shared/autoUpgrade.nix
-      ./wireguard.nix
-      ./nat.nix
-      ./sound.nix
-      #./crux.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    # ./mopidy.nix
+    ../../shared/users.nix
+    ./users.nix
+    ../../shared/syncthing.nix
+    ./secrets
+    ../../shared/autoUpgrade.nix
+    ./wireguard.nix
+    ./nat.nix
+    ./sound.nix
+    #./crux.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -34,8 +33,8 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.eno1.useDHCP = true; #Internal
-  networking.interfaces.enp3s2.useDHCP = true; #PCI normal (droite)
+  networking.interfaces.eno1.useDHCP = true; # Internal
+  networking.interfaces.enp3s2.useDHCP = true; # PCI normal (droite)
 
   security.sudo.wheelNeedsPassword = false;
 
@@ -46,11 +45,7 @@
     keyMap = "fr";
   };
   fonts.enableDefaultFonts = true;
-  fonts.fonts = [
-    pkgs.font-awesome
-    pkgs.helvetica-neue-lt-std
-    pkgs.aegyptus
-  ];
+  fonts.fonts = [ pkgs.font-awesome pkgs.helvetica-neue-lt-std pkgs.aegyptus ];
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -70,10 +65,9 @@
   services.openssh.passwordAuthentication = false;
   programs.ssh.startAgent = true;
 
-
   # Pour faire marcher sway
   hardware.opengl.enable = true;
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

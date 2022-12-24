@@ -1,4 +1,4 @@
-{ lib , pkgs, buildPythonApplication , python310Packages, fetchFromGitHub }:
+{ lib, pkgs, buildPythonApplication, python310Packages, fetchFromGitHub }:
 buildPythonApplication rec {
   pname = "";
   version = "1.0";

@@ -4,33 +4,33 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/f7a666ea-dc06-443e-aab7-f4f7b5ff6b87";
-      fsType = "btrfs";
-      options = [ "subvol=root" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/f7a666ea-dc06-443e-aab7-f4f7b5ff6b87";
+    fsType = "btrfs";
+    options = [ "subvol=root" ];
+  };
 
-  fileSystems."/nix/store" =
-    { device = "/dev/disk/by-uuid/f7a666ea-dc06-443e-aab7-f4f7b5ff6b87";
-      fsType = "btrfs";
-      options = [ "subvol=nixstore" ];
-    };
+  fileSystems."/nix/store" = {
+    device = "/dev/disk/by-uuid/f7a666ea-dc06-443e-aab7-f4f7b5ff6b87";
+    fsType = "btrfs";
+    options = [ "subvol=nixstore" ];
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/46E2-9994";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/46E2-9994";
+    fsType = "vfat";
+  };
 
   swapDevices = [ ];
 
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

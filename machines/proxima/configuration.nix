@@ -5,22 +5,21 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../shared/users.nix
-      ./pass.nix
-      ./thelounge.nix
-      #./zerobin.nix
-      ./mail.nix
-      ./kfet-proxy.nix 
-      ./static-website.nix
-      ./nginx.nix
-      #./piwigo.nix
-      ./wireguard.nix
-      ./secrets
-      ./kfet-open-recorder.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../shared/users.nix
+    ./pass.nix
+    ./thelounge.nix
+    #./zerobin.nix
+    ./mail.nix
+    ./kfet-proxy.nix
+    ./static-website.nix
+    ./nginx.nix
+    #./piwigo.nix
+    ./wireguard.nix
+    ./secrets
+    ./kfet-open-recorder.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -53,18 +52,15 @@
     interface = "ens3";
   };
 
-  boot.kernel.sysctl = {
-    "net.ipv4.conf.wg0.forwarding" = true;
-  };
+  boot.kernel.sysctl = { "net.ipv4.conf.wg0.forwarding" = true; };
 
   security.acme = {
     defaults.email = "sinavir@sinavir.fr";
     acceptTerms = true;
-  };      
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
-
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
@@ -80,7 +76,7 @@
     git
     screen
     htop
-    (pkgs.callPackage <agenix/pkgs/agenix.nix> {})
+    (pkgs.callPackage <agenix/pkgs/agenix.nix> { })
   ];
   programs.vim.defaultEditor = true;
 

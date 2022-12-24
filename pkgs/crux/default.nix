@@ -1,8 +1,6 @@
-{ callPackage, buildPythonApplication , fetchgit, asyncio-mqtt }:
-let
-  bottom = callPackage ./bottom.nix { };
-in
-buildPythonApplication rec {
+{ callPackage, buildPythonApplication, fetchgit, asyncio-mqtt }:
+let bottom = callPackage ./bottom.nix { };
+in buildPythonApplication rec {
   pname = "crux";
   version = "1.0";
   doCheck = false;

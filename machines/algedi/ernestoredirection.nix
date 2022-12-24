@@ -1,5 +1,4 @@
-{ pkg, config, lib, ...}:
-{
+{ pkg, config, lib, ... }: {
   services.nginx = {
     enable = true;
     virtualHosts."ernestophone.fr" = {

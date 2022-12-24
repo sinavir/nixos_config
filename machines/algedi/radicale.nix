@@ -1,5 +1,4 @@
-{ pkgs, config, lib, ... }:
-{
+{ pkgs, config, lib, ... }: {
   services.radicale = {
     enable = true;
     settings = {
@@ -45,6 +44,6 @@
       };
     };
   };
-  networking.firewall.allowedTCPPorts = [80 443];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
 

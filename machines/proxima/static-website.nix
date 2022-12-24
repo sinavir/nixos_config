@@ -1,5 +1,4 @@
-{ pkgs, config, lib, ... }:
-{
+{ pkgs, config, lib, ... }: {
   services.nginx = {
     enable = true;
     virtualHosts."sinavir.fr" = {
@@ -9,16 +8,14 @@
       locations = {
         "/plans-ens" = {
           extraConfig = "autoindex on;";
-	  basicAuthFile = config.age.secrets.plansPasswd.path;
+          basicAuthFile = config.age.secrets.plansPasswd.path;
         };
         "/CD_Fanf" = {
           extraConfig = "autoindex on;";
           basicAuthFile = config.age.secrets.cdFanfPasswd.path;
           proxyPass = "http://10.100.1.2";
         };
-        "/k-fet/open/raw_open/" = {
-          proxyPass = "http://localhost:7899/";
-        };
+        "/k-fet/open/raw_open/" = { proxyPass = "http://localhost:7899/"; };
       };
     };
   };

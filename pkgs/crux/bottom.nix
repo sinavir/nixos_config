@@ -1,4 +1,4 @@
-{ lib , buildPythonPackage , fetchFromGitHub }:
+{ lib, buildPythonPackage, fetchFromGitHub }:
 buildPythonPackage rec {
   pname = "bottom";
   version = "3.0.0";

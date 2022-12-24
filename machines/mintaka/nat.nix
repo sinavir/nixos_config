@@ -8,15 +8,15 @@ in {
     internalInterfaces = [ internal ];
     externalInterface = external;
   };
-  networking.interfaces.${internal}.ipv4.addresses = [
-    {
-      address = "10.0.0.1";
-      prefixLength = 24;
-    }
-  ];
+  networking.interfaces.${internal}.ipv4.addresses = [{
+    address = "10.0.0.1";
+    prefixLength = 24;
+  }];
   services.dnsmasq = {
     enable = true;
-    extraConfig = "interface=${internal}\ndhcp-range=10.0.0.50,10.0.0.254,255.255.255.0,24h";
+    extraConfig = ''
+      interface=${internal}
+      dhcp-range=10.0.0.50,10.0.0.254,255.255.255.0,24h'';
   };
   networking.firewall.trustedInterfaces = [ internal ];
 }

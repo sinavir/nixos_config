@@ -4,43 +4,51 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "sr_mod" "rtsx_usb_sdmmc" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+    "sr_mod"
+    "rtsx_usb_sdmmc"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/eeb7e860-a8b2-4dfc-b118-721563d8667e";
-      fsType = "btrfs";
-      options = [ "subvol=root" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/eeb7e860-a8b2-4dfc-b118-721563d8667e";
+    fsType = "btrfs";
+    options = [ "subvol=root" ];
+  };
 
-  boot.initrd.luks.devices."mainfs".device = "/dev/disk/by-uuid/261bfe2b-331c-4733-9998-ab57daa2c5b4";
+  boot.initrd.luks.devices."mainfs".device =
+    "/dev/disk/by-uuid/261bfe2b-331c-4733-9998-ab57daa2c5b4";
 
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/eeb7e860-a8b2-4dfc-b118-721563d8667e";
-      fsType = "btrfs";
-      options = [ "subvol=nix" ];
-    };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/eeb7e860-a8b2-4dfc-b118-721563d8667e";
+    fsType = "btrfs";
+    options = [ "subvol=nix" ];
+  };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/eeb7e860-a8b2-4dfc-b118-721563d8667e";
-      fsType = "btrfs";
-      neededForBoot = true;
-      options = [ "subvol=home" ];
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/eeb7e860-a8b2-4dfc-b118-721563d8667e";
+    fsType = "btrfs";
+    neededForBoot = true;
+    options = [ "subvol=home" ];
+  };
 
-  fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/8FF8-A675";
-      fsType = "vfat";
-    };
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/8FF8-A675";
+    fsType = "vfat";
+  };
 
   swapDevices = [ ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

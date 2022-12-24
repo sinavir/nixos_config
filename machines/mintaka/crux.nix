@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
-let
-  myPkgs = import ../../pkgs { inherit pkgs; };
-in
-{
+let myPkgs = import ../../pkgs { inherit pkgs; };
+in {
   systemd.services.crux = {
     after = [ "network.target" ];
     description = "A bot for hackens";

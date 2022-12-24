@@ -1,5 +1,4 @@
-{ pkgs, config, lib, ... }:
-{
+{ pkgs, config, lib, ... }: {
   service.nginx = {
     enable = true;
     virtualHosts.localhost = {
