@@ -1,26 +1,24 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      <home-manager/nixos>
-      ./hardware-configuration.nix
-      ./syncthing.nix
-      ./virt-manager.nix
-      ./networking.nix
-      ./sound.nix
-      ./user.nix
-      ./secrets
-      ../../shared/users.nix
-      ../../shared/syncthing.nix
-      ../../shared/autoUpgrade.nix
-      ./wireguard.nix
-      ./kfet-open.nix
-    ];
+  imports = [
+    <home-manager/nixos>
+    ./hardware-configuration.nix
+    ./syncthing.nix
+    ./virt-manager.nix
+    ./networking.nix
+    ./sound.nix
+    ./user.nix
+    ./secrets
+    ../../shared/users.nix
+    ../../shared/syncthing.nix
+    ../../shared/autoUpgrade.nix
+    ../../shared/nixConfig.nix
+    ./wireguard.nix
+    ./kfet-open.nix
+  ];
+
+  nixosIsUnstable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
@@ -45,11 +43,7 @@
     keyMap = "fr";
   };
   fonts.enableDefaultFonts = true;
-  fonts.fonts = [
-    pkgs.font-awesome
-    pkgs.helvetica-neue-lt-std
-    pkgs.aegyptus
-  ];
+  fonts.fonts = [ pkgs.font-awesome pkgs.helvetica-neue-lt-std pkgs.aegyptus ];
 
   services.printing.enable = true;
 
@@ -69,7 +63,7 @@
   services.openssh.permitRootLogin = "no";
   services.openssh.enable = true;
   services.openssh.passwordAuthentication = false;
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
   hardware.opengl.enable = true;
 
   home-manager.users.maurice = import ./hm;

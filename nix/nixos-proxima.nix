@@ -1,1 +1,0 @@
-nixos-stable.nix

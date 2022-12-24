@@ -1,1 +1,1 @@
-nix-shell --pure --run "home-manager switch"
+nix-shell --pure --run "nixos-rebuild switch"

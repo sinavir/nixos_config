@@ -181,4 +181,6 @@ in
     ".vim/after/ftplugin/html.vim".source = nicetabs;
     ".vim/after/ftplugin/svelte.vim".source = nicetabs;
   };
+  home.stateVersion = "22.11";
+
 }
