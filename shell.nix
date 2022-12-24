@@ -15,7 +15,7 @@ pkgs.mkShell rec {
   ];
 
   shellHook = ''
-    export NIX_PATH="${lib.concatStringsSep ":" (path ++ [ "nixos-config=/etc/nixos/configuration.nix" ])}"
+    export NIX_PATH="${lib.concatStringsSep ":" ([ "nixos-config=/etc/nixos/configuration.nix" ] ++ path)}"
   '';
 
 }
