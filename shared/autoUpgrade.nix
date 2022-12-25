@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    ../modules/autoUpgrade.nix
+    ../modules/auto-upgrade.nix
     ./secrets
   ];
   system.autoUpgradeWithHooks = {
