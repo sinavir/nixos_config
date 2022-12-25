@@ -12,6 +12,7 @@
     ./radicale.nix
     ./nginx.nix
     ./static-website.nix
+    ./ntfy.nix
     ./ernestophotos.nix
     ./ernestoredirection.nix
     ./secrets
