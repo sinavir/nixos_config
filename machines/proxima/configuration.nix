@@ -9,19 +9,16 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../shared/users.nix
-      ./lychee.nix
       ./pass.nix
       ./thelounge.nix
-      #./zerobin.nix
       ./mail.nix
       ./kfet-proxy.nix 
       ./static-website.nix
       ./nginx.nix
-      #./piwigo.nix
       ./wireguard.nix
       ./secrets
       ./kfet-open-recorder.nix
-      ../../shared/auto-upgrade.nix
+      ../../shared/autoUpgrade.nix
     ];
 
   # Use the GRUB 2 boot loader.
