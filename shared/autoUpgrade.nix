@@ -15,14 +15,14 @@ in
       NTFY_PASS=$(cat ${config.age.secrets."ntfy-passwd".path})
       if [ $exitstatus -eq 0 ] ; then
         ${pkgs.curl}/bin/curl \
-          -u misc:$NTFY_PASS
+          -u misc:$NTFY_PASS \
           -H "Title: Rebuild for ${hostname} successful" \
           -H "Tags: white_check_mark" \
           -d "What a wonderful day" \
           https://ntfy.sinavir.fr/server-daily-rebuild
       else
         ${pkgs.curl}/bin/curl \
-          -u misc:$NTFY_PASS
+          -u misc:$NTFY_PASS \
           -H "Title: Rebuild for ${hostname} failed" \
           -H "Tags: warning" \
           -d "Exit status is $exitstatus" \
