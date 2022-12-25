@@ -12,7 +12,7 @@ in
     dates = "22:00";
     postSwitchHook = ''
       exitstatus=$?
-      NTFY_PASS=$(cat ${config.age."ntfy-passwd".path})
+      NTFY_PASS=$(cat ${config.age.secrets."ntfy-passwd".path})
       if [ $exitstatus -eq 0 ] ; then
         ${pkgs.curl}/bin/curl \
           -u misc:$NTFY_PASS
@@ -27,6 +27,7 @@ in
           -H "Tags: warning" \
           -d "Exit status is $exitstatus" \
           https://ntfy.sinavir.fr/server-daily-rebuild
+      fi
       '';
   };
 }
