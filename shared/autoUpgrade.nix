@@ -10,24 +10,20 @@ in
   system.autoUpgradeWithHooks = {
     enable = true;
     dates = "22:00";
+    preRebuildHook = ''
+      ${pkgs.git}/bin/git -C /etc/nixos checkout master
+      checkoutstatus=$?
+      ${pkgs.git}/bin/git -C /etc/nixos pull https://github.com/sinavir/nixos_config.git
+      fetchstatus=$?
+      '';
     postSwitchHook = ''
       exitstatus=$?
       NTFY_PASS=$(cat ${config.age.secrets."ntfy-passwd".path})
-      if [ $exitstatus -eq 0 ] ; then
-        ${pkgs.curl}/bin/curl \
-          -u misc:$NTFY_PASS \
-          -H "Title: Rebuild for ${hostname} successful" \
-          -H "Tags: white_check_mark" \
-          -d "What a wonderful day" \
-          https://ntfy.sinavir.fr/server-daily-rebuild
-      else
-        ${pkgs.curl}/bin/curl \
-          -u misc:$NTFY_PASS \
-          -H "Title: Rebuild for ${hostname} failed" \
-          -H "Tags: warning" \
-          -d "Exit status is $exitstatus" \
-          https://ntfy.sinavir.fr/server-daily-rebuild
-      fi
+      ${pkgs.curl}/bin/curl \
+        -u misc:$NTFY_PASS \
+        -H "Title: Rebuild for ${hostname}" \
+        -d "checkout: $checkoutstatus / pull: $fetchstatus / rebuild: $exitstatus" \
+        https://ntfy.sinavir.fr/server-daily-rebuild
       '';
   };
 }
