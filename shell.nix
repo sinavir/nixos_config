@@ -1,18 +1,15 @@
-{ sources ? import ./nix { }, pkgs ? import sources.nixpkgs { }, }:
+{ sources ? import ./nix { unstable = false; }, pkgs ? import sources.nixpkgs { }, }:
 let
   lib = pkgs.lib;
-  path = pkgs.lib.mapAttrsToList (name: path: "${name}=${path}") sources;
+  opts = pkgs.lib.mapAttrsToList (name: path: "-I ${name}=${path}") ({ nixos-config="/etc/nixos/configuration.nix"; } // sources);
 in pkgs.mkShell rec {
 
   name = "nixos-rebuild-shell";
 
-  packages = with pkgs; [ niv ];
+  packages = with pkgs; [ nixos-rebuild niv ];
 
   shellHook = ''
-    export NIX_PATH="${
-      lib.concatStringsSep ":"
-      ([ "nixos-config=/etc/nixos/configuration.nix" ] ++ path)
-    }"
+    export REBUILD_OPTIONS="${lib.concatStringsSep " " opts}"
   '';
 
 }

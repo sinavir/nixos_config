@@ -5,6 +5,7 @@ in {
     after = [ "network.target" ];
     description = "K-Fêt indicator";
     script = ''
+      set -o pipefail
       ${rwebsocat}/bin/rwebsocat wss://cof.ens.fr/ws/k-fet/open \
       | ${pkgs.jq}/bin/jq --unbuffered -Rr 'fromjson? | .status?' \
       | sed -u 's/closed/🔴 Close/; s/unknown/🟠 Unknown/; s/opened/🟢 Open/' \

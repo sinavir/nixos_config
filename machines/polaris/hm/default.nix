@@ -8,10 +8,12 @@ let
     ssh sinavir.fr "cat > site/$dir/$rnd-$file"
     echo "https://sinavir.fr/$dir/$rnd-$file"
   '';
+  ms4-nixshell = pkgs.writeShellScriptBin "ms4" ''
+    ${pkgs.ms4}/bin/mscore $@
+    '';
 in {
   imports =
-    [ ./ssh-config.nix ./git.nix ./swayidle.nix ./sway.nix ./discord.nix ];
-  nixpkgs.config.allowUnfree = true;
+    [ ./ssh-config.nix ./git.nix ./swayidle.nix ./sway.nix ];
   services = {
     gpg-agent.enable = true;
     gpg-agent.pinentryFlavor = "tty";
@@ -125,9 +127,11 @@ in {
     signal-desktop
     firefox-wayland
     musescore
+    ms4-nixshell
     thunderbird
     wl-clipboard
     xorg.xeyes
+    niv
     texlive.combined.scheme-full
     mpv
     pulsemixer

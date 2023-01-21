@@ -1,1 +1,1 @@
-nix-shell --run "nixos-rebuild switch $@"
+nix-shell --pure --run 'nixos-rebuild switch $REBUILD_OPTIONS'

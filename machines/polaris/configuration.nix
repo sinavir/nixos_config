@@ -4,18 +4,18 @@
   imports = [
     <home-manager/nixos>
     ./hardware-configuration.nix
-    ./syncthing.nix
-    ./virt-manager.nix
+    ./kfet-open.nix
     ./networking.nix
-    ./sound.nix
-    ./user.nix
     ./secrets
+    ./sound.nix
+    ./syncthing.nix
+    ./user.nix
+    ./virt-manager.nix
+    ./wireguard.nix
     ../../shared/users.nix
     ../../shared/syncthing.nix
     ../../shared/autoUpgrade.nix
-    ../../shared/nixConfig.nix
-    ./wireguard.nix
-    ./kfet-open.nix
+    ../../shared/nix-path.nix
   ];
 
   nixosIsUnstable = false;
@@ -32,6 +32,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = import ./overlays.nix;
 
   time.timeZone = "Europe/Amsterdam";
 
@@ -67,6 +68,7 @@
   hardware.opengl.enable = true;
 
   home-manager.users.maurice = import ./hm;
+  home-manager.useGlobalPkgs = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
