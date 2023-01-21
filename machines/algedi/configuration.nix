@@ -23,36 +23,12 @@
   nixosIsUnstable = true;
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot = {
+    enable = true;
+    configurationLimit = 10;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "algedi"; # Define your hostname.
-
-  networking.useDHCP = false;
-  networking.interfaces.ens18 = {
-    useDHCP = true;
-    ipv6 = {
-      addresses = [{
-        address = "2001:470:1f13:187:b256:8cb7:beb0:9d45";
-        prefixLength = 64;
-      }];
-    };
-    mtu = 1350;
-  };
-  networking.interfaces.ens19.useDHCP = true;
-  networking.interfaces.ens21 = {
-    useDHCP = false;
-    ipv4 = {
-      addresses = [{
-        address = "45.13.104.28";
-        prefixLength = 32;
-      }];
-      routes = [{
-        address = "0.0.0.0";
-        prefixLength = 0;
-      }];
-    };
-  };
 
   security.sudo.wheelNeedsPassword = false;
 
