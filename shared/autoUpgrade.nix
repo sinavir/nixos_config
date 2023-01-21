@@ -11,7 +11,7 @@ in
     enable = true;
     dates = "22:00";
     preRebuildHook = ''
-      ${pkgs.git}/bin/git -C /etc/nixos checkout master
+      ${pkgs.git}/bin/git -C /etc/nixos checkout main
       checkoutstatus=$?
       ${pkgs.git}/bin/git -C /etc/nixos pull https://github.com/sinavir/nixos_config.git
       fetchstatus=$?

@@ -11,7 +11,6 @@
       locations."/files" = {
         root = ./files;
       };
-      location."/partitions" = {};
     };
     virtualHosts."ernestoburo.ernestophone.fr" = {
       enableACME = true;
