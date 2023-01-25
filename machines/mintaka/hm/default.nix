@@ -7,9 +7,15 @@ let
 
     ssh sinavir.fr "cat > site/$dir/$rnd-$file"
     echo "https://sinavir.fr/$dir/$rnd-$file"
-  '';
-in {
-  imports = [ ./ssh-config.nix ./git.nix ./discord.nix ];
+    '';
+in
+{
+  imports = [
+    ./ssh-config.nix
+    ./git.nix
+    ./discord.nix
+  ];
+  home.stateVersion = "22.05";
   nixpkgs.config.allowUnfree = true;
   services = {
     gpg-agent.enable = true;
