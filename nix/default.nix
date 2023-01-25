@@ -2,7 +2,8 @@
 let
   sources = import ./sources.nix;
   nixos = if unstable then sources.nixos-unstable else sources.nixos-stable;
-in {
+in
+{
   inherit (sources) agenix home-manager;
   inherit nixos;
   nixpkgs = nixos;

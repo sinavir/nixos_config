@@ -6,13 +6,14 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../shared/users.nix
       ./pass.nix
       ./thelounge.nix
       ./mail.nix
-      ./kfet-proxy.nix 
+      ./kfet-proxy.nix
       ./static-website.nix
       ./nginx.nix
       ./wireguard.nix

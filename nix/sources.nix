@@ -9,10 +9,11 @@ let
   fetch_file = pkgs: name: spec:
     let name' = sanitizeName name + "-src";
     in if spec.builtin or true then
-      builtins_fetchurl {
-        inherit (spec) url sha256;
-        name = name';
-      }
+      builtins_fetchurl
+        {
+          inherit (spec) url sha256;
+          name = name';
+        }
     else
       pkgs.fetchurl {
         inherit (spec) url sha256;
@@ -22,10 +23,11 @@ let
   fetch_tarball = pkgs: name: spec:
     let name' = sanitizeName name + "-src";
     in if spec.builtin or true then
-      builtins_fetchTarball {
-        name = name';
-        inherit (spec) url sha256;
-      }
+      builtins_fetchTarball
+        {
+          name = name';
+          inherit (spec) url sha256;
+        }
     else
       pkgs.fetchzip {
         name = name';
@@ -34,30 +36,37 @@ let
 
   fetch_git = name: spec:
     let
-      ref = if spec ? ref then
-        spec.ref
-      else if spec ? branch then
-        "refs/heads/${spec.branch}"
-      else if spec ? tag then
-        "refs/tags/${spec.tag}"
-      else
-        abort
-        "In git source '${name}': Please specify `ref`, `tag` or `branch`!";
-      submodules = if spec ? submodules then spec.submodules else false;
-      submoduleArg = let
-        nixSupportsSubmodules =
-          builtins.compareVersions builtins.nixVersion "2.4" >= 0;
-        emptyArgWithWarning = if submodules == true then
-          builtins.trace (''The niv input "${name}" uses submodules ''
-            + "but your nix's (${builtins.nixVersion}) builtins.fetchGit "
-            + "does not support them") { }
+      ref =
+        if spec ? ref then
+          spec.ref
+        else if spec ? branch then
+          "refs/heads/${spec.branch}"
+        else if spec ? tag then
+          "refs/tags/${spec.tag}"
         else
-          { };
-      in if nixSupportsSubmodules then {
-        inherit submodules;
-      } else
-        emptyArgWithWarning;
-    in builtins.fetchGit ({
+          abort
+            "In git source '${name}': Please specify `ref`, `tag` or `branch`!";
+      submodules = if spec ? submodules then spec.submodules else false;
+      submoduleArg =
+        let
+          nixSupportsSubmodules =
+            builtins.compareVersions builtins.nixVersion "2.4" >= 0;
+          emptyArgWithWarning =
+            if submodules == true then
+              builtins.trace
+                (''The niv input "${name}" uses submodules ''
+                  + "but your nix's (${builtins.nixVersion}) builtins.fetchGit "
+                  + "does not support them")
+                { }
+            else
+              { };
+        in
+        if nixSupportsSubmodules then {
+          inherit submodules;
+        } else
+          emptyArgWithWarning;
+    in
+    builtins.fetchGit ({
       url = spec.repo;
       inherit (spec) rev;
       inherit ref;
@@ -89,12 +98,14 @@ let
   mkPkgs = sources: system:
     let
       sourcesNixpkgs = import
-        (builtins_fetchTarball { inherit (sources.nixpkgs) url sha256; }) {
+        (builtins_fetchTarball { inherit (sources.nixpkgs) url sha256; })
+        {
           inherit system;
         };
       hasNixpkgsPath = builtins.any (x: x.prefix == "nixpkgs") builtins.nixPath;
       hasThisAsNixpkgsPath = <nixpkgs> == ./.;
-    in if builtins.hasAttr "nixpkgs" sources then
+    in
+    if builtins.hasAttr "nixpkgs" sources then
       sourcesNixpkgs
     else if hasNixpkgsPath && !hasThisAsNixpkgsPath then
       import <nixpkgs> { }
@@ -123,34 +134,38 @@ let
       fetch_builtin-url name
     else
       abort
-      "ERROR: niv spec ${name} has unknown type ${builtins.toJSON spec.type}";
+        "ERROR: niv spec ${name} has unknown type ${builtins.toJSON spec.type}";
 
   # If the environment variable NIV_OVERRIDE_${name} is set, then use
   # the path directly as opposed to the fetched source.
   replace = name: drv:
     let
       saneName = stringAsChars
-        (c: if isNull (builtins.match "[a-zA-Z0-9]" c) then "_" else c) name;
+        (c: if isNull (builtins.match "[a-zA-Z0-9]" c) then "_" else c)
+        name;
       ersatz = builtins.getEnv "NIV_OVERRIDE_${saneName}";
-    in if ersatz == "" then
+    in
+    if ersatz == "" then
       drv
     else
     # this turns the string into an actual Nix path (for both absolute and
     # relative paths)
-    if builtins.substring 0 1 ersatz == "/" then
-      /. + ersatz
-    else
-      /. + builtins.getEnv "PWD" + "/${ersatz}";
+      if builtins.substring 0 1 ersatz == "/" then
+        /. + ersatz
+      else
+        /. + builtins.getEnv "PWD" + "/${ersatz}";
 
   # Ports of functions for older nix versions
 
   # a Nix version of mapAttrs if the built-in doesn't exist
   mapAttrs = builtins.mapAttrs or (f: set:
     with builtins;
-    listToAttrs (map (attr: {
-      name = attr;
-      value = f attr set.${attr};
-    }) (attrNames set)));
+    listToAttrs (map
+      (attr: {
+        name = attr;
+        value = f attr set.${attr};
+      })
+      (attrNames set)));
 
   # https://github.com/NixOS/nixpkgs/blob/0258808f5744ca980b9a1f24fe0b1e6f0fecee9c/lib/lists.nix#L295
   range = first: last:
@@ -176,7 +191,7 @@ let
     let inherit (builtins) lessThan nixVersion fetchTarball;
     in if lessThan nixVersion "1.12" then
       fetchTarball
-      ({ inherit url; } // (optionalAttrs (!isNull name) { inherit name; }))
+        ({ inherit url; } // (optionalAttrs (!isNull name) { inherit name; }))
     else
       fetchTarball attrs;
 
@@ -185,28 +200,31 @@ let
     let inherit (builtins) lessThan nixVersion fetchurl;
     in if lessThan nixVersion "1.12" then
       fetchurl
-      ({ inherit url; } // (optionalAttrs (!isNull name) { inherit name; }))
+        ({ inherit url; } // (optionalAttrs (!isNull name) { inherit name; }))
     else
       fetchurl attrs;
 
   # Create the final "sources" from the config
   mkSources = config:
-    mapAttrs (name: spec:
-      if builtins.hasAttr "outPath" spec then
-        abort
-        "The values in sources.json should not have an 'outPath' attribute"
-      else
-        spec // { outPath = replace name (fetch config.pkgs name spec); })
-    config.sources;
+    mapAttrs
+      (name: spec:
+        if builtins.hasAttr "outPath" spec then
+          abort
+            "The values in sources.json should not have an 'outPath' attribute"
+        else
+          spec // { outPath = replace name (fetch config.pkgs name spec); })
+      config.sources;
 
   # The "config" used by the fetchers
-  mkConfig = { sourcesFile ?
-      if builtins.pathExists ./sources.json then ./sources.json else null
+  mkConfig =
+    { sourcesFile ? if builtins.pathExists ./sources.json then ./sources.json else null
     , sources ? if isNull sourcesFile then
-      { }
-    else
-      builtins.fromJSON (builtins.readFile sourcesFile)
-    , system ? builtins.currentSystem, pkgs ? mkPkgs sources system }: rec {
+        { }
+      else
+        builtins.fromJSON (builtins.readFile sourcesFile)
+    , system ? builtins.currentSystem
+    , pkgs ? mkPkgs sources system
+    }: rec {
       # The sources, i.e. the attribute set of spec name to spec
       inherit sources;
 
@@ -214,6 +232,7 @@ let
       inherit pkgs;
     };
 
-in mkSources (mkConfig { }) // {
+in
+mkSources (mkConfig { }) // {
   __functor = _: settings: mkSources (mkConfig settings);
 }

@@ -1,8 +1,9 @@
 { sources ? import ./nix { unstable = true; }, pkgs ? import sources.nixpkgs { }, }:
 let
   lib = pkgs.lib;
-  opts = pkgs.lib.mapAttrsToList (name: path: "-I ${name}=${path}") ({ nixos-config="/etc/nixos/configuration.nix"; } // sources);
-in pkgs.mkShell rec {
+  opts = pkgs.lib.mapAttrsToList (name: path: "-I ${name}=${path}") ({ nixos-config = "/etc/nixos/configuration.nix"; } // sources);
+in
+pkgs.mkShell rec {
 
   name = "nixos-rebuild-shell";
 

@@ -10,8 +10,9 @@ let
   '';
   ms4-nixshell = pkgs.writeShellScriptBin "ms4" ''
     ${pkgs.ms4}/bin/mscore $@
-    '';
-in {
+  '';
+in
+{
   imports =
     [ ./ssh-config.nix ./git.nix ./swayidle.nix ./sway.nix ];
   services = {
@@ -152,27 +153,29 @@ in {
     TERM = "xterm-256color";
   };
   xdg.enable = true;
-  home.file = let
-    nicetabs = pkgs.writeText "nicetabs.vim" ''
-      setlocal expandtab
-      setlocal shiftwidth=2
-      setlocal softtabstop=2
-    '';
-  in {
-    ".vim/UltiSnips/".source = pkgs.fetchFromGitHub {
-      owner = "sinavir";
-      repo = "ultisnip-snippets";
-      rev = "09b4d4a720cb780a156fd487188bf192b58aa174";
-      sha256 = "0l39gf0aivdbsqr3dqqa4mql8kkypggy3z0bgpzr96z17b6ylwj4";
+  home.file =
+    let
+      nicetabs = pkgs.writeText "nicetabs.vim" ''
+        setlocal expandtab
+        setlocal shiftwidth=2
+        setlocal softtabstop=2
+      '';
+    in
+    {
+      ".vim/UltiSnips/".source = pkgs.fetchFromGitHub {
+        owner = "sinavir";
+        repo = "ultisnip-snippets";
+        rev = "09b4d4a720cb780a156fd487188bf192b58aa174";
+        sha256 = "0l39gf0aivdbsqr3dqqa4mql8kkypggy3z0bgpzr96z17b6ylwj4";
+      };
+      ".config/swaylock/config".source = pkgs.substituteAll {
+        src = ./swaylockConfig;
+        photo = ./menou1.JPG;
+      };
+      ".vim/after/ftplugin/javascript.vim".source = nicetabs;
+      ".vim/after/ftplugin/html.vim".source = nicetabs;
+      ".vim/after/ftplugin/svelte.vim".source = nicetabs;
     };
-    ".config/swaylock/config".source = pkgs.substituteAll {
-      src = ./swaylockConfig;
-      photo = ./menou1.JPG;
-    };
-    ".vim/after/ftplugin/javascript.vim".source = nicetabs;
-    ".vim/after/ftplugin/html.vim".source = nicetabs;
-    ".vim/after/ftplugin/svelte.vim".source = nicetabs;
-  };
   home.stateVersion = "22.11";
 
 }

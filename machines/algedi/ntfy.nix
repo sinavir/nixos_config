@@ -3,7 +3,7 @@ let
   host = "ntfy.sinavir.fr";
   listen = "localhost:4856";
 in
-  {
+{
   services.ntfy-sh = {
     enable = true;
     settings = {

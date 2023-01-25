@@ -1,5 +1,5 @@
 { pkgs, config, ... }:
-let 
+let
   hostname = config.networking.hostName;
 in
 {
@@ -15,7 +15,7 @@ in
       checkoutstatus=$?
       ${pkgs.git}/bin/git -C /etc/nixos pull https://github.com/sinavir/nixos_config.git
       fetchstatus=$?
-      '';
+    '';
     postSwitchHook = ''
       exitstatus=$?
       NTFY_PASS=$(cat ${config.age.secrets."ntfy-passwd".path})
@@ -24,6 +24,6 @@ in
         -H "Title: Rebuild for ${hostname}" \
         -d "checkout: $checkoutstatus / pull: $fetchstatus / rebuild: $exitstatus" \
         https://ntfy.sinavir.fr/server-daily-rebuild
-      '';
+    '';
   };
 }

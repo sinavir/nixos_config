@@ -1,4 +1,4 @@
-{pkgs, config, lib, ... }:
+{ pkgs, config, lib, ... }:
 {
   networking.hostName = "algedi"; # Define your hostname.
 

@@ -2,7 +2,8 @@
 let
   external = "enp3s2";
   internal = "enp2s0";
-in {
+in
+{
   networking.nat = {
     enable = true;
     internalInterfaces = [ internal ];
