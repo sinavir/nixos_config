@@ -8,5 +8,5 @@ in
   "wg-algedi.age".publicKeys = (readPubkeys "maurice")
     ++ (readPubkeys "algedi");
   "radicale.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "algedi");
-  "ntfy.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "mintaka") ++ (readPubkeys "proxima") ++ (readPubkeys "algedi");
+  "cdfanf-passwd.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
 }

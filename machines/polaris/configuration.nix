@@ -2,71 +2,26 @@
 
 {
   imports = [
+    # TODO add backups
     <home-manager/nixos>
+    ../../shared
+    ./bootloader.nix
+    ./chaise-clavier.nix
     ./hardware-configuration.nix
-    ./kfet-open.nix
     ./networking.nix
     ./secrets
     ./sound.nix
+    ./ssh.nix
     ./syncthing.nix
     ./user.nix
     ./virt-manager.nix
-    ./wireguard.nix
-    ../../shared/users.nix
-    ../../shared/syncthing.nix
-    ../../shared/autoUpgrade.nix
-    ../../shared/nix-path.nix
   ];
 
   nixosIsUnstable = false;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub = {
-    enable = true;
-    version = 2;
-    device = "nodev";
-    efiSupport = true;
-    enableCryptodisk = true;
-  };
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  time.timeZone = "Europe/Paris";
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = import ./overlays.nix;
-
-  time.timeZone = "Europe/Amsterdam";
-
-  age.identityPaths = [ "/home/maurice/.ssh/id_ed25519" ];
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "fr";
-  };
-  fonts.enableDefaultFonts = true;
-  fonts.fonts = [ pkgs.font-awesome pkgs.helvetica-neue-lt-std pkgs.aegyptus ];
-
-  services.printing.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    git
-    htop
-    unzip
-    traceroute
-    dig
-    tree
-  ];
-
-  programs.vim.defaultEditor = true;
-  programs.ssh.startAgent = true;
-  services.openssh.permitRootLogin = "no";
-  services.openssh.enable = true;
-  services.openssh.passwordAuthentication = false;
-  security.pam.services.swaylock = { };
-  hardware.opengl.enable = true;
-
+  # Home-manager
   home-manager.users.maurice = import ./hm;
   home-manager.useGlobalPkgs = true;
 

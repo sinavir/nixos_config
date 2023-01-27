@@ -1,0 +1,67 @@
+# vi:syntax=toml
+
+[theme]
+name = "plain"
+[theme.overrides]
+separator = ""
+# base16-i3status-rust (https://github.com/mystfox/base16-i3status-rust)
+idle_bg = "#000000"
+idle_fg = "#e0e0e0"
+info_bg = "#76c7b7"
+info_fg = "#000000"
+good_bg = "#a1c659"
+good_fg = "#000000"
+warning_bg = "#6fb3d2"
+warning_fg = "#000000"
+critical_bg = "#fb0120"
+critical_fg = "#000000"
+
+[icons]
+name = "awesome5"
+
+[[block]]
+block = "cpu"
+format = "{utilization:1}"
+info = 50
+warning = 50
+
+[[block]]
+block = "memory"
+format_mem = "{mem_used_percents:1}"
+format_swap = "{swap_used_percents:1}"
+
+[[block]]
+block = "disk_space"
+format = "{icon} {percentage:1}"
+info_type = "used"
+warning = 80
+alert = 90
+
+[[block]]
+block = "net"
+format = "{ssid} {signal_strength} {ip}/{ipv6} {speed_down;K*b} {speed_up;K*b}"
+
+[[block]]
+block = "backlight"
+invert_icons = true
+
+[[block]]
+block = "battery"
+
+[[block]]
+block = "sound"
+format = "{volume:1}"
+device_kind = "source"
+
+[[block]]
+block = "sound"
+format = "{volume:1}"
+headphones_indicator = true
+show_volume_when_muted = true
+
+[[block]]
+block = "time"
+format = "%x %X"
+interval = 1
+locale = "en_DK"
+icons_format = " "

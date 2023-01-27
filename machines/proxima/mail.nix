@@ -1,10 +1,9 @@
 { config, pkgs, ... }: {
   imports = [
     (builtins.fetchTarball {
-      # Pick a commit from the branch you are interested in
+      # TODO put in niv and update
       url =
         "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/f535d8123c4761b2ed8138f3d202ea710a334a1d/nixos-mailserver-f535d8123c4761b2ed8138f3d202ea710a334a1d.tar.gz";
-      # And set its hash
       sha256 = "0csx2i8p7gbis0n5aqpm57z5f9cd8n9yabq04bg1h4mkfcf7mpl6";
     })
   ];
@@ -26,7 +25,7 @@
       "vaultwarden@sinavir.fr" = {
         hashedPasswordFile = config.age.secrets."vaultMailPass".path;
         aliases = [ "vaultwarden@sinavir.fr" ];
-        quota = "5G";
+        quota = "1G";
       };
     };
 

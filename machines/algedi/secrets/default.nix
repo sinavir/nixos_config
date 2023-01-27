@@ -10,5 +10,10 @@
       owner = "radicale";
       group = "radicale";
     };
+    "cdFanfPasswd" = {
+      file = ./cdfanf-passwd.age;
+      owner = "nginx";
+      group = "nginx";
+    };
   };
 }

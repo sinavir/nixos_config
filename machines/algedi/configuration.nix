@@ -8,17 +8,11 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../shared/users.nix
-    ./wireguard.nix
+    ../../shared
     ./radicale.nix
-    ./nginx.nix
-    ./static-website.nix
     ./ntfy.nix
-    ./ernestophotos.nix
-    ./ernestoredirection.nix
+    ./ernestophone.nix
     ./secrets
-    ../../shared/autoUpgrade.nix
-    ../../shared/nix-path.nix
   ];
 
   nixosIsUnstable = true;
