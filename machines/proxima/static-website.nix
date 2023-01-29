@@ -11,12 +11,6 @@
           extraConfig = "autoindex on;";
           basicAuthFile = config.age.secrets.plansPasswd.path;
         };
-        "/CD_Fanf" = {
-          # TODO: make  reproducible folder
-          extraConfig = "autoindex on;";
-          basicAuthFile = config.age.secrets.cdFanfPasswd.path;
-          proxyPass = "http://10.100.1.2";
-        };
       };
     };
   };

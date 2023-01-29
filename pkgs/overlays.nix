@@ -8,7 +8,7 @@
         propagatedBuildInputs = old.propagatedBuildInputs
           ++ [ self.python310Packages.typing-extensions ];
       });
-      ws-scrapper = self.python310Packages.callPackage ./ws-scrapper.nix { };
     };
+    ws-scraper = self.python310Packages.callPackage ./ws-scraper.nix { };
   })
 ]
