@@ -8,7 +8,7 @@ let
 in
 {
   services.syncthing = rec {
-    enable = builtins.elem config.networking.hostname enabledHosts;
+    enable = builtins.elem config.networking.hostName enabledHosts;
     devices.honor.id =
       "K5IKPPP-MTGTVAO-A3M2W6H-KY3GLR6-QKTOK3O-OYIA6GX-YVOOJQ5-NN4GLQA";
     devices.polaris.id =

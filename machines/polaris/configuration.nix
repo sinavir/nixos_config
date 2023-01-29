@@ -17,12 +17,10 @@
     ./virt-manager.nix
   ];
 
-  nixosIsUnstable = false;
-
   time.timeZone = "Europe/Paris";
 
   # Home-manager
-  home-manager.users.maurice = import ./hm;
+  home-manager.users.maurice = import ./home-manager;
   home-manager.useGlobalPkgs = true;
 
   # This value determines the NixOS release from which the default

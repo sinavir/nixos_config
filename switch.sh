@@ -1,1 +1,1 @@
-nix-shell --pure --run 'nixos-rebuild switch $REBUILD_OPTIONS -v'
+nix-shell --pure --run 'nixos-rebuild switch $REBUILD_OPTIONS'

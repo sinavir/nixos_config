@@ -1,4 +1,9 @@
 { pkgs, config, lib, ... }: {
+
+  home.file.".config/swaylock/config".source = pkgs.substituteAll {
+    src = ./swaylockConfig;
+    photo = ./menou1.JPG;
+  };
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;

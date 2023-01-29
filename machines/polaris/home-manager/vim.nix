@@ -1,4 +1,4 @@
-{ config, lib, pkgs }:
+{ config, lib, pkgs, ... }:
 {
   programs.vim = {
     enable = true;
@@ -86,10 +86,6 @@
         repo = "ultisnip-snippets";
         rev = "09b4d4a720cb780a156fd487188bf192b58aa174";
         sha256 = "0l39gf0aivdbsqr3dqqa4mql8kkypggy3z0bgpzr96z17b6ylwj4";
-      };
-      ".config/swaylock/config".source = pkgs.substituteAll {
-        src = ./swaylockConfig;
-        photo = ./menou1.JPG;
       };
       ".vim/after/ftplugin/javascript.vim".source = nicetabs;
       ".vim/after/ftplugin/html.vim".source = nicetabs;
