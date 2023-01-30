@@ -41,13 +41,26 @@
     options = [ "subvol=home" ];
   };
 
-  fileSystems."/boot/efi" = {
+  fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/8FF8-A675";
     fsType = "vfat";
   };
 
-  swapDevices = [ ];
+  fileSystems."/mnt/btrfs-top-lvl" = {
+    device = "/dev/disk/by-uuid/eeb7e860-a8b2-4dfc-b118-721563d8667e";
+    fsType = "btrfs";
+  };
 
+  fileSystems."/swap" = {
+    device = "/dev/disk/by-uuid/eeb7e860-a8b2-4dfc-b118-721563d8667e";
+    fsType = "btrfs";
+    options = [ "subvol=swap" ];
+  };
+
+  swapDevices = [{
+    device = "/swap/swapfile";
+    size = 10240;
+  }];
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;

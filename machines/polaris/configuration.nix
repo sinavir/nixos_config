@@ -5,6 +5,7 @@
     # TODO add backups
     <home-manager/nixos>
     ../../shared
+    ./backups.nix
     ./bootloader.nix
     ./chaise-clavier.nix
     ./hardware-configuration.nix

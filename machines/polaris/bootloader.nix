@@ -1,12 +1,8 @@
 { pkgs, config, lib, ... }:
 {
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub = {
+  boot.loader.systemd-boot = {
     enable = true;
-    version = 2;
-    device = "nodev";
-    efiSupport = true;
-    enableCryptodisk = true;
   };
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.efi.efiSysMountPoint = "/boot";
 }
