@@ -7,52 +7,18 @@
 {
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
     ../../shared
-    ./radicale.nix
-    ./ntfy.nix
+    ./bootloader.nix
     ./ernestophone.nix
+    ./hardware-configuration.nix
+    ./ntfy.nix
+    ./radicale.nix
     ./secrets
+    ./networking.nix
   ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot = {
-    enable = true;
-    configurationLimit = 10;
-  };
-  boot.loader.efi.canTouchEfiVariables = true;
-
-
-  security.sudo.wheelNeedsPassword = false;
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "fr";
-  };
-  fonts.enableDefaultFonts = true;
-
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    git
-    htop
-  ];
-  programs.vim.defaultEditor = true;
-
-  security.acme = {
-    defaults.email = "sinavir@sinavir.fr";
-    acceptTerms = true;
-  };
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  services.openssh.passwordAuthentication = false;
-  programs.ssh.startAgent = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

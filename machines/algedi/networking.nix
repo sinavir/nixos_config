@@ -20,6 +20,16 @@
         address = "45.13.104.28";
         prefixLength = 32;
       }];
+      routes = [{
+        address = "0.0.0.0";
+        prefixLength = 0;
+      }];
     };
   };
+  networking.nameservers = [
+    "9.9.9.9"
+    "149.112.112.112"
+    "2620:fe::fe"
+    "2620:fe::9"
+  ];
 }

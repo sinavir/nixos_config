@@ -6,6 +6,7 @@
     git
     htop
     mosh
+    screen
     niv
     nix-index
     nixpkgs-fmt
