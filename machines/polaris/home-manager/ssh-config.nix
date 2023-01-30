@@ -2,18 +2,21 @@
   programs.ssh.enable = true;
   programs.ssh.matchBlocks = {
     "proxima" = {
+      user = "root";
       hostname = "sinavir.fr";
-      forwardAgent = true;
     };
     "algedi" = {
-      hostname = "rz.sinavir.fr";
-      proxyJump = "sinavir.fr";
-      forwardAgent = true;
+      user = "root";
+      hostname = "algedi.sinavir.fr";
     };
     "mintaka" = {
-      hostname = "thurne.sinavir.fr";
+      user = "root";
+      hostname = "mintaka.sinavir.fr";
       proxyJump = "mdebray@sas.eleves.ens.fr";
-      forwardAgent = true;
+    };
+    "rigel" = {
+      user = "root";
+      hostname = "rigel.sinavir.fr";
     };
     "sas" = {
       user = "mdebray";
