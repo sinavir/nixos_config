@@ -10,11 +10,6 @@
       owner = "nginx";
       group = "nginx";
     };
-    "cdFanfPasswd" = {
-      file = ./cdfanf-passwd.age;
-      owner = "nginx";
-      group = "nginx";
-    };
     "vaultwarden.env" = {
       file = ./vaultwarden.age;
       owner = "vaultwarden";

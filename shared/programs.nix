@@ -1,17 +1,18 @@
 { config, pkgs, lib, ... }:
 {
   environment.systemPackages = with pkgs; [
-    vim
-    wget
+    comma
+    dig
     git
     htop
     mosh
     niv
-    unzip
-    dig
-    tree
     nix-index
-    comma
+    nixpkgs-fmt
+    tree
+    unzip
+    vim
+    wget
   ];
 
   programs.mosh.enable = builtins.elem config.networking.hostName [ "proxima" "algedi" "rigel" ];
