@@ -8,7 +8,7 @@ in
     ./secrets
   ];
   system.autoUpgradeWithHooks = {
-    enable = true;
+    enable = false;
     dates = "22:00";
     preRebuildHook = ''
       ${pkgs.git}/bin/git -C /etc/nixos checkout main

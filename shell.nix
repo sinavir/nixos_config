@@ -10,7 +10,6 @@ pkgs.mkShell rec {
   packages = with pkgs; [ nixos-rebuild niv ];
 
   shellHook = ''
-    export REBUILD_OPTIONS="${lib.concatStringsSep " " (mkOpts sourcesUnstable)}"
     export REBUILD_OPTIONS_STABLE="${lib.concatStringsSep " " (mkOpts sourcesStable)}"
     export REBUILD_OPTIONS_UNSTABLE="${lib.concatStringsSep " " (mkOpts sourcesUnstable)}"
     export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt
