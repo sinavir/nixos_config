@@ -16,7 +16,7 @@ in {
         description = lib.mdDoc ''
           Whether to periodically upgrade NixOS to the latest
           version. If enabled, a systemd timer will run
-          `nixos-rebuild switch --upgrade` once a
+          `nixos-rebuild switch` once a
           day.
         '';
       };
@@ -39,18 +39,6 @@ in {
         description = lib.mdDoc ''
           The Flake URI of the NixOS configuration to build.
           Disables the option {option}`system.autoUpgradeWithHooks.channel`.
-        '';
-      };
-
-      channel = mkOption {
-        type = types.nullOr types.str;
-        default = null;
-        example = "https://nixos.org/channels/nixos-14.12-small";
-        description = lib.mdDoc ''
-          The URI of the NixOS channel to use for automatic
-          upgrades. By default, this is the channel set using
-          {command}`nix-channel` (run `nix-channel --list`
-          to see the current value).
         '';
       };
 
@@ -191,21 +179,6 @@ in {
 
   config = lib.mkIf cfg.enable {
 
-    assertions = [{
-      assertion = !((cfg.channel != null) && (cfg.flake != null));
-      message = ''
-        The options 'system.autoUpgradeWithHooks.channels' and 'system.autoUpgradeWithHooks.flake' cannot both be set.
-      '';
-    }];
-
-    system.autoUpgradeWithHooks.flags = (if cfg.flake == null then
-      [ "--no-build-output" ] ++ optionals (cfg.channel != null) [
-        "-I"
-        "nixpkgs=${cfg.channel}/nixexprs.tar.xz"
-      ]
-    else
-      [ "--flake ${cfg.flake}" ]);
-
     systemd.services.nixos-upgrade-with-hooks = {
       description = "NixOS Upgrade";
 
@@ -235,54 +208,10 @@ in {
           date = "${pkgs.coreutils}/bin/date";
           readlink = "${pkgs.coreutils}/bin/readlink";
           shutdown = "${config.systemd.package}/bin/shutdown";
-          upgradeFlag = optional (cfg.channel == null) "--upgrade";
         in
-        if cfg.allowReboot then ''
+        ''
           ${cfg.preRebuildHook}
-          ${nixos-rebuild} boot ${toString (cfg.flags ++ upgradeFlag)}
-          booted="$(${readlink} /run/booted-system/{initrd,kernel,kernel-modules})"
-          built="$(${readlink} /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
-
-          ${optionalString (cfg.rebootWindow != null) ''
-            current_time="$(${date} +%H:%M)"
-
-            lower="${cfg.rebootWindow.lower}"
-            upper="${cfg.rebootWindow.upper}"
-
-            if [[ "''${lower}" < "''${upper}" ]]; then
-              if [[ "''${current_time}" > "''${lower}" ]] && \
-                 [[ "''${current_time}" < "''${upper}" ]]; then
-                do_reboot="true"
-              else
-                do_reboot="false"
-              fi
-            else
-              # lower > upper, so we are crossing midnight (e.g. lower=23h, upper=6h)
-              # we want to reboot if cur > 23h or cur < 6h
-              if [[ "''${current_time}" < "''${upper}" ]] || \
-                 [[ "''${current_time}" > "''${lower}" ]]; then
-                do_reboot="true"
-              else
-                do_reboot="false"
-              fi
-            fi
-          ''}
-
-          if [ "''${booted}" = "''${built}" ]; then
-            ${nixos-rebuild} ${cfg.operation} ${toString cfg.flags}
-            ${cfg.postSwitchHook}
-          ${optionalString (cfg.rebootWindow != null) ''
-            elif [ "''${do_reboot}" != true ]; then
-              echo "Outside of configured reboot window, skipping."
-              ${cfg.outsideOfRebootWindowHook}
-          ''}
-          else
-            ${cfg.preShutdownHook}
-            ${shutdown} -r +1
-          fi
-        '' else ''
-          ${cfg.preRebuildHook}
-          ${nixos-rebuild} ${cfg.operation} ${toString (cfg.flags ++ upgradeFlag)}
+          ${nixos-rebuild} ${cfg.operation} ${toString cfg.flags}
           ${cfg.postSwitchHook}
         '';
 

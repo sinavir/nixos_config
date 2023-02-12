@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./auto-upgrade.nix
+    #./auto-upgrade.nix
     ./git-config.nix
     ./nix-conf.nix
     ./programs.nix
