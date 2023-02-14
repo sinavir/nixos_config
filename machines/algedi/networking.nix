@@ -2,13 +2,13 @@
 {
   networking.hostName = "algedi"; # Define your hostname.
 
-  systemd.networking = {
+  systemd.network = {
     enable = true;
     networks = {
       "ipv6-uplink" = {
         name = "ens18";
-        address = "2001:470:1f13:187:b256:8cb7:beb0:9d45/64";
-        networkConfig.MTUBytes = "1350";
+        address = [ "2001:470:1f13:187:b256:8cb7:beb0:9d45/64" ];
+        linkConfig.MTUBytes = "1350";
       };
     };
   };
