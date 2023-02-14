@@ -1,6 +1,5 @@
 { pkgs, config, lib, ... }:
 {
-  networking.hostName = "algedi"; # Define your hostname.
   networking.useDHCP = false;
 
   systemd.network = {

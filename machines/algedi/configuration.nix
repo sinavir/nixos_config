@@ -17,6 +17,8 @@
     ./networking.nix
   ];
 
+  networking.hostName = "algedi"; # Define your hostname.
+
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
