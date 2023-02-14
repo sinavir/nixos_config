@@ -8,7 +8,7 @@
       proxima = rec {
         port = "1194";
         Endpoint = "51.210.243.54:${port}";
-        PublicKey = "hfHTTjQ6qUdz9Yvx2wufROIOpawFaQcdaTAS7d/46Ts=";
+        PublicKey = "7P1g+dD/EfJaKcqP4rn4mikdTVOafChyidvzEr4JbU0=";
         IPs = [
           "10.100.1.1/24"
           "fdb9::1/64"
