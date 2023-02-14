@@ -47,6 +47,14 @@ in
           DefaultRouteOnDevice = true;
         };
       };
+      "10-dhcppd" = {
+        name = "ens20";
+        DHCP = "ipv6";
+        dhcpv6Config = {
+          PrefixDelegationHint="::/60";
+          UseDelegatedPrefix = "no";
+        };
+      };
     };
   };
   networking.nameservers = [
