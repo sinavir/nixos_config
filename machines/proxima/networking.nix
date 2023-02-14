@@ -46,4 +46,5 @@ in
       };
     };
   };
+  networking.firewall.allowedUDPPorts = [ 1194 ];
 }
