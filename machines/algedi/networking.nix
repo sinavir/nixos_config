@@ -50,9 +50,19 @@ in
       "10-dhcppd" = {
         name = "ens20";
         DHCP = "ipv6";
-        dhcpv6Config = {
-          PrefixDelegationHint="::/60";
-          UseDelegatedPrefix = "no";
+        networkConfig = {
+          IPv6AcceptRA = false;
+          #DHCPPrefixDelegation = true;
+        };
+        dhcpV6Config = {
+          PrefixDelegationHint="2a0e:e701:1120:b00c::/64";
+          WithoutRA = "solicit";
+        };
+        linkConfig = {
+          RequiredForOnline="no";
+        };
+        dhcpPrefixDelegationConfig = {
+          Announce = false;
         };
       };
     };
