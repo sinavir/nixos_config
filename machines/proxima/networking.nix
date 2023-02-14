@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 let
-  wgTopo = import ./shared/wg-topo.nix;
+  wgTopo = import ../../shared/wg-topo.nix;
   wgMain = wgTopo.wg-main;
-  peers = lib.filterAttrs (n: v: n != config.networking.hostname) wgMain.peers;
+  peers = lib.filterAttrs (n: v: n != config.networking.hostName) wgMain.peers;
 in
 {
   networking.useDHCP = false;
@@ -16,25 +16,24 @@ in
           Kind = "wireguard";
         };
         wireguardConfig = {
-          ListenPort = wgMain.peers.${config.networking.hostname}.port;
-          PrivateKey = config.age.wg-algedi.path;
+          ListenPort = wgMain.peers.${config.networking.hostName}.port;
+          PrivateKeyFile = config.age.secrets.wg-proxima.path;
         };
-        wireguardPeers = lib.mapAttrsToList (peer: conf: {
+        wireguardPeers = lib.mapAttrsToList (peer: conf: { wireguardPeerConfig = {
           inherit (conf) Endpoint PublicKey;
           AllowedIPs = conf.fullIPs;
-        }) peers;
+        };}) peers;
       };
+    };
     networks = {
       "20-wg-main" = {
         name = "wg-main";
-        address = wgMain.peers.${config.networking.hostname}.IPs;
-        routes = [
-          {
-            routeConfig = {
-              Destination = wgMain.nets;
-            };
-          }
-        ];
+        address = wgMain.peers.${config.networking.hostName}.IPs;
+        routes = builtins.map (net: {
+          routeConfig = {
+            Destination = net;
+          };
+        }) wgMain.nets;
       };
       "10-uplink" = {
         name = "ens3";

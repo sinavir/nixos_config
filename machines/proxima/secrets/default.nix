@@ -4,7 +4,11 @@
     [ (pkgs.callPackage <agenix/pkgs/agenix.nix> { }) ];
 
   age.secrets = {
-    "wg-proxima".file = ./wg-proxima.age;
+    "wg-proxima" = {
+      file = ./wg-proxima.age;
+      group = "systemd-network";
+      mode = "0440";
+    };
     "plansPasswd" = {
       file = ./plans-passwd.age;
       owner = "nginx";
