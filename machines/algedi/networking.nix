@@ -19,11 +19,15 @@ in
           ListenPort = wgMain.peers.${config.networking.hostName}.port;
           PrivateKeyFile = config.age.secrets.wg-algedi.path;
         };
-        wireguardPeers = lib.mapAttrsToList (peer: conf: { wireguardPeerConfig ={
-          inherit (conf)  PublicKey;
-          Endpoint = lib.mkIf (conf.Endpoint != "") conf.Endpoint;
-          AllowedIPs = conf.defaultAllowedIPs;
-        };}) peers;
+        wireguardPeers = lib.mapAttrsToList
+          (peer: conf: {
+            wireguardPeerConfig = {
+              inherit (conf) PublicKey;
+              Endpoint = lib.mkIf (conf.Endpoint != "") conf.Endpoint;
+              AllowedIPs = conf.defaultAllowedIPs;
+            };
+          })
+          peers;
       };
     };
     networks = {
@@ -31,14 +35,16 @@ in
         name = "wg-main";
         address = wgMain.peers.${config.networking.hostName}.IPs;
         networkConfig = {
-          IPForward=true;
-          IPMasquerade="ipv6";
+          IPForward = true;
+          IPMasquerade = "ipv6";
         };
-        routes = builtins.map (net: {
-          routeConfig = {
-            Destination = net;
-          };
-        }) wgMain.nets;
+        routes = builtins.map
+          (net: {
+            routeConfig = {
+              Destination = net;
+            };
+          })
+          wgMain.nets;
       };
       "10-ipv6-uplink" = {
         name = "ens18";
@@ -65,5 +71,10 @@ in
     ip46tables -A FORWARD -i wg-main -j ACCEPT
     ip46tables -A FORWARD -o wg-main -j ACCEPT -m conntrack --ctstate ESTABLISHED
     ip46tables -A FORWARD -o wg-main -j DROP
+  '';
+  networking.firewall.extraStopCommands = ''
+    ip46tables -D FORWARD -i wg-main -j ACCEPT
+    ip46tables -D FORWARD -o wg-main -j ACCEPT -m conntrack --ctstate ESTABLISHED
+    ip46tables -D FORWARD -o wg-main -j DROP
   '';
 }
