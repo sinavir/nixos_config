@@ -13,6 +13,7 @@
       ./kfet-open-recorder.nix
       ./kfet-proxy
       ./mail.nix
+      ./monitoring.nix
       ./networking.nix
       ./pass.nix
       ./secrets

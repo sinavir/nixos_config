@@ -7,5 +7,5 @@
       mode = "0440";
     };
   };
-  users.groups."ntfy-access" = {};
+  users.groups."ntfy-access" = { };
 }
