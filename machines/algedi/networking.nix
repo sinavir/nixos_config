@@ -29,6 +29,10 @@ in
       "20-wg-main" = {
         name = "wg-main";
         address = wgMain.peers.${config.networking.hostName}.IPs;
+        networkConfig = {
+          IPForward=true;
+          IPMasquerade="ipv6";
+        };
         routes = builtins.map (net: {
           routeConfig = {
             Destination = net;
@@ -45,24 +49,6 @@ in
         address = [ "45.13.104.28/32" ];
         networkConfig = {
           DefaultRouteOnDevice = true;
-        };
-      };
-      "10-dhcppd" = {
-        name = "ens20";
-        DHCP = "ipv6";
-        networkConfig = {
-          IPv6AcceptRA = false;
-          #DHCPPrefixDelegation = true;
-        };
-        dhcpV6Config = {
-          PrefixDelegationHint="2a0e:e701:1120:b00c::/64";
-          WithoutRA = "solicit";
-        };
-        linkConfig = {
-          RequiredForOnline="no";
-        };
-        dhcpPrefixDelegationConfig = {
-          Announce = false;
         };
       };
     };
