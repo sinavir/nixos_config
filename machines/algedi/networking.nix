@@ -61,4 +61,9 @@ in
     "149.112.112.112"
   ];
   networking.firewall.allowedUDPPorts = [ 1194 ];
+  networking.firewall.extraCommands = ''
+    ip46tables -A FORWARD -i wg-main -j ACCEPT
+    ip46tables -A FORWARD -o wg-main -j ACCEPT -m conntrack --ctstate ESTABLISHED
+    ip46tables -A FORWARD -o wg-main -j DROP
+  '';
 }
