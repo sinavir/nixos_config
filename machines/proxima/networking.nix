@@ -19,21 +19,27 @@ in
           ListenPort = wgMain.peers.${config.networking.hostName}.port;
           PrivateKeyFile = config.age.secrets.wg-proxima.path;
         };
-        wireguardPeers = lib.mapAttrsToList (peer: conf: { wireguardPeerConfig = {
-          inherit (conf) Endpoint PublicKey;
-          AllowedIPs = conf.defaultAllowedIPs;
-        };}) peers;
+        wireguardPeers = lib.mapAttrsToList
+          (peer: conf: {
+            wireguardPeerConfig = {
+              inherit (conf) Endpoint PublicKey;
+              AllowedIPs = conf.defaultAllowedIPs;
+            };
+          })
+          peers;
       };
     };
     networks = {
       "20-wg-main" = {
         name = "wg-main";
         address = wgMain.peers.${config.networking.hostName}.IPs;
-        routes = builtins.map (net: {
-          routeConfig = {
-            Destination = net;
-          };
-        }) wgMain.nets;
+        routes = builtins.map
+          (net: {
+            routeConfig = {
+              Destination = net;
+            };
+          })
+          wgMain.nets;
       };
       "10-uplink" = {
         name = "ens3";
