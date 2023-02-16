@@ -21,7 +21,7 @@ in
         };
         wireguardPeers = lib.mapAttrsToList (peer: conf: { wireguardPeerConfig = {
           inherit (conf) Endpoint PublicKey;
-          AllowedIPs = conf.fullIPs ++ if peer == "algedi" then [ "::/0" ] else [];
+          AllowedIPs = conf.defaultAllowedIPs ++ if peer == "algedi" then [ "::/0" ] else [];
         };}) peers;
       };
     };

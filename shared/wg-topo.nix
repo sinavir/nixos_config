@@ -13,7 +13,7 @@
           "10.100.1.1/24"
           "fdb9::1/64"
         ];
-        fullIPs = [
+        defaultAllowedIPs = [
           "10.100.1.1/32"
           "fdb9::1/128"
         ];
@@ -26,9 +26,21 @@
           "10.100.1.2/24"
           "fdb9::2/64"
         ];
-        fullIPs = [
-          "10.100.1.2/32"
-          "fdb9::2/128"
+        defaultAllowedIPs = [
+          "10.100.1.0/24"
+          "fdb9::/64"
+        ];
+      };
+      polaris = rec {
+        Endpoint = "";
+        PublicKey = "hfHTTjQ6qUdz9Yvx2wufROIOpawFaQcdaTAS7d/46Ts=";
+        IPs = [
+          "10.100.1.3/24"
+          "fdb9::3/64"
+        ];
+        defaultAllowedIPs = [
+          "10.100.1.3/32"
+          "fdb9::3/128"
         ];
       };
     };

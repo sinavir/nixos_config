@@ -20,8 +20,9 @@ in
           PrivateKeyFile = config.age.secrets.wg-algedi.path;
         };
         wireguardPeers = lib.mapAttrsToList (peer: conf: { wireguardPeerConfig ={
-          inherit (conf) Endpoint PublicKey;
-          AllowedIPs = conf.fullIPs;
+          inherit (conf)  PublicKey;
+          Endpoint = lib.mkIf (conf.Endpoint != "") conf.Endpoint;
+          AllowedIPs = conf.defaultAllowedIPs;
         };}) peers;
       };
     };
