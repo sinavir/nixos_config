@@ -15,6 +15,7 @@
     ./radicale.nix
     ./secrets
     ./networking.nix
+    ./monitoring.nix
   ];
 
   networking.hostName = "algedi"; # Define your hostname.
