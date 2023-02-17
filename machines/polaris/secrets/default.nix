@@ -4,4 +4,5 @@
     (pkgs.callPackage <agenix/pkgs/agenix.nix> { })
   ];
   age.secrets."wg-polaris".file = ./wg-polaris.age;
+  age.secrets."bk-passwd".file = ./bk-passwd.age;
 }
