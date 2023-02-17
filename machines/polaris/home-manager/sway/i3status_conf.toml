@@ -32,7 +32,16 @@ format_swap = "{swap_used_percents:1}"
 
 [[block]]
 block = "disk_space"
-format = "{icon} {percentage:1}"
+path="/"
+format = "{icon} /:{percentage:1}"
+info_type = "used"
+warning = 80
+alert = 90
+
+[[block]]
+block = "disk_space"
+path="/home"
+format = "{icon} /home:{percentage:1}"
 info_type = "used"
 warning = 80
 alert = 90

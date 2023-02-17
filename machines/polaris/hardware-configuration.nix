@@ -27,6 +27,7 @@
 
   boot.initrd.luks.devices."mainfs".device =
     "/dev/disk/by-uuid/261bfe2b-331c-4733-9998-ab57daa2c5b4";
+  environment.etc."crypttab".text = "hdd UUID=7411abc3-c477-4cf4-8892-d2264f43e880 /secrets/hddkey"; # dont use builtin stuff because it is too early
 
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/eeb7e860-a8b2-4dfc-b118-721563d8667e";
@@ -35,9 +36,8 @@
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/eeb7e860-a8b2-4dfc-b118-721563d8667e";
+    device = "/dev/disk/by-uuid/cabb6a0f-a8ee-4c6c-b276-1f221922ad96";
     fsType = "btrfs";
-    neededForBoot = true;
     options = [ "subvol=home" ];
   };
 
@@ -46,10 +46,15 @@
     fsType = "vfat";
   };
 
-  fileSystems."/mnt/btrfs-top-lvl" = {
+  fileSystems."/mnt/btrfs-root-top-lvl" = {
     device = "/dev/disk/by-uuid/eeb7e860-a8b2-4dfc-b118-721563d8667e";
     fsType = "btrfs";
   };
+
+  fileSystems."/mnt/btrfs-home-top-lvl" =
+    { device = "/dev/disk/by-uuid/cabb6a0f-a8ee-4c6c-b276-1f221922ad96";
+      fsType = "btrfs";
+    };
 
   fileSystems."/swap" = {
     device = "/dev/disk/by-uuid/eeb7e860-a8b2-4dfc-b118-721563d8667e";
