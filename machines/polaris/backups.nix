@@ -3,10 +3,10 @@
   services.btrbk = {
     instances = {
       btrbk = {
-        onCalendar = "*-*-* *:00/15:00";
+        onCalendar = "*-*-* *:00/2:00";
         settings = {
-          snapshot_preserve_min = "2h";
-          volume."/mnt/btrfs-top-lvl" = {
+          snapshot_preserve_min = "1d";
+          volume."/mnt/btrfs-home-top-lvl" = {
             subvolume = "home";
             snapshot_dir = "btrbk_snapshots";
           };

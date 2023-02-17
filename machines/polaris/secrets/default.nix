@@ -4,5 +4,4 @@
     (pkgs.callPackage <agenix/pkgs/agenix.nix> { })
   ];
   age.secrets."wg-polaris".file = ./wg-polaris.age;
-  age.identityPaths = [ "/home/maurice/.ssh/id_ed25519" ];
 }

@@ -5,5 +5,5 @@ let
       (builtins.readFile (../pubkeys + "/${user}.keys")));
 in
 {
-  "ntfy.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "mintaka") ++ (readPubkeys "proxima") ++ (readPubkeys "algedi");
+  "ntfy.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "polaris") ++ (readPubkeys "mintaka") ++ (readPubkeys "proxima") ++ (readPubkeys "algedi");
 }
