@@ -18,6 +18,17 @@
     options = [ "subvol=root" ];
   };
 
+  fileSystems."/var" = {
+    device = "/dev/disk/by-uuid/f553290e-bc5c-4cb4-b8ba-ec2dff6a4e43";
+    fsType = "btrfs";
+    options = [ "subvol=var" ];
+  };
+
+  fileSystems."/top-level" = {
+    device = "/dev/disk/by-uuid/f553290e-bc5c-4cb4-b8ba-ec2dff6a4e43";
+    fsType = "btrfs";
+  };
+
   fileSystems."/nix" = {
     device = "/dev/disk/by-uuid/f553290e-bc5c-4cb4-b8ba-ec2dff6a4e43";
     fsType = "btrfs";
