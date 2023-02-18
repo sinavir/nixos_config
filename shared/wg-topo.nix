@@ -28,7 +28,7 @@
           "10.100.1.2/24"
           "fdb9::2/64"
         ];
-        defaultAllowedIPs = [
+        defaultAllowedIPs = [ # Algedi is the central node
           "10.100.1.0/24"
           "fdb9::/64"
         ];
@@ -49,6 +49,7 @@
       mintaka = rec {
         PersistentKeepalive = 25;
         Endpoint = "thurne.sinavir.fr";
+        port = 1194;
         PublicKey = "oue1cy6F+rBtq0dzFrak8o24OIJBQOii1X3QAkAVW2w=";
         IPs = [
           "10.100.1.4/24"

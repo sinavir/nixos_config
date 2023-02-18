@@ -3,5 +3,9 @@
   environment.systemPackages =
     [ (pkgs.callPackage <agenix/pkgs/agenix.nix> { }) ];
 
-  age.secrets."wg-mintaka".file = ./wg-mintaka.age;
+  age.secrets."wg-mintaka" = {
+      file = ./wg-mintaka.age;
+      group = "systemd-network";
+      mode = "0440";
+    };
 }
