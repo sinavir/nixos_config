@@ -6,6 +6,7 @@
     ];
     peers = {
       proxima = rec {
+        PersistentKeepalive = 0;
         port = "1194";
         Endpoint = "51.210.243.54:${port}";
         PublicKey = "7P1g+dD/EfJaKcqP4rn4mikdTVOafChyidvzEr4JbU0=";
@@ -19,6 +20,7 @@
         ];
       };
       algedi = rec {
+        PersistentKeepalive = 0;
         port = "1194";
         Endpoint = "rz.sinavir.fr:${port}";
         PublicKey = "jMWOkNl636QTSpHyZMuaXGMDXcakiUHUN1m8o4dA3z8=";
@@ -32,6 +34,7 @@
         ];
       };
       polaris = rec {
+        PersistentKeepalive = 25;
         Endpoint = "";
         PublicKey = "hfHTTjQ6qUdz9Yvx2wufROIOpawFaQcdaTAS7d/46Ts=";
         IPs = [
@@ -41,6 +44,19 @@
         defaultAllowedIPs = [
           "10.100.1.3/32"
           "fdb9::3/128"
+        ];
+      };
+      mintaka = rec {
+        PersistentKeepalive = 25;
+        Endpoint = "thurne.sinavir.fr";
+        PublicKey = "oue1cy6F+rBtq0dzFrak8o24OIJBQOii1X3QAkAVW2w=";
+        IPs = [
+          "10.100.1.4/24"
+          "fdb9::4/64"
+        ];
+        defaultAllowedIPs = [
+          "10.100.1.4/32"
+          "fdb9::4/128"
         ];
       };
     };
