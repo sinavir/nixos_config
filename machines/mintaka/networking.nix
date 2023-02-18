@@ -1,40 +1,65 @@
-{ ... }:
-let
-  external = "enp3s2";
-  internal = "enp2s0";
-in
+{ config, lib, pkgs, ... }:
 {
 
   networking.useDHCP = false;
-  networking.interfaces.eno1.useDHCP = true; #Builtin
-  networking.interfaces.enp3s2.useDHCP = true; #PCI normal (droite)
-  networking.dhcpcd.extraConfig = ''
-    # define static profile
-    profile static_eth0
-    static ip_address=129.199.244.6/23
-    static routers=129.199.224.254
-    static domain_name_servers=1.1.1.1
 
-    # fallback to static profile on eth0
-    interface enp3s2
-    fallback static_eth0
-  '';
-
-  # NAT
-  networking.nat = {
+  systemd.network = {
     enable = true;
-    internalInterfaces = [ internal ];
-    externalInterface = external;
+    netdevs = {
+      "20-wg-main" = {
+        netdevConfig = {
+          Name = "wg-main";
+          Kind = "wireguard";
+        };
+        wireguardConfig = {
+          ListenPort = wgMain.peers.${config.networking.hostName}.port;
+          PrivateKeyFile = config.age.secrets.wg-mintaka.path;
+        };
+        wireguardPeers = lib.mapAttrsToList
+          (peer: conf: {
+            wireguardPeerConfig = {
+              inherit (conf) PublicKey;
+              Endpoint = lib.mkIf (conf.Endpoint != "") conf.Endpoint;
+              AllowedIPs = conf.defaultAllowedIPs;
+            };
+          })
+          peers;
+      };
+    };
+    networks = {
+      "20-wg-main" = {
+        name = "wg-main";
+        address = wgMain.peers.${config.networking.hostName}.IPs;
+      };
+      "10-uplink" = {
+        name = "enp3s2";
+        address = [ "129.199.244.6/23" ];
+        networkConfig = {
+          DefaultRouteOnDevice = true;
+        };
+      };
+      "10-downlink" = {
+        name = "enp2s0";
+        networkConfig = {
+          Address="10.1.1.1/24";
+          DHCPServer=true;
+          IPMasquerade="ipv4";
+        };
+        dhcpServerConfig = {
+          PoolOffset=100;
+          PoolSize=20;
+          EmitDNS=true;
+          DNS="10.1.1.1";
+        };
+      };
+    };
   };
-  networking.interfaces.${internal}.ipv4.addresses = [{
-    address = "10.0.0.1";
-    prefixLength = 24;
-  }];
-  services.dnsmasq = {
-    enable = true;
-    extraConfig = ''
-      interface=${internal}
-      dhcp-range=10.0.0.50,10.0.0.254,255.255.255.0,24h'';
-  };
-  networking.firewall.trustedInterfaces = [ internal ];
+  networking.nameservers = [
+    "2620:fe::fe"
+    "2620:fe::9"
+    "9.9.9.9"
+    "149.112.112.112"
+  ];
+  networking.firewall.allowedUDPPorts = [ 1194 ];
+  networking.firewall.trustedInterfaces = [ "enp2s0" ];
 }
