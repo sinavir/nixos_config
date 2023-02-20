@@ -48,8 +48,8 @@
       };
       mintaka = rec {
         PersistentKeepalive = 25;
-        Endpoint = "thurne.sinavir.fr";
-        port = 1194;
+        Endpoint = "thurne.sinavir.fr:${port}";
+        port = "1194";
         PublicKey = "oue1cy6F+rBtq0dzFrak8o24OIJBQOii1X3QAkAVW2w=";
         IPs = [
           "10.100.1.4/24"
