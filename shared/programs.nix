@@ -14,6 +14,7 @@
     unzip
     vim
     wget
+    wireguard-tools
   ];
 
   programs.mosh.enable = builtins.elem config.networking.hostName [ "proxima" "algedi" "rigel" ];
