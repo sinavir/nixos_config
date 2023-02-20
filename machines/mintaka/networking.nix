@@ -57,6 +57,9 @@ in
           EmitDNS=true;
           DNS="10.1.1.1";
         };
+        linkConfig = {
+          RequiredForOnline = false;
+        };
       };
     };
   };

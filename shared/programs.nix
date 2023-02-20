@@ -17,7 +17,7 @@
     wireguard-tools
   ];
 
-  programs.mosh.enable = builtins.elem config.networking.hostName [ "proxima" "algedi" "rigel" ];
+  programs.mosh.enable = builtins.elem config.networking.hostName [ "mintaka" "proxima" "algedi" "rigel" ];
   programs.mtr.enable = true;
 
   programs.vim.defaultEditor = true;
