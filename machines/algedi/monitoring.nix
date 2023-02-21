@@ -15,6 +15,11 @@
           health enabled by default = auto
           allow from = 10.100.1.*
       '';
+      "go.d.conf" = pkgs.writeText "go.d.conf" ''
+        # go.d.conf
+        modules:
+          systemdunits: yes
+      '';
     };
 
 
