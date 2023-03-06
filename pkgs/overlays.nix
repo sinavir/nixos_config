@@ -1,6 +1,6 @@
 [
   (self: super: {
-    ms4 = self.libsForQt5.callPackage ./musescore4.nix { };
+    ms4 = (import (import ../nix/).nixos-unstable {}).pkgs.musescore;
   })
   (self: super: {
     ws-scraper = self.python310Packages.callPackage ./ws-scraper.nix {

@@ -46,30 +46,32 @@ in
   };
 
   home.packages = with pkgs; [
-    imv
-    libreoffice
-    xournalpp
-    freecad
     (python39.withPackages (ps: [ ps.numpy ps.scipy ps.matplotlib ]))
-    signal-desktop
-    firefox-wayland
-    musescore
-    ms4-nixshell
-    thunderbird
-    wl-clipboard
-    xorg.xeyes
-    texlive.combined.scheme-full
-    mpv
-    pulsemixer
     discord
-    xdg-utils
-    mako
-    website
+    firefox-wayland
+    freecad
     gnome3.adwaita-icon-theme
-    krita
+    imv
     inkscape
+    krita
+    libreoffice
+    mako
+    mpv
+    ms4-nixshell
+    musescore
+    pavucontrol
+    pulsemixer
+    signal-desktop
+    texlive.combined.scheme-full
+    thunderbird
+    ungoogled-chromium
     virt-manager
     vlc
+    website
+    wl-clipboard
+    xdg-utils
+    xorg.xeyes
+    xournalpp
   ];
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";

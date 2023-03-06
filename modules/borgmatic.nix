@@ -125,7 +125,7 @@ in
         # This will mount a tmpfs on top of /root and pass through needed paths;
         # ProtectHome=tmpfs
         # May interfere with running external programs within borgmatic hooks.
-        CapabilityBoundingSet="CAP_DAC_READ_SEARCH CAP_NET_RAW";
+        # CapabilityBoundingSet="CAP_DAC_READ_SEARCH CAP_NET_RAW";
         # Lower CPU and I/O priority.
         Nice=19;
         CPUSchedulingPolicy="batch";
@@ -138,11 +138,11 @@ in
         LogRateLimitIntervalSec=0;
         # Delay start to prevent backups running during boot. Note that systemd-inhibit requires dbus and
         # dbus-user-session to be installed.
-        ExecStartPre="sleep 1m";
+        ExecStartPre="${pkgs.coreutils}/bin/sleep 1m";
         # Original line, to see if it is worth: ExecStart="systemd-inhibit --who="borgmatic" --what="sleep:shutdown" --why="Prevent interrupting scheduled backup" ${borgmatic}/bin/borgmatic --verbosity -1 --syslog-verbosity 1";
       };
       script=''
-        ${pkgs.borgmatic}/bin/borgmatic rcreate -c ${configDir}
+        ${pkgs.borgmatic}/bin/borgmatic rcreate -e repokey -c ${configDir}
         ${pkgs.borgmatic}/bin/borgmatic -c ${configDir}
         '';
     };

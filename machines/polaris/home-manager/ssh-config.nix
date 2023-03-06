@@ -11,8 +11,7 @@
     };
     "mintaka" = {
       user = "root";
-      hostname = "mintaka.sinavir.fr";
-      proxyJump = "mdebray@sas.eleves.ens.fr";
+      hostname = "10.100.1.4";
     };
     "rigel" = {
       user = "root";
