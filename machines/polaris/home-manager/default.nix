@@ -8,9 +8,6 @@ let
     ssh sinavir.fr "cat > site/$dir/$rnd-$file"
     echo "https://sinavir.fr/$dir/$rnd-$file"
   '';
-  ms4-nixshell = pkgs.writeShellScriptBin "ms4" ''
-    ${pkgs.ms4}/bin/mscore $@
-  '';
 in
 {
   imports =
@@ -57,7 +54,6 @@ in
     libreoffice
     mako
     mpv
-    ms4-nixshell
     musescore
     pavucontrol
     pulsemixer
