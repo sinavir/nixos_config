@@ -18,9 +18,18 @@
           api key = eb9e2ae9-a6ae-4737-85d7-aac5fabf8bcf
       '';
       "go.d.conf" = pkgs.writeText "go.d.conf" ''
-        # go.d.conf
+        enabled: yes
         modules:
           systemdunits: yes
+      '';
+      "go.d/systemdunits.conf" = pkgs.writeText "systemdunits.conf" ''
+        jobs:
+          - name: service-units
+            include:
+              - '*.service'
+          - name: kfet-open-service
+            include:
+              - 'kfet-open-recorder.service'
       '';
     };
 
