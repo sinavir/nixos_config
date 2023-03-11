@@ -20,6 +20,7 @@ let
       mkdir -p $out
       cd $out
       ${lib.concatStrings linkCommands}
+      ${cfg.preValidationScript}
       validate-borgmatic-config -c $out
     '';
 
@@ -43,6 +44,16 @@ in
       type = types.str;
       default = "hourly";
       description = "Schedule for the backups.";
+    };
+
+    beforeAllScript = lib.mkOption {
+      type = types.str;
+      default = "";
+    };
+
+    preValidationScript = lib.mkOption {
+      type = types.str;
+      default = "";
     };
 
 
@@ -142,6 +153,7 @@ in
         # Original line, to see if it is worth: ExecStart="systemd-inhibit --who="borgmatic" --what="sleep:shutdown" --why="Prevent interrupting scheduled backup" ${borgmatic}/bin/borgmatic --verbosity -1 --syslog-verbosity 1";
       };
       script=''
+        ${cfg.beforeAllScript}
         ${pkgs.borgmatic}/bin/borgmatic rcreate -e repokey -c ${configDir}
         ${pkgs.borgmatic}/bin/borgmatic -c ${configDir}
         '';

@@ -19,6 +19,8 @@
   services.borgmatic = {
     enable = true;
     startAt = "daily";
+    beforeAllScript = "export NTFY_PASSWORD=$(cat ${config.age.secrets."ntfy-passwd".path})";
+    preValidationScript = "export NTFY_PASSWORD=";
     configurations = {
       "home" = {
         storage.ssh_command = "ssh -i /home/maurice/.ssh/id_ed25519";
@@ -35,31 +37,32 @@
         storage.encryption_passcommand = "cat ${config.age.secrets."bk-passwd".path}";
 
         hooks = {
-          # ntfy = {
-          #   topic = "backups";
-          #   server = "https://ntfy.sinavir.fr";
-          #   start = {
-          #     title = "Backup started.";
-          #     message = "${config.networking.hostName} started the home backup";
-          #     tags = "floppy_disk";
-          #     priority = "low";
-          #   };
-          #   finish = {
-          #     title = "Backup successful.";
-          #     message = "${config.networking.hostName} finished the home backup";
-          #     tags = "floppy_disk,heavy_check_mark";
-          #     priority = "low";
-          #   };
-          #   fail = {
-          #     title = "Backup error.";
-          #     message = "${config.networking.hostName} failed on the home backup";
-          #     tags = "floppy_disk,rotating_light";
-          #     priority = "high";
-          #   };
-          #   states = [ "start" "finish" "fail" ];
-          # };
+          ntfy = {
+            topic = "backups";
+            username = "misc";
+            password = "\${NTFY_PASSWORD}";
+            server = "https://ntfy.sinavir.fr";
+            start = {
+              title = "Backup started.";
+              message = "${config.networking.hostName} started the home backup";
+              tags = "floppy_disk";
+              priority = "low";
+            };
+            finish = {
+              title = "Backup successful.";
+              message = "${config.networking.hostName} finished the home backup";
+              tags = "floppy_disk,heavy_check_mark";
+              priority = "low";
+            };
+            fail = {
+              title = "Backup error.";
+              message = "${config.networking.hostName} failed on the home backup";
+              tags = "floppy_disk,rotating_light";
+              priority = "high";
+            };
+            states = [ "start" "finish" "fail" ];
+          };
           before_backup = [ (pkgs.writeScript "home-backup-prepare.sh" ''
-            ls -lah /mnt/btrfs-home-top-lvl/
             if [ -e /mnt/btrfs-home-top-lvl/home-borgmatic-snapshot ]
             then
               ${pkgs.btrfs-progs}/bin/btrfs subvolume delete -c /mnt/btrfs-home-top-lvl/home-borgmatic-snapshot
@@ -68,7 +71,7 @@
             '')
           ];
           after_everything = [
-            "${pkgs.btrfs-progs}/bin/btrfs -vvv subvolume delete /mnt/btrfs-home-top-lvl/home-borgmatic-snapshot"
+            "${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/btrfs-home-top-lvl/home-borgmatic-snapshot"
           ];
         };
       };
