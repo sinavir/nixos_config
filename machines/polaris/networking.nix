@@ -6,4 +6,5 @@
   networking.networkmanager.enable = true;
   #systemd.services.NetworkManager-wait-online.enable = false; # ça bug
   networking.nameservers = [ "1.1.1.1" ];
+  #services.tailscale.enable = true;
 }
