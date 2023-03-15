@@ -47,15 +47,15 @@ in
       "10-downlink" = {
         name = "enp2s0";
         networkConfig = {
-          Address="10.1.1.1/24";
-          DHCPServer=true;
-          IPMasquerade="ipv4";
+          Address = "10.1.1.1/24";
+          DHCPServer = true;
+          IPMasquerade = "ipv4";
         };
         dhcpServerConfig = {
-          PoolOffset=100;
-          PoolSize=20;
-          EmitDNS=true;
-          DNS="10.1.1.1";
+          PoolOffset = 100;
+          PoolSize = 20;
+          EmitDNS = true;
+          DNS = "10.1.1.1";
         };
         linkConfig = {
           RequiredForOnline = false;

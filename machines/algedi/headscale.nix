@@ -1,4 +1,7 @@
 { pkgs, lib, config, ... }:
+let
+  headscaleUi = pkgs.callPackage ./headscale-ui { };
+in
 {
   services.headscale = {
     enable = true;
@@ -7,16 +10,16 @@
     settings = {
       dns_config = {
         override_local_dns = true;
-        base_domain = "internal";
+        base_domain = "";
         magic_dns = true;
         nameservers = [
           "1.1.1.1"
         ];
       };
-      server_url = "https://tailscale.m7.rs";
+      server_url = "https://vpn.sinavir.fr";
       metrics_listen_addr = "127.0.0.1:8095";
       ip_prefixes = [
-        "100.64.0.0/10"
+        "10.111.0.0/16"
       ];
     };
   };
@@ -30,7 +33,17 @@
           proxyPass = "http://localhost:${toString config.services.headscale.port}";
           proxyWebsockets = true;
         };
+        "/web/" = {
+          root = headscaleUi;
+        };
       };
     };
+  };
+  environment.systemPackages = [ pkgs.headscale ];
+  networking.nat = {
+    enable = true;
+    internalInterfaces = [ "tailscale0" ];
+    internalIPs = [ "10.111.0.0/16" ];
+    externalInterface = "ens21";
   };
 }

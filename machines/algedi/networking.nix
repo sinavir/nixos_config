@@ -77,4 +77,5 @@ in
     ip46tables -D FORWARD -o wg-main -j ACCEPT -m conntrack --ctstate ESTABLISHED
     ip46tables -D FORWARD -o wg-main -j DROP
   '';
+  services.tailscale.enable = true;
 }

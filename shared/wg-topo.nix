@@ -28,7 +28,8 @@
           "10.100.1.2/24"
           "fdb9::2/64"
         ];
-        defaultAllowedIPs = [ # Algedi is the central node
+        defaultAllowedIPs = [
+          # Algedi is the central node
           "10.100.1.0/24"
           "fdb9::/64"
         ];

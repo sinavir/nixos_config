@@ -52,7 +52,8 @@
   };
 
   fileSystems."/mnt/btrfs-home-top-lvl" =
-    { device = "/dev/disk/by-uuid/cabb6a0f-a8ee-4c6c-b276-1f221922ad96";
+    {
+      device = "/dev/disk/by-uuid/cabb6a0f-a8ee-4c6c-b276-1f221922ad96";
       fsType = "btrfs";
     };
 
