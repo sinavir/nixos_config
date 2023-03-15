@@ -10,9 +10,11 @@
     ../../shared
     ./bootloader.nix
     ./ernestophone.nix
+    ./kfet-open-recorder.nix
     ./hardware-configuration.nix
     ./ntfy.nix
     ./radicale.nix
+    ./kfet-proxy
     ./secrets
     ./networking.nix
     ./monitoring.nix

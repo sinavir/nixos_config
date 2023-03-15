@@ -10,8 +10,6 @@
       ../../shared
       ./bootloader.nix
       ./hardware-configuration.nix
-      ./kfet-open-recorder.nix
-      ./kfet-proxy
       ./mail.nix
       ./monitoring.nix
       ./networking.nix
