@@ -43,7 +43,8 @@ in
   };
 
   home.packages = with pkgs; [
-    (python39.withPackages (ps: [ ps.numpy ps.scipy ps.matplotlib ]))
+    (python3.withPackages (ps: [ ps.black ps.isort ps.pylint ps.numpy ps.scipy ps.matplotlib ]))
+    nodePackages.pyright
     discord
     firefox-wayland
     freecad
@@ -66,7 +67,6 @@ in
     website
     wl-clipboard
     xdg-utils
-    xorg.xeyes
     xournalpp
   ];
   home.sessionVariables = {

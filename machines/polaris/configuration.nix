@@ -16,6 +16,7 @@
     ./syncthing.nix
     ./user.nix
     ./virt-manager.nix
+    ./paperless.nix
   ];
 
   time.timeZone = "Europe/Paris";
