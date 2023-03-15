@@ -15,6 +15,7 @@
     vim
     wget
     wireguard-tools
+    borgbackup
   ];
 
   programs.mosh.enable = builtins.elem config.networking.hostName [ "mintaka" "proxima" "algedi" "rigel" ];

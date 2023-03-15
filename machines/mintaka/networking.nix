@@ -2,7 +2,7 @@
 let
   wgTopo = import ../../shared/wg-topo.nix;
   wgMain = wgTopo.wg-main;
-  peers = lib.filterAttrs (n: v: n != config.networking.hostName) wgMain.peers;
+  peers = lib.filterAttrs (n: v: n != config.networking.hostName && n != "polaris" ) wgMain.peers;
 in
 {
 
@@ -71,4 +71,5 @@ in
   ];
   networking.firewall.allowedUDPPorts = [ 1194 ];
   networking.firewall.trustedInterfaces = [ "enp2s0" ];
+  #services.tailscale.enable = true;
 }

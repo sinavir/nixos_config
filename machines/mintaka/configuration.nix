@@ -8,6 +8,7 @@
     ./users.nix
     ./secrets
     ./networking.nix
+    ./monitoring.nix
   ];
 
 
