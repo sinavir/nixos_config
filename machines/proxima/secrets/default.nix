@@ -24,5 +24,10 @@
       owner = "dovecot2";
       group = "dovecot2";
     };
+    "radicale" = {
+      file = ./radicale.age;
+      owner = "radicale";
+      group = "radicale";
+    };
   };
 }

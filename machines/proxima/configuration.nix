@@ -12,6 +12,7 @@
       ./hardware-configuration.nix
       ./mail.nix
       ./monitoring.nix
+      ./radicale.nix
       ./networking.nix
       ./pass.nix
       ./secrets
