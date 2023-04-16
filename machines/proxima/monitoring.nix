@@ -27,9 +27,6 @@
           - name: service-units
             include:
               - '*.service'
-          - name: kfet-open-service
-            include:
-              - 'kfet-open-recorder.service'
       '';
     };
 
