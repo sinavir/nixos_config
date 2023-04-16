@@ -23,6 +23,12 @@
         "url": "https://github.com/nix-community/home-manager/archive/cf662b6c98a0da81e06066fff0ecf9cbd4627727.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "nixos-mailserver": {
+        "branch": "nixos-22.11",
+        "repo": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git",
+        "rev": "bc667fb6afc45f6cc2d118ab77658faf2227cffd",
+        "type": "git"
+    },
     "nixos-stable": {
         "branch": "nixos-22.11",
         "description": "Nix Packages collection",

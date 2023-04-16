@@ -16,6 +16,7 @@
       ./networking.nix
       ./pass.nix
       ./secrets
+      ./kfet-proxy
       ./static-website.nix
       ./thelounge.nix
     ];

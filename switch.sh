@@ -2,7 +2,8 @@
 
 # Please update also shared/nix-conf.nix if you change this file
 
-HOSTNAME=$(hostname)
+HOSTNAME=${HOSTNAME:=$(hostname)}
+echo "Rebuilding for $HOSTNAME"
 case $HOSTNAME in
 	algedi)
 		nix-shell --pure --run "nixos-rebuild switch \$REBUILD_OPTIONS_UNSTABLE $@"

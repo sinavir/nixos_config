@@ -24,6 +24,11 @@
         collection = "{user}/[^/]+";
         permissions = "rw";
       };
+      common = {
+        user = ".*";
+        collection = "common/[^/]+";
+        permissions = "rw";
+      };
     };
   };
   services.nginx = {
