@@ -5,6 +5,7 @@
     # TODO add backups
     <home-manager/nixos>
     ../../shared
+    ./android.nix
     ./backups.nix
     ./bootloader.nix
     ./chaise-clavier.nix

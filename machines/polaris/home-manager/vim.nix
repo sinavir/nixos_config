@@ -9,6 +9,7 @@
       ultisnips
       vimtex
       vim-fugitive
+      zig-vim
       base16-vim
       vim-wayland-clipboard
       vim-svelte
