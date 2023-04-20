@@ -8,7 +8,6 @@
   imports =
     [
       ../../shared
-      ./authelia.nix
       ./bootloader.nix
       ./hardware-configuration.nix
       ./mail.nix
@@ -17,6 +16,7 @@
       ./networking.nix
       ./pass.nix
       ./secrets
+      ./keycloak.nix
       ./kfet-proxy
       ./linkal.nix
       ./static-website.nix

@@ -34,20 +34,15 @@
       owner = "radicale";
       group = "radicale";
     };
-    "authelia_jwtSecret" = {
-      file = ./authelia_jwtSecret.age;
-      owner = "authelia-sinavir_sso";
-      group = "authelia-sinavir_sso";
+    "keycloak_smtp_password" = {
+      file = ./keycloak_smtp_password.age;
+      owner = "keycloak";
+      group = "keycloak";
     };
-    "authelia_storageEncryptionKey" = {
-      file = ./authelia_storageEncryptionKey.age;
-      owner = "authelia-sinavir_sso";
-      group = "authelia-sinavir_sso";
-    };
-    "authelia_smtp_password" = {
-      file = ./authelia_smtp_password.age;
-      owner = "authelia-sinavir_sso";
-      group = "authelia-sinavir_sso";
+    "keycloakDatabasePasswordFile" = {
+      file = ./keycloakDatabasePasswordFile.age;
+      owner = "keycloak";
+      group = "keycloak";
     };
   };
 }
