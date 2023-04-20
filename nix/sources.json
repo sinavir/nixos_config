@@ -24,9 +24,9 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-mailserver": {
-        "branch": "nixos-22.11",
+        "branch": "master",
         "repo": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git",
-        "rev": "bc667fb6afc45f6cc2d118ab77658faf2227cffd",
+        "rev": "6d0d9fb966cc565a3df74d3b686f924c7615118c",
         "type": "git"
     },
     "nixos-stable": {
@@ -47,10 +47,10 @@
         "homepage": "",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4361baa782dc3d3b35fd455a1adc370681d9187c",
-        "sha256": "0rwlb491vik370lgqn9apyx4dy5r01nqsn642v8bsq483b3jd15i",
+        "rev": "555daa9d339b3df75e58ee558a4fec98ea92521e",
+        "sha256": "0m361xqnx1d1nwahichvg8l1qy3ambra0rg56mmyh71xgnrnz1m3",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/4361baa782dc3d3b35fd455a1adc370681d9187c.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/555daa9d339b3df75e58ee558a4fec98ea92521e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

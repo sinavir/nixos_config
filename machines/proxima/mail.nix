@@ -22,6 +22,11 @@
         aliases = [ "vaultwarden@sinavir.fr" ];
         quota = "1G";
       };
+      "sso@sinavir.fr" = {
+        hashedPasswordFile = config.age.secrets."ssoMailPass".path;
+        aliases = [ "sso@sinavir.fr" ];
+        quota = "1G";
+      };
     };
 
     # Use Let's Encrypt certificates. Note that this needs to set up a stripped
