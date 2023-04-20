@@ -8,7 +8,7 @@
   imports =
     [
       ../../shared
-      #./authelia.nix
+      ./authelia.nix
       ./bootloader.nix
       ./hardware-configuration.nix
       ./mail.nix

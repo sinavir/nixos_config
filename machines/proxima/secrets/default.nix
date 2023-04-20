@@ -36,18 +36,18 @@
     };
     "authelia_jwtSecret" = {
       file = ./authelia_jwtSecret.age;
-      owner = "authelia";
-      group = "authelia";
+      owner = "authelia-sinavir_sso";
+      group = "authelia-sinavir_sso";
     };
     "authelia_storageEncryptionKey" = {
       file = ./authelia_storageEncryptionKey.age;
-      owner = "authelia";
-      group = "authelia";
+      owner = "authelia-sinavir_sso";
+      group = "authelia-sinavir_sso";
     };
     "authelia_smtp_password" = {
       file = ./authelia_smtp_password.age;
-      owner = "authelia";
-      group = "authelia";
+      owner = "authelia-sinavir_sso";
+      group = "authelia-sinavir_sso";
     };
   };
 }

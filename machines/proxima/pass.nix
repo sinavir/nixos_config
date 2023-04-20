@@ -8,7 +8,7 @@
       SIGNUPS_ALLOWED = false;
       ROCKET_PORT = 10501;
       ROCKET_ADDRESS = "127.0.0.1";
-      LOG_FILE = "/var/log/vaultwarden";
+      LOG_FILE = "/var/lib/bitwarden_rs/logs";
       SIGNUPS_VERIFY = true;
       SMTP_HOST = "mail.sinavir.fr";
       SMTP_FROM = "vaultwarden@sinavir.fr";

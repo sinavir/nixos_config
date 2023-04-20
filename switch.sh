@@ -15,7 +15,7 @@ case $HOSTNAME in
 		nix-shell --pure --run "nixos-rebuild switch \$REBUILD_OPTIONS_UNSTABLE $@"
 		;;
 	proxima)
-		nix-shell --pure --run "nixos-rebuild switch \$REBUILD_OPTIONS_STABLE $@"
+		nix-shell --pure --run "nixos-rebuild switch \$REBUILD_OPTIONS_UNSTABLE $@"
 		;;
 	*)
 		echo "Cannot determine which nixpkgs version to use" >&2

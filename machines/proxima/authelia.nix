@@ -1,6 +1,7 @@
 { pkgs, lib, config, ... }:
+  let name = "sinavir_sso"; in
 {
-  services.authelia.instances."sinavir_sso" = {
+  services.authelia.instances.${name} = {
     enable = true;
     secrets = {
       jwtSecretFile = config.age.secrets."authelia_jwtSecret".path;
@@ -10,8 +11,9 @@
       AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE = config.age.secrets."authelia_smtp_password".path;
     };
     settings = {
-      authentication_backend.file.path = "/var/lib/authelia/users.yaml";
-      storage.local.path = "/var/lib/authelia/db.sqlite3";
+      authentication_backend.file.path = "/var/lib/authelia-${name}/users.yaml";
+      storage.local.path = "/var/lib/authelia-${name}/db.sqlite3";
+      session.domain = "sinavir.fr";
       # TODO: Add systemd tmpfile rules
       notifier.smtp = {
         host = "mail.sinavir.fr";
@@ -25,7 +27,7 @@
       };
       access_control.rules = [
         {
-          domain = "*.sinavir.fr";
+          domain = "sinavir.fr";
           policy = "one_factor";
         }
       ];
@@ -36,7 +38,7 @@
     forceSSL = true;
     enableACME = true;
 
-    location."/" = {
+    locations."/" = {
       proxyPass = "http://127.0.0.1:9990";
       extraConfig = ''
         ## Headers
@@ -66,7 +68,7 @@
         proxy_connect_timeout 360;
         '';
     };
-    location."/api/verify" = {
+    locations."/api/verify" = {
       proxyPass = "https://127.0.0.1:9990";
     };
   };
