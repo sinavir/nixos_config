@@ -12,7 +12,7 @@ let
         rev = "bc41f27d82e2c1ccf1ec4bdc1c5e726d1980c559";
         hash = "sha256-s5wrd0cKyQwJkiUB205OMRhRr7uqxd3H/BzgP1SRf/I=";
       };
-cargoHash ="sha256-cA2R8ID1Dq7Da6MrbKit6UkJ2/SZ6abgyS4kfqAsUEM=";
+      cargoHash = "sha256-cA2R8ID1Dq7Da6MrbKit6UkJ2/SZ6abgyS4kfqAsUEM=";
     };
   calConf =
     let mapAddPrefix = pref: lib.mapAttrs' (n: value: { name = pref + n; inherit value; });
@@ -53,9 +53,9 @@ in
   };
   systemd.services.linkal = {
     script = "${linkal}/bin/linkal --calendar-file ${pkgs.writeText "calendars.json" (builtins.toJSON calConf)}";
-description = "linkal";
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig.Type = "simple";
+    description = "linkal";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
     serviceConfig = {
       DynamicUser = true;
     };
