@@ -16,6 +16,7 @@ in
   "ssoMailPass.age".publicKeys = (readPubkeys "maurice")
     ++ (readPubkeys "proxima");
   "radicale.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
-  "keycloakDatabasePasswordFile.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
-  "keycloak_smtp_password.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
+  "authelia_storageEncryptionKey.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
+  "authelia_jwtSecret.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
+  "authelia_smtp_password.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
 }
