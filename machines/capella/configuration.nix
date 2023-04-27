@@ -4,9 +4,9 @@
   imports = [
     ./hardware-configuration.nix
     ./bootloader.nix
+./secrets
     ../../shared
     ./users.nix
-    ./secrets
     ./networking.nix
   ];
 

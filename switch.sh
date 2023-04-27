@@ -11,6 +11,9 @@ case $HOSTNAME in
 	mintaka)                                                                                      
 		OPTIONS_VAR=REBUILD_OPTIONS_UNSTABLE
 		;;                                                                                    
+	capella)                                                                                      
+		OPTIONS_VAR=REBUILD_OPTIONS_UNSTABLE
+		;;                                                                                    
 	polaris)                                                                                      
 		OPTIONS_VAR=REBUILD_OPTIONS_UNSTABLE
 		;;                                                                                    
