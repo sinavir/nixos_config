@@ -15,6 +15,9 @@ in
   services = {
     gpg-agent.enable = true;
     gpg-agent.pinentryFlavor = "tty";
+    kdeconnect = {
+      enable = true;
+    };
 
   };
   programs = {

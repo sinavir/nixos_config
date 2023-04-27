@@ -16,7 +16,7 @@ in
     folders = {
       Notes = {
         id = "75ujo-go7am";
-        devices = [ "capella" "sirius" "polaris" ];
+        devices = [ "sirius" "polaris" ];
         path = "~/Notes";
       };
     };

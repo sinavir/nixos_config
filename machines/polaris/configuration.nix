@@ -10,6 +10,7 @@
     ./bootloader.nix
     ./chaise-clavier.nix
     ./hardware-configuration.nix
+    ./kdeconnect-fw.nix
     ./networking.nix
     ./secrets
     ./sound.nix
