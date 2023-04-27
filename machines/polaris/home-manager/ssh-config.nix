@@ -9,10 +9,6 @@
       user = "root";
       hostname = "algedi.sinavir.fr";
     };
-    "mintaka" = {
-      user = "root";
-      hostname = "10.100.1.4";
-    };
     "rigel" = {
       user = "root";
       hostname = "rigel.sinavir.fr";

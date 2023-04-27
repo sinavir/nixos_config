@@ -8,9 +8,6 @@ case $HOSTNAME in
 	algedi)
 		OPTIONS_VAR=REBUILD_OPTIONS_UNSTABLE
 		;;                                                                                    
-	mintaka)                                                                                      
-		OPTIONS_VAR=REBUILD_OPTIONS_UNSTABLE
-		;;                                                                                    
 	capella)                                                                                      
 		OPTIONS_VAR=REBUILD_OPTIONS_UNSTABLE
 		;;                                                                                    

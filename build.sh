@@ -9,7 +9,7 @@ case $HOSTNAME in
 	algedi)
 		OPTIONS_VAR=REBUILD_OPTIONS_UNSTABLE
 		;;                                                                                    
-	mintaka)                                                                                      
+	capella)                                                                                      
 		OPTIONS_VAR=REBUILD_OPTIONS_UNSTABLE
 		;;                                                                                    
 	polaris)                                                                                      
