@@ -6,6 +6,10 @@
       reverseProxy = true;
       host = "127.0.0.1";
       public = false;
+      prefetch = true;
+      fileUpload = {
+        enable = true;
+      };
     };
   };
   services.nginx.enable = true;

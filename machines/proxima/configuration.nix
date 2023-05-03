@@ -10,7 +10,6 @@
       ../../shared
       ./authelia.nix
       ./bootloader.nix
-./convos.nix
       ./hardware-configuration.nix
       ./mail.nix
       ./radicale.nix
