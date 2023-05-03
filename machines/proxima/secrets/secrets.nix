@@ -19,4 +19,6 @@ in
   "authelia_storageEncryptionKey.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
   "authelia_jwtSecret.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
   "authelia_smtp_password.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
+  "oidc_headscale_secret.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "proxima");
+
 }

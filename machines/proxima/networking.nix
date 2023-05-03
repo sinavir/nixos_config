@@ -1,46 +1,10 @@
 { config, pkgs, lib, ... }:
-let
-  wgTopo = import ../../shared/wg-topo.nix;
-  wgMain = wgTopo.wg-main;
-  peers = lib.filterAttrs (n: v: n != config.networking.hostName) wgMain.peers;
-in
 {
   networking.useDHCP = false;
 
   systemd.network = {
     enable = true;
-    netdevs = {
-      "20-wg-main" = {
-        netdevConfig = {
-          Name = "wg-main";
-          Kind = "wireguard";
-        };
-        wireguardConfig = {
-          ListenPort = wgMain.peers.${config.networking.hostName}.port;
-          PrivateKeyFile = config.age.secrets.wg-proxima.path;
-        };
-        wireguardPeers = lib.mapAttrsToList
-          (peer: conf: {
-            wireguardPeerConfig = {
-              inherit (conf) Endpoint PublicKey;
-              AllowedIPs = conf.defaultAllowedIPs;
-            };
-          })
-          peers;
-      };
-    };
     networks = {
-      "20-wg-main" = {
-        name = "wg-main";
-        address = wgMain.peers.${config.networking.hostName}.IPs;
-        routes = builtins.map
-          (net: {
-            routeConfig = {
-              Destination = net;
-            };
-          })
-          wgMain.nets;
-      };
       "10-uplink" = {
         name = "ens3";
         DHCP = "ipv4";
@@ -52,5 +16,4 @@ in
       };
     };
   };
-  networking.firewall.allowedUDPPorts = [ 1194 ];
 }

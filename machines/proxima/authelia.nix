@@ -8,9 +8,12 @@ in
     secrets = {
       jwtSecretFile = config.age.secrets."authelia_jwtSecret".path;
       storageEncryptionKeyFile = config.age.secrets."authelia_storageEncryptionKey".path;
+      oidcHmacSecretFile = config.age.secrets."authelia_oidcHmacSecret".path;
+      oidcIssuerPrivateKeyFile = config.age.secrets."authelia_oidcIssuerPrivateKeyFile".path;
     };
     environmentVariables = {
       AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE = config.age.secrets."authelia_smtp_password".path;
+      HEADSCALE_CLIENT_SECRET_PATH = config.age.secrets."oidc_headscale_authelia_secret".path;
     };
     settings = {
       authentication_backend.file.path = "/var/lib/authelia-${name}/users.yaml";
@@ -34,6 +37,17 @@ in
           subject = [ "group:radicale" ];
         }
       ];
+      identity_providers.oidc = {
+        clients = [
+          {
+            id = "headscale";
+            secret = "$HEADSCALE_CLIENT_SECRET_PATH";
+            authorization_policy = "one_factor";
+            redirect_uris = "https://vpn.sinavir.fr/oidc/callback";
+          }
+        ];
+      };
+
     };
   };
 
