@@ -1,7 +1,4 @@
 { pkgs, lib, config, ... }:
-let
-  headscaleUi = pkgs.callPackage ./headscale-ui { };
-in
 {
   services.headscale = {
     enable = true;
