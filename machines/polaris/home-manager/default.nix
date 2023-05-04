@@ -50,6 +50,7 @@ in
     nodePackages.pyright
     discord
     firefox-wayland
+    anki
     freecad
     gnome3.adwaita-icon-theme
     imv
