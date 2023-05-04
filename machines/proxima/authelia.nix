@@ -13,7 +13,6 @@ in
     };
     environmentVariables = {
       AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE = config.age.secrets."authelia_smtp_password".path;
-      HEADSCALE_CLIENT_SECRET_PATH = config.age.secrets."oidc_headscale_authelia_secret".path;
     };
     settings = {
       authentication_backend.file.path = "/var/lib/authelia-${name}/users.yaml";
@@ -41,7 +40,7 @@ in
         clients = [
           {
             id = "headscale";
-            secret = "$HEADSCALE_CLIENT_SECRET_PATH";
+            secret = "$pbkdf2-sha512$310000$dKrneUP4zWtSQX1Vq7q4Gg$y7oh.b.2CwYi9ZKSwWNRKqhmCx83Ve34sOZORIQd4CvR.pDGlb4vkN8jCh9bxnek0huKeIZmTTKlL7AMxHiwRQ";
             authorization_policy = "one_factor";
             redirect_uris = "https://vpn.sinavir.fr/oidc/callback";
           }

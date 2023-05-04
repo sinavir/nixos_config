@@ -16,15 +16,18 @@ in
           "1.1.1.1"
         ];
       };
+      log.level = "debug";
       server_url = "https://vpn.sinavir.fr";
       #metrics_listen_addr = "127.0.0.1:8095";
       ip_prefixes = [
         "10.111.0.0/16"
       ];
       oidc = {
-        issuer = "auth.sinavir.fr";
+        issuer = "https://auth.sinavir.fr";
         client_id = "headscale";
-        client_secret_path = config.age.secrets."oidc_headscale_secret".path;
+        client_secret_path = config.age.secrets."oidc_headscale_secret".path ;       
+        #allowed_domains = [ "sinavir.fr" ];
+        extra_params.client_id = "headscale";
       };
     };
 

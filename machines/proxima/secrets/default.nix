@@ -46,16 +46,23 @@
     };
     "authelia_smtp_password" = {
       file = ./authelia_smtp_password.age;
+      owner = "authelia-sinavir_sso";
+      group = "authelia-sinavir_sso";
+    };
+    "authelia_oidcHmacSecret" = {
+      file = ./authelia_oidcHmacSecret.age;
+      owner = "authelia-sinavir_sso";
+      group = "authelia-sinavir_sso";
+    };
+    "authelia_oidcIssuerPrivateKeyFile" = {
+      file = ./authelia_oidcIssuerPrivateKeyFile.age;
+      owner = "authelia-sinavir_sso";
+      group = "authelia-sinavir_sso";
     };
     "oidc_headscale_secret" = {
       file = ./oidc_headscale_secret.age;
       owner = "headscale";
       group = "headscale";
-    };
-    "oidc_headscale_authelia_secret" = {
-      file = ./oidc_headscale_secret.age;
-      owner = "authelia-sinavir_sso";
-      group = "authelia-sinavir_sso";
     };
   };
 }
