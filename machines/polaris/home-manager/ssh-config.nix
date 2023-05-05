@@ -5,9 +5,9 @@
       user = "root";
       hostname = "sinavir.fr";
     };
-    "algedi" = {
+    "capella" = {
       user = "root";
-      hostname = "algedi.sinavir.fr";
+      hostname = "capella.internal.sinavir.fr";
     };
     "rigel" = {
       user = "root";

@@ -154,7 +154,7 @@ in
       };
       script=''
         ${cfg.beforeAllScript}
-        ${pkgs.borgmatic}/bin/borgmatic rcreate -e repokey -c ${configDir}
+        ${pkgs.borgmatic}/bin/borgmatic rcreate -e repokey -c ${configDir} -v 2
         ${pkgs.borgmatic}/bin/borgmatic -c ${configDir}
         '';
     };

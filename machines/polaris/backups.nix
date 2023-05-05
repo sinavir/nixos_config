@@ -1,4 +1,8 @@
 { config, pkgs, lib, ... }:
+let
+  bkhost = "capella.server";
+  knownHost = pkgs.writeText "known_host" "${bkhost} ${builtins.readFile (../../shared/pubkeys/capella.keys)}";
+in
 {
   imports = [ ../../modules/borgmatic.nix ];
   services.btrbk = {
@@ -19,14 +23,12 @@
   services.borgmatic = {
     enable = true;
     startAt = "daily";
-    beforeAllScript = "export NTFY_PASSWORD=$(cat ${config.age.secrets."ntfy-passwd".path})";
-    preValidationScript = "export NTFY_PASSWORD=";
     configurations = {
       "home" = {
-        storage.ssh_command = "ssh -i /home/maurice/.ssh/id_ed25519";
+        storage.ssh_command = "ssh -o 'UserKnownHostsFile ${knownHost}' -i /home/maurice/.ssh/id_ed25519";
         location = {
           source_directories = [ "/mnt/btrfs-home-top-lvl/home-borgmatic-snapshot" ];
-          repositories = [ "ssh://borg@10.100.1.4/./polaris-home" ];
+          repositories = [ "ssh://borg@${bkhost}/./polaris-home" ];
           exclude_if_present = [ ".nobackup" ];
         };
         retention = {
@@ -37,31 +39,6 @@
         storage.encryption_passcommand = "cat ${config.age.secrets."bk-passwd".path}";
 
         hooks = {
-          ntfy = {
-            topic = "backups";
-            username = "misc";
-            password = "\${NTFY_PASSWORD}";
-            server = "https://ntfy.sinavir.fr";
-            start = {
-              title = "Backup started.";
-              message = "${config.networking.hostName} started the home backup";
-              tags = "floppy_disk";
-              priority = "low";
-            };
-            finish = {
-              title = "Backup successful.";
-              message = "${config.networking.hostName} finished the home backup";
-              tags = "floppy_disk,heavy_check_mark";
-              priority = "low";
-            };
-            fail = {
-              title = "Backup error.";
-              message = "${config.networking.hostName} failed on the home backup";
-              tags = "floppy_disk,rotating_light";
-              priority = "high";
-            };
-            states = [ "start" "finish" "fail" ];
-          };
           before_backup = [ (pkgs.writeScript "home-backup-prepare.sh" ''
             if [ -e /mnt/btrfs-home-top-lvl/home-borgmatic-snapshot ]
             then

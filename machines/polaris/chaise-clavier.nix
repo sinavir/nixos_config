@@ -17,5 +17,10 @@
   services.printing.enable = true;
     hardware.sane.enable = true;
     users.users.maurice.extraGroups = [ "scanner" "lp" ];
-    hardware.sane.extraBackends = [ pkgs.epkowa ];
+    hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
 }
