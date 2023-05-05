@@ -7,14 +7,14 @@ echo "Rebuilding for $HOSTNAME"
 case $HOSTNAME in
 	algedi)
 		OPTIONS_VAR=REBUILD_OPTIONS_UNSTABLE
-		;;                                                                                    
-	capella)                                                                                      
+		;;
+	capella)
 		OPTIONS_VAR=REBUILD_OPTIONS_UNSTABLE
-		;;                                                                                    
-	polaris)                                                                                      
+		;;
+	polaris)
 		OPTIONS_VAR=REBUILD_OPTIONS_UNSTABLE
-		;;                                                                                    
-	proxima)                                                                                      
+		;;
+	proxima)
 		OPTIONS_VAR=REBUILD_OPTIONS_UNSTABLE
 		;;
 	*)
