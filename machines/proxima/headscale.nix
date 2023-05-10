@@ -8,6 +8,7 @@
       log.level = "debug";
       server_url = "https://vpn.sinavir.fr";
       #metrics_listen_addr = "127.0.0.1:8095";
+      dns_config.magic_dns = true;
       ip_prefixes = [
         "100.64.0.0/10"
       ];
