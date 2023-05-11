@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./noleds.nix
     ./bootloader.nix
 ./secrets
     ../../shared
