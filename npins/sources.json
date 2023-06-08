@@ -1,0 +1,64 @@
+{
+  "pins": {
+    "agenix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "ryantm",
+        "repo": "agenix"
+      },
+      "branch": "main",
+      "revision": "db5637d10f797bb251b94ef9040b237f4702cde3",
+      "url": "https://github.com/ryantm/agenix/archive/db5637d10f797bb251b94ef9040b237f4702cde3.tar.gz",
+      "hash": "07f60gvrc2ianxa3s4lzjmlpps1vbi8scjiyz45813dbgavxcmix"
+    },
+    "home-manager": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "home-manager"
+      },
+      "branch": "master",
+      "revision": "2d963854ae2499193c0c72fd67435fee34d3e4fd",
+      "url": "https://github.com/nix-community/home-manager/archive/2d963854ae2499193c0c72fd67435fee34d3e4fd.tar.gz",
+      "hash": "1851n81s5z5gliq9ymcw1k1z46rhgb3q3q8b7qiim2y8phbmdbhy"
+    },
+    "nixos-mailserver": {
+      "type": "Git",
+      "repository": {
+        "type": "Git",
+        "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
+      },
+      "branch": "master",
+      "revision": "1bcfcf786bc289ca1bd2c9d29d6f02d9141b1da3",
+      "url": null,
+      "hash": "0cd4d8glfv4mj861myvig00n02nsii8jhjb1dc066dsr2wdbwd3l"
+    },
+    "nixos-stable": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NixOS",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixos-22.11",
+      "revision": "c8a17ce7abc03c50cd072e9e6c9b389c5f61836b",
+      "url": "https://github.com/NixOS/nixpkgs/archive/c8a17ce7abc03c50cd072e9e6c9b389c5f61836b.tar.gz",
+      "hash": "1fn2yj5hs8jcnlqq63jnz4kqpfbi15gjgsa8grl5wpnhlhzc3dgh"
+    },
+    "nixos-unstable": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NixOS",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixos-unstable",
+      "revision": "4e37b4e55b60fb7d43d2b62deb51032a489bcbe8",
+      "url": "https://github.com/NixOS/nixpkgs/archive/4e37b4e55b60fb7d43d2b62deb51032a489bcbe8.tar.gz",
+      "hash": "11a6j8kkk54518lncic5wa88fa5rski3rq6m9s7qlfngkqsihr0q"
+    }
+  },
+  "version": 3
+}

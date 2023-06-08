@@ -2,12 +2,14 @@
 {
   environment.systemPackages = with pkgs; [
     comma
+    agenix
+    colmena
     dig
     git
     htop
     mosh
     screen
-    niv
+    npins
     nix-index
     nixpkgs-fmt
     tree

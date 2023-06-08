@@ -1,18 +1,11 @@
-{ sourcesUnstable ? import ./nix { unstable = true; }, sourcesStable ? import ./nix { unstable = false; }, pkgs ? import sourcesStable.nixpkgs { }, nixos-config ? "/etc/nixos/configuration.nix" }:
 let
-  lib = pkgs.lib;
-  mkOpts = s: pkgs.lib.mapAttrsToList (name: path: "-I ${name}=${path}") ({ inherit nixos-config; } // s);
+  pkgs = import (import ./npins).nixos-unstable { };
 in
-pkgs.mkShell rec {
+pkgs.mkShell {
+  packages = with pkgs; [
+    npins
+    colmena
+  ];
 
-  name = "nixos-rebuild-shell";
-
-  packages = with pkgs; [ nix nixos-rebuild niv ];
-
-  shellHook = ''
-    export REBUILD_OPTIONS_STABLE="${lib.concatStringsSep " " (mkOpts sourcesStable)}"
-    export REBUILD_OPTIONS_UNSTABLE="${lib.concatStringsSep " " (mkOpts sourcesUnstable)}"
-    export NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt
-  '';
-
+  allowSubstitutes = false;
 }
