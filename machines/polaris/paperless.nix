@@ -7,5 +7,6 @@
       PAPERLESS_ADMIN_USER = "admin";
       PAPERLESS_CONSUMER_RECURSIVE = "true";
     };
+    address = "100.64.0.1";
   };
 }
