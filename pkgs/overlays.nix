@@ -7,4 +7,7 @@
       });
     };
   })
+  (self: super: {
+    agenix = self.callPackage ((import ../npins).agenix + "/pkgs/agenix.nix") {};
+  })
 ]
