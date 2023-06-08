@@ -48,6 +48,7 @@ in
   home.packages = with pkgs; [
     (python3.withPackages (ps: [ ps.black ps.isort ps.pylint ps.numpy ps.scipy ps.matplotlib ]))
     nodePackages.pyright
+    nix-output-monitor
     discord
     firefox-wayland
     anki
@@ -72,6 +73,7 @@ in
     wl-clipboard
     xdg-utils
     xournalpp
+    simple-scan
   ];
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";

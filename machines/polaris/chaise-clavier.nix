@@ -15,9 +15,9 @@
   fonts.fonts = [ pkgs.font-awesome pkgs.helvetica-neue-lt-std pkgs.aegyptus ];
 
   services.printing.enable = true;
-    hardware.sane.enable = true;
-    users.users.maurice.extraGroups = [ "scanner" "lp" ];
-    hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
+  hardware.sane.enable = true;
+  users.users.maurice.extraGroups = [ "scanner" "lp" ];
+  hardware.sane.extraBackends = [ pkgs.sane-airscan ];
   services.avahi = {
     enable = true;
     nssmdns = true;

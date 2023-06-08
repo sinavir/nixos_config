@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
-
 {
   imports = [
     # TODO add backups
-    <home-manager/nixos>
     ../../shared
     ./android.nix
     ./backups.nix

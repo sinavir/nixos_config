@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   networking.useDHCP = false;
+  networking.nameservers = [ "9.9.9.9" "1.1.1.1" ];
 
   systemd.network = {
     enable = true;
