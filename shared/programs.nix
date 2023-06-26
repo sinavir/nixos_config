@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     comma
     agenix
+    jq
     colmena
     dig
     git
