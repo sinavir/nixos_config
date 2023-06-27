@@ -51,7 +51,12 @@
       \   'rust': [
       \       'rustfmt',
       \       'trim_whitespace',
-      \       'remove_trailing_lines'
+      \       'remove_trailing_lines',
+      \   ] ,
+      \   'haskell': [
+      \       'floskell',
+      \       'trim_whitespace',
+      \       'remove_trailing_lines',
       \   ] ,
       \}
 

@@ -45,7 +45,7 @@ alert = 90
 
 [[block]]
 block = "net"
-format = " $icon {$signal_strength $ssid|Wired}  $ip/$ipv6 d:$speed_down u:$speed_up via $device "
+format = " $icon {$signal_strength $ssid|Wired}  {$ip|NoV4}/{$ipv6|NoV6} d:$speed_down u:$speed_up via $device "
 
 [[block]]
 block = "backlight"

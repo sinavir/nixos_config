@@ -24,6 +24,7 @@ let
       capella = {
         deployment = {
           targetHost = "capella.server";
+          buildOnTarget = true;
         };
         imports = [ agenix ];
       };
