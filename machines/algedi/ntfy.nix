@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   host = "ntfy.sinavir.fr";
   listen = "localhost:4856";
-in
-{
+in {
   services.ntfy-sh = {
     enable = true;
     settings = {

@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   services.nginx = {
     enable = true;
     virtualHosts."ernestophone.fr" = {
@@ -37,7 +42,7 @@
             client_max_body_size 100M;
           '';
         };
-        "~ [^/].php(/|$)" = { return = "403"; };
+        "~ [^/].php(/|$)" = {return = "403";};
       };
       extraConfig = ''
         index index.php;
@@ -52,8 +57,11 @@
   services.phpfpm.pools."ernestophotos" = {
     user = config.services.nginx.user;
     group = config.services.nginx.group;
-    phpPackage = pkgs.php81.withExtensions ({ enabled, all }:
-      enabled ++ [ all.imagick all.bcmath all.mbstring all.gd ]);
+    phpPackage = pkgs.php81.withExtensions ({
+      enabled,
+      all,
+    }:
+      enabled ++ [all.imagick all.bcmath all.mbstring all.gd]);
     phpOptions = ''
       upload_max_filesize = 100M
       post_max_size = 100M
@@ -68,7 +76,7 @@
       "listen.owner" = config.services.nginx.user;
       "listen.group" = config.services.nginx.group;
     };
-    phpEnv."PATH" = lib.makeBinPath [ pkgs.ffmpeg ];
+    phpEnv."PATH" = lib.makeBinPath [pkgs.ffmpeg];
   };
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [80 443];
 }

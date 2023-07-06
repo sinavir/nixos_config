@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }:
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   domain = "auth.sinavir.fr";
   port = 11009;
-in
-{
+in {
   services.keycloak = {
     enable = true;
     settings = {
@@ -28,7 +31,6 @@ in
           proxy_buffers              4 256k;
           proxy_busy_buffers_size    256k;
         '';
-
       };
     };
   };

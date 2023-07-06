@@ -1,5 +1,4 @@
-{ pkgs }:
-{
+{pkgs}: {
   proxy = ./proxy.conf;
   location = ./authelia-location.conf;
   authrequest = ./authelia-authrequest.conf;

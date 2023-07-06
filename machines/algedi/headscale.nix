@@ -1,8 +1,11 @@
-{ pkgs, lib, config, ... }:
-let
-  headscaleUi = pkgs.callPackage ./headscale-ui { };
-in
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  headscaleUi = pkgs.callPackage ./headscale-ui {};
+in {
   services.headscale = {
     enable = true;
     port = 8085;
@@ -39,11 +42,11 @@ in
       };
     };
   };
-  environment.systemPackages = [ pkgs.headscale ];
+  environment.systemPackages = [pkgs.headscale];
   networking.nat = {
     enable = true;
-    internalInterfaces = [ "tailscale0" ];
-    internalIPs = [ "10.111.0.0/16" ];
+    internalInterfaces = ["tailscale0"];
+    internalIPs = ["10.111.0.0/16"];
     externalInterface = "ens21";
   };
 }

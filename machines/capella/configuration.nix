@@ -1,22 +1,22 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./noleds.nix
     ./bootloader.nix
-./secrets
+    ./secrets
     ../../shared
     ./users.nix
     ./networking.nix
   ];
 
-
   networking.hostName = "capella"; # Define your hostname.
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
-
 
   fonts.enableDefaultFonts = true;
 
@@ -27,5 +27,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "unstable"; # Did you read the comment?
-
 }

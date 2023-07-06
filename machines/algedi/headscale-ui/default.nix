@@ -1,4 +1,8 @@
-{ lib, fetchFromGitHub, buildNpmPackage }:
+{
+  lib,
+  fetchFromGitHub,
+  buildNpmPackage,
+}:
 buildNpmPackage rec {
   pname = "headscale-ui";
   version = "2023.01.30-beta-1";
@@ -13,12 +17,12 @@ buildNpmPackage rec {
   npmDepsHash = "sha256-fQIe7SKsv4HvST76xTUy1uxaPmwVLiGnfvEvpH5WALQ=";
   makeCacheWritable = true;
 
-  patches = [ ./patch.patch ];
+  patches = [./patch.patch];
 
   installPhase = ''
     mkdir -p $out
     cp -r ./build $out/web
-    '';
+  '';
 
   meta = with lib; {
     description = "A web frontend for the headscale Tailscale-compatible coordination server.";

@@ -5,31 +5,39 @@ let
   lib = import ./lib.nix;
 
   mkNode = node: {
-    ${node} = { name, nodes, ... }: {
-      imports = [ ./machines/${node}/configuration.nix ] ++ metadata.nodes.${node}.imports;
+    ${node} = {
+      name,
+      nodes,
+      ...
+    }: {
+      imports = [./machines/${node}/configuration.nix] ++ metadata.nodes.${node}.imports;
       inherit (metadata.nodes.${node}) deployment;
-      nix.nixPath = builtins.map (n: "${n}=${sources.${n}}") (builtins.attrNames sources) ++
-        [ "nixpkgs=${mkNixpkgsPath name}" ];
+      nix.nixPath =
+        builtins.map (n: "${n}=${sources.${n}}") (builtins.attrNames sources)
+        ++ ["nixpkgs=${mkNixpkgsPath name}"];
     };
   };
 
   mkNixpkgsPath = node: let
     pkgs-version = lib.attrsOrDefault metadata.nodes.${node} "nixpkgs" "unstable";
-  in sources."nixos-${pkgs-version}";
+  in
+    sources."nixos-${pkgs-version}";
 
   mkNixpkgs = node: {
-    ${node} = import (mkNixpkgsPath node) { config.allowUnfree = true; overlays = import ./pkgs/overlays.nix; };
+    ${node} = import (mkNixpkgsPath node) {
+      config.allowUnfree = true;
+      overlays = import ./pkgs/overlays.nix;
+    };
   };
 
   nodes = builtins.attrNames metadata.nodes;
-  
+
   concatAttrs = builtins.foldl' (x: y: x // y) {};
-
-
-in {
-  meta = {
-    specialArgs = { inherit metadata; };
-    nodeNixpkgs = concatAttrs (builtins.map mkNixpkgs nodes);
-  };
-
-} // (concatAttrs (builtins.map mkNode nodes))
+in
+  {
+    meta = {
+      specialArgs = {inherit metadata;};
+      nodeNixpkgs = concatAttrs (builtins.map mkNixpkgs nodes);
+    };
+  }
+  // (concatAttrs (builtins.map mkNode nodes))

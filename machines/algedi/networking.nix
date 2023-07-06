@@ -1,10 +1,13 @@
-{ pkgs, config, lib, ... }:
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   wgTopo = import ../../shared/wg-topo.nix;
   wgMain = wgTopo.wg-main;
   peers = lib.filterAttrs (n: v: n != config.networking.hostName) wgMain.peers;
-in
-{
+in {
   networking.useDHCP = false;
 
   systemd.network = {
@@ -19,7 +22,8 @@ in
           ListenPort = wgMain.peers.${config.networking.hostName}.port;
           PrivateKeyFile = config.age.secrets.wg-algedi.path;
         };
-        wireguardPeers = lib.mapAttrsToList
+        wireguardPeers =
+          lib.mapAttrsToList
           (peer: conf: {
             wireguardPeerConfig = {
               inherit (conf) PublicKey;
@@ -38,7 +42,8 @@ in
           IPForward = true;
           IPMasquerade = "ipv6";
         };
-        routes = builtins.map
+        routes =
+          builtins.map
           (net: {
             routeConfig = {
               Destination = net;
@@ -48,12 +53,12 @@ in
       };
       "10-ipv6-uplink" = {
         name = "ens18";
-        address = [ "2001:470:1f13:187:b256:8cb7:beb0:9d45/64" ];
+        address = ["2001:470:1f13:187:b256:8cb7:beb0:9d45/64"];
         linkConfig.MTUBytes = "1350";
       };
       "10-ipv4-uplink" = {
         name = "ens21";
-        address = [ "45.13.104.28/32" ];
+        address = ["45.13.104.28/32"];
         networkConfig = {
           DefaultRouteOnDevice = true;
         };
@@ -66,7 +71,7 @@ in
     "9.9.9.9"
     "149.112.112.112"
   ];
-  networking.firewall.allowedUDPPorts = [ 1194 ];
+  networking.firewall.allowedUDPPorts = [1194];
   networking.firewall.extraCommands = ''
     ip46tables -A FORWARD -i wg-main -j ACCEPT
     ip46tables -A FORWARD -o wg-main -j ACCEPT -m conntrack --ctstate ESTABLISHED

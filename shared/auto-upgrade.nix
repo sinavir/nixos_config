@@ -1,8 +1,10 @@
-{ pkgs, config, ... }:
-let
-  hostname = config.networking.hostName;
-in
 {
+  pkgs,
+  config,
+  ...
+}: let
+  hostname = config.networking.hostName;
+in {
   imports = [
     ../modules/auto-upgrade.nix
     ./secrets

@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }:
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   services.headscale = {
     enable = true;
     port = 8085;
@@ -8,19 +12,23 @@
       log.level = "debug";
       server_url = "https://vpn.sinavir.fr";
       #metrics_listen_addr = "127.0.0.1:8095";
-      dns_config.magic_dns = true;
+      dns_config = {
+        #magic_dns = true;
+        override_local_dns = true;
+        nameservers = ["1.1.1.1"];
+      };
+
       ip_prefixes = [
         "100.64.0.0/10"
       ];
       oidc = {
         issuer = "https://auth.sinavir.fr";
         client_id = "headscale";
-        client_secret_path = config.age.secrets."oidc_headscale_secret".path ;       
+        client_secret_path = config.age.secrets."oidc_headscale_secret".path;
         #allowed_domains = [ "sinavir.fr" ];
         extra_params.client_id = "headscale";
       };
     };
-
   };
 
   services.nginx.virtualHosts = {
@@ -35,5 +43,5 @@
       };
     };
   };
-  environment.systemPackages = [ pkgs.headscale ];
+  environment.systemPackages = [pkgs.headscale];
 }

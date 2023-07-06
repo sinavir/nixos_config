@@ -1,5 +1,10 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [../../modules/tailscale.nix];
 
   networking.useDHCP = false;
 
@@ -8,7 +13,7 @@
     networks = {
       "10-uplink" = {
         name = "end0";
-        DHCP="yes";
+        DHCP = "yes";
         networkConfig = {
         };
       };
@@ -21,12 +26,4 @@
     "149.112.112.112"
   ];
   #networking.firewall.allowedUDPPorts = [ 1194 ];
-  services.tailscale.enable = true;
-  systemd.services.tailscale-up = {
-    serviceConfig.Type = "oneshot";
-    wantedBy = [ "multi-user.target" ];
-    requires = [ "tailscaled.service" ];
-    script = "${config.services.tailscale.package}/bin/tailscale up --login-server https://vpn.sinavir.fr --auth-key file:${config.age.secrets."vpn_preauth".path}";
-  };
-  networking.firewall.trustedInterfaces = [ "tailscale0" ];
 }

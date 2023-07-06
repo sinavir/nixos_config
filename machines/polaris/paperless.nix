@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }:
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   services.paperless = {
     enable = true;
     passwordFile = pkgs.writeText "password" "admin";

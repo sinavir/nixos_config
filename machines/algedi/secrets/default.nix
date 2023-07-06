@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   age.secrets = {
     "wg-algedi" = {
       file = ./wg-algedi.age;

@@ -1,7 +1,11 @@
-{ pkgs, config, lib, ... }: let
-authelia-snippets = pkgs.callPackage ../../pkgs/authelia-snippets {};
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  authelia-snippets = pkgs.callPackage ../../pkgs/authelia-snippets {};
+in {
   services.radicale = {
     enable = true;
     settings = {
@@ -54,9 +58,7 @@ in
         set $upstream_authelia http://127.0.0.1:9990;
         include ${authelia-snippets.location-basic};
       '';
-        
     };
   };
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [80 443];
 }
-

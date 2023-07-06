@@ -1,5 +1,11 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   age.secrets = {
+    "vpn_preauth".file = ./vpn_preauth.age;
     "wg-proxima" = {
       file = ./wg-proxima.age;
       group = "systemd-network";

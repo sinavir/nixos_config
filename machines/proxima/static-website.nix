@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   services.nginx = {
     enable = true;
     virtualHosts."sinavir.fr" = {

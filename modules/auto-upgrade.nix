@@ -1,15 +1,14 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let cfg = config.system.autoUpgradeWithHooks;
-
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.system.autoUpgradeWithHooks;
 in {
-
   options = {
-
     system.autoUpgradeWithHooks = {
-
       enable = mkOption {
         type = types.bool;
         default = false;
@@ -22,7 +21,7 @@ in {
       };
 
       operation = mkOption {
-        type = types.enum [ "switch" "boot" ];
+        type = types.enum ["switch" "boot"];
         default = "switch";
         example = "boot";
         description = lib.mdDoc ''
@@ -44,7 +43,7 @@ in {
 
       flags = mkOption {
         type = types.listOf types.str;
-        default = [ ];
+        default = [];
         example = [
           "-I"
           "stuff=/home/alice/nixos-stuff"
@@ -105,22 +104,26 @@ in {
           The default value of `null` means that reboots are allowed at any time.
         '';
         default = null;
-        example = { lower = "01:00"; upper = "05:00"; };
-        type = with types; nullOr (submodule {
-          options = {
-            lower = mkOption {
-              description = lib.mdDoc "Lower limit of the reboot window";
-              type = types.strMatching "[[:digit:]]{2}:[[:digit:]]{2}";
-              example = "01:00";
-            };
+        example = {
+          lower = "01:00";
+          upper = "05:00";
+        };
+        type = with types;
+          nullOr (submodule {
+            options = {
+              lower = mkOption {
+                description = lib.mdDoc "Lower limit of the reboot window";
+                type = types.strMatching "[[:digit:]]{2}:[[:digit:]]{2}";
+                example = "01:00";
+              };
 
-            upper = mkOption {
-              description = lib.mdDoc "Upper limit of the reboot window";
-              type = types.strMatching "[[:digit:]]{2}:[[:digit:]]{2}";
-              example = "05:00";
+              upper = mkOption {
+                description = lib.mdDoc "Upper limit of the reboot window";
+                type = types.strMatching "[[:digit:]]{2}:[[:digit:]]{2}";
+                example = "05:00";
+              };
             };
-          };
-        });
+          });
       };
 
       persistent = mkOption {
@@ -172,13 +175,10 @@ in {
           A hook that will be activated before rebooting the machine
         '';
       };
-
     };
-
   };
 
   config = lib.mkIf cfg.enable {
-
     systemd.services.nixos-upgrade-with-hooks = {
       description = "NixOS Upgrade";
 
@@ -187,10 +187,13 @@ in {
 
       serviceConfig.Type = "oneshot";
 
-      environment = config.nix.envVars // {
-        inherit (config.environment.sessionVariables) NIX_PATH;
-        HOME = "/root";
-      } // config.networking.proxy.envVars;
+      environment =
+        config.nix.envVars
+        // {
+          inherit (config.environment.sessionVariables) NIX_PATH;
+          HOME = "/root";
+        }
+        // config.networking.proxy.envVars;
 
       path = with pkgs; [
         coreutils
@@ -202,23 +205,21 @@ in {
         config.programs.ssh.package
       ];
 
-      script =
-        let
-          nixos-rebuild = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild";
-          date = "${pkgs.coreutils}/bin/date";
-          readlink = "${pkgs.coreutils}/bin/readlink";
-          shutdown = "${config.systemd.package}/bin/shutdown";
-        in
-        ''
-          ${cfg.preRebuildHook}
-          ${nixos-rebuild} ${cfg.operation} ${toString cfg.flags}
-          ${cfg.postSwitchHook}
-        '';
+      script = let
+        nixos-rebuild = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild";
+        date = "${pkgs.coreutils}/bin/date";
+        readlink = "${pkgs.coreutils}/bin/readlink";
+        shutdown = "${config.systemd.package}/bin/shutdown";
+      in ''
+        ${cfg.preRebuildHook}
+        ${nixos-rebuild} ${cfg.operation} ${toString cfg.flags}
+        ${cfg.postSwitchHook}
+      '';
 
       startAt = cfg.dates;
 
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
+      after = ["network-online.target"];
+      wants = ["network-online.target"];
     };
 
     systemd.timers.nixos-upgrade-with-hooks = {
@@ -228,6 +229,4 @@ in {
       };
     };
   };
-
 }
-

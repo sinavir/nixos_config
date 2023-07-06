@@ -1,11 +1,11 @@
 let
-  pkgs = import (import ./npins).nixos-unstable { };
+  pkgs = import (import ./npins).nixos-unstable {};
 in
-pkgs.mkShell {
-  packages = with pkgs; [
-    npins
-    colmena
-  ];
+  pkgs.mkShell {
+    packages = with pkgs; [
+      npins
+      colmena
+    ];
 
-  allowSubstitutes = false;
-}
+    allowSubstitutes = false;
+  }

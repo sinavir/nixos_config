@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   age.secrets = {
     "ntfy-passwd" = {
       file = ./ntfy.age;
@@ -6,5 +11,5 @@
       mode = "0440";
     };
   };
-  users.groups."ntfy-access" = { };
+  users.groups."ntfy-access" = {};
 }

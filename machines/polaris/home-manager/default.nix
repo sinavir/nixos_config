@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   website = pkgs.writeShellScriptBin "website" ''
     dir=$(dirname $1)
     file=$(basename $1)
@@ -8,22 +12,19 @@ let
     ssh sinavir.fr "cat > site/$dir/$rnd-$file"
     echo "https://sinavir.fr/$dir/$rnd-$file"
   '';
-in
-{
-  imports =
-    [ ./vim.nix ./ssh-config.nix ./sway/swayidle.nix ./sway ];
+in {
+  imports = [./vim.nix ./ssh-config.nix ./sway/swayidle.nix ./sway];
   services = {
     gpg-agent.enable = true;
     gpg-agent.pinentryFlavor = "tty";
     kdeconnect = {
       enable = true;
     };
-
   };
   programs = {
     gpg = {
       enable = true;
-      package = pkgs.gnupg.override { pinentry = pkgs.pinentry; };
+      package = pkgs.gnupg.override {pinentry = pkgs.pinentry;};
     };
     zathura.enable = true;
     kitty = {
@@ -46,13 +47,14 @@ in
   };
 
   home.packages = with pkgs; [
-    (python3.withPackages (ps: [ ps.black ps.isort ps.pylint ps.numpy ps.scipy ps.matplotlib ]))
+    (python3.withPackages (ps: [ps.black ps.isort ps.pylint ps.numpy ps.scipy ps.matplotlib]))
     nodePackages.pyright
     nix-output-monitor
     discord
     firefox-wayland
     anki
     freecad
+    nix-init
     gnome3.adwaita-icon-theme
     imv
     inkscape
@@ -82,5 +84,4 @@ in
   xdg.enable = true;
 
   home.stateVersion = "22.11";
-
 }

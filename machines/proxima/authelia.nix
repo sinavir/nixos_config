@@ -1,8 +1,12 @@
-{ pkgs, lib, config, ... }:
-  let name = "sinavir_sso";
-authelia-snippets = pkgs.callPackage ../../pkgs/authelia-snippets {};
-in
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  name = "sinavir_sso";
+  authelia-snippets = pkgs.callPackage ../../pkgs/authelia-snippets {};
+in {
   services.authelia.instances.${name} = {
     enable = true;
     secrets = {
@@ -33,7 +37,7 @@ in
         {
           domain = "rz.sinavir.fr";
           policy = "one_factor";
-          subject = [ "group:radicale" ];
+          subject = ["group:radicale"];
         }
       ];
       identity_providers.oidc = {
@@ -46,7 +50,6 @@ in
           }
         ];
       };
-
     };
   };
 
@@ -58,7 +61,7 @@ in
       proxyPass = "http://127.0.0.1:9990";
       extraConfig = ''
         include ${authelia-snippets.proxy};
-        '';
+      '';
     };
     locations."/api/verify" = {
       proxyPass = "https://127.0.0.1:9990";

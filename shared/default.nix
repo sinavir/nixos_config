@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     #./auto-upgrade.nix
     ./git-config.nix

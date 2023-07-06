@@ -1,5 +1,9 @@
-{ pkgs, config, lib, ... }:
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   systemd.services.kfet-open-recorder = {
     script = ''
       ${pkgs.ws-scraper}/bin/ws-scraper \
@@ -12,4 +16,3 @@
     };
   };
 }
-

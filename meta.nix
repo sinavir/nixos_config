@@ -13,21 +13,22 @@ let
           targetHost = null;
           allowLocalDeployment = true;
         };
-        imports = [ agenix home-manager ];
+        imports = [agenix home-manager];
       };
       proxima = {
         deployment = {
           targetHost = "sinavir.fr";
         };
-        imports = [ agenix ];
+        imports = [agenix];
       };
       capella = {
         deployment = {
           targetHost = "capella.server";
           buildOnTarget = true;
         };
-        imports = [ agenix ];
+        imports = [agenix];
       };
     };
   };
-in metadata
+in
+  metadata

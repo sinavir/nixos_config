@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   services.netdata = {
     enable = true;
     config = {
@@ -21,8 +25,6 @@
           systemdunits: yes
       '';
     };
-
-
   };
 
   environment.etc."netdata/health_alarm_notify.conf".text = ''
@@ -39,6 +41,6 @@
     }
   '';
   systemd.services.netdata.environment."NETDATA_DISABLE_CLOUD" = "1";
-  networking.firewall.interfaces.wg-main.allowedTCPPorts = [ 19999 ];
-  users.users.netdata.extraGroups = [ "ntfy-access" ];
+  networking.firewall.interfaces.wg-main.allowedTCPPorts = [19999];
+  users.users.netdata.extraGroups = ["ntfy-access"];
 }

@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.vim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
@@ -25,7 +29,7 @@
         };
       })
     ];
-    settings = { number = true; };
+    settings = {number = true;};
     extraConfig = ''
       set termguicolors
       colorscheme base16-bright
@@ -82,23 +86,21 @@
 
     '';
   };
-  home.file =
-    let
-      nicetabs = pkgs.writeText "nicetabs.vim" ''
-        setlocal expandtab
-        setlocal shiftwidth=2
-        setlocal softtabstop=2
-      '';
-    in
-    {
-      ".vim/UltiSnips/".source = pkgs.fetchFromGitHub {
-        owner = "sinavir";
-        repo = "ultisnip-snippets";
-        rev = "09b4d4a720cb780a156fd487188bf192b58aa174";
-        sha256 = "0l39gf0aivdbsqr3dqqa4mql8kkypggy3z0bgpzr96z17b6ylwj4";
-      };
-      ".vim/after/ftplugin/javascript.vim".source = nicetabs;
-      ".vim/after/ftplugin/html.vim".source = nicetabs;
-      ".vim/after/ftplugin/svelte.vim".source = nicetabs;
+  home.file = let
+    nicetabs = pkgs.writeText "nicetabs.vim" ''
+      setlocal expandtab
+      setlocal shiftwidth=2
+      setlocal softtabstop=2
+    '';
+  in {
+    ".vim/UltiSnips/".source = pkgs.fetchFromGitHub {
+      owner = "sinavir";
+      repo = "ultisnip-snippets";
+      rev = "09b4d4a720cb780a156fd487188bf192b58aa174";
+      sha256 = "0l39gf0aivdbsqr3dqqa4mql8kkypggy3z0bgpzr96z17b6ylwj4";
     };
+    ".vim/after/ftplugin/javascript.vim".source = nicetabs;
+    ".vim/after/ftplugin/html.vim".source = nicetabs;
+    ".vim/after/ftplugin/svelte.vim".source = nicetabs;
+  };
 }
