@@ -21,6 +21,12 @@ let
         };
         imports = [agenix];
       };
+      schedar = {
+        deployment = {
+          targetHost = "schedar.sinavir.fr";
+        };
+        imports = [agenix];
+      };
       capella = {
         deployment = {
           targetHost = "capella.server";

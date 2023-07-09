@@ -24,10 +24,12 @@ let
     sources."nixos-${pkgs-version}";
 
   mkNixpkgs = node: {
-    ${node} = import (mkNixpkgsPath node) {
-      config.allowUnfree = true;
-      overlays = import ./pkgs/overlays.nix;
-    };
+    ${node} = importNixpkgsPath (mkNixpkgsPath node);
+  };
+
+  importNixpkgsPath = p: import p {
+    config.allowUnfree = true;
+    overlays = import ./pkgs/overlays.nix;
   };
 
   nodes = builtins.attrNames metadata.nodes;
@@ -37,6 +39,7 @@ in
   {
     meta = {
       specialArgs = {inherit metadata;};
+      nixpkgs = importNixpkgsPath sources."nixos-unstable";
       nodeNixpkgs = concatAttrs (builtins.map mkNixpkgs nodes);
     };
   }
