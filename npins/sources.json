@@ -12,6 +12,18 @@
       "url": "https://github.com/ryantm/agenix/archive/db5637d10f797bb251b94ef9040b237f4702cde3.tar.gz",
       "hash": "07f60gvrc2ianxa3s4lzjmlpps1vbi8scjiyz45813dbgavxcmix"
     },
+    "disko": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "disko"
+      },
+      "branch": "master",
+      "revision": "fc3c3817c9f1fcd405463c6a7f0f98baab97c692",
+      "url": "https://github.com/nix-community/disko/archive/fc3c3817c9f1fcd405463c6a7f0f98baab97c692.tar.gz",
+      "hash": "0db1hzzmvxkn8gmxjcn493bl61yqj3csyy4y68h3x9jhplrw7dpy"
+    },
     "home-manager": {
       "type": "Git",
       "repository": {
@@ -23,6 +35,18 @@
       "revision": "1e5d741ea3f3290d7ac06a02ded24bfdc7aadb37",
       "url": "https://github.com/nix-community/home-manager/archive/1e5d741ea3f3290d7ac06a02ded24bfdc7aadb37.tar.gz",
       "hash": "1544s29q69hhq45174f5jqhfbmwvzp9k3vdx06vsqackxciiwa64"
+    },
+    "nixos-anywhere": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "numtide",
+        "repo": "nixos-anywhere"
+      },
+      "branch": "main",
+      "revision": "22a2964bef34f92fe1c093ae54a8ab52eefdd5df",
+      "url": "https://github.com/numtide/nixos-anywhere/archive/22a2964bef34f92fe1c093ae54a8ab52eefdd5df.tar.gz",
+      "hash": "0waddqppis6zyz50k9v53yq9p4b8fm5qv9wf2ddw1d5yxasghspw"
     },
     "nixos-mailserver": {
       "type": "Git",

@@ -1,0 +1,52 @@
+#!/bin/sh
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+usage="$(basename "$0") [-h] [--dryrun] NODE HOST
+Deploy a brand new nixos system using colmena and nixos anywhere
+
+where:
+    -h  show this help text
+    --dryrun  Print the nixos-anywhere invocation"
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+  --help)
+    echo $usage
+    exit 0
+    ;;
+  --dry-run)
+    dry_run=y
+    ;;
+
+  *)
+    if [[ -z ${node-} ]]; then
+      node="$1"
+    elif [[ -z ${host-} ]]; then
+      host="$1"
+    else
+      echo "Wrong arguments. Help:"
+      echo $usage
+      exit 1
+    fi
+    ;;
+  esac
+  shift
+done
+
+if [[ -z ${host-} ]]; then
+      echo "Wrong arguments. Help:"
+  echo $usage
+  exit 1
+fi
+
+# Get info about the derivation containing the 'nixos-anywhere' invocation
+script_infos=`colmena eval -E "args: import ./colmena-anywhere.nix (args // { node=\"$node\"; HOST=\"$host\"; })"`
+
+# realise derivation (because colmena eval only eval stuff)
+echo $script_infos | jq -r ".drvPath" | xargs nix-store -r
+
+# Run !
+echo $script_infos | jq -r ".runPath"

@@ -11,4 +11,9 @@
   (self: super: {
     agenix = self.callPackage ((import ../npins).agenix + "/pkgs/agenix.nix") {};
   })
+  (self: super: {
+    nixosAnywhere = self.callPackage (
+      (import ../npins).nixos-anywhere + "/src"
+    ) {};
+  })
 ]
