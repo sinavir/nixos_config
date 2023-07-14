@@ -17,19 +17,19 @@ let
       };
       proxima = {
         deployment = {
-          targetHost = "sinavir.fr";
+          targetHost = "proxima";
         };
         imports = [agenix];
       };
       schedar = {
         deployment = {
-          targetHost = "schedar.sinavir.fr";
+          targetHost = "schedar";
         };
         imports = [agenix];
       };
       capella = {
         deployment = {
-          targetHost = "capella.server";
+          targetHost = "capella";
           buildOnTarget = true;
         };
         imports = [agenix];

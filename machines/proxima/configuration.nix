@@ -11,6 +11,7 @@
     ./authelia.nix
     ./bootloader.nix
     ./hardware-configuration.nix
+    ./knot.nix
     ./headscale.nix
     ./mail.nix
     ./radicale.nix

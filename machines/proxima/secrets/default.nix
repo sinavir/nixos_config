@@ -6,6 +6,11 @@
 }: {
   age.secrets = {
     "vpn_preauth".file = ./vpn_preauth.age;
+    "tsigNS2" = {
+      file = ../../../shared/secrets/knot-tsigNS2.age;
+      group = "knot";
+      owner = "knot";
+    };
     "wg-proxima" = {
       file = ./wg-proxima.age;
       group = "systemd-network";

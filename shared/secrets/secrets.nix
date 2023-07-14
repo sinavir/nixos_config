@@ -3,6 +3,14 @@ let
   readPubkeys = user:
     builtins.filter (k: k != "") (lib.splitString "\n"
       (builtins.readFile (../pubkeys + "/${user}.keys")));
+      keys = (lib.concatMap readPubkeys [
+        "maurice"
+        "polaris"
+        "schedar"
+        "capella"
+        "proxima"
+      ]);
 in {
-  "ntfy.age".publicKeys = (readPubkeys "maurice") ++ (readPubkeys "polaris") ++ (readPubkeys "capella") ++ (readPubkeys "proxima") ++ (readPubkeys "algedi");
+  "ntfy.age".publicKeys =  keys;
+  "knot-tsigNS2.age".publicKeys = lib.concatMap readPubkeys [ "maurice" "proxima" "schedar" ];
 }

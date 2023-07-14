@@ -125,7 +125,7 @@
       menu = "${pkgs.wofi}/bin/wofi -i --show run";
       modifier = "Mod4";
       output = {"*" = {bg = "${./menou1.JPG} fill";};};
-      terminal = "kitty";
+      terminal = "alacritty";
       bars = [
         {
           position = "top";

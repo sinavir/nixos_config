@@ -7,7 +7,10 @@
 {
   imports =
     [
+      ./knot.nix
       ./networking.nix
+      ./secrets
+      ./wishper
       ../../shared
       ./hardware-configuration.nix
     ];

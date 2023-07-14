@@ -13,7 +13,7 @@
     echo "https://sinavir.fr/$dir/$rnd-$file"
   '';
 in {
-  imports = [./vim.nix ./ssh-config.nix ./sway/swayidle.nix ./sway];
+  imports = [./terminal.nix ./vim.nix ./ssh-config.nix ./sway/swayidle.nix ./sway];
   services = {
     gpg-agent.enable = true;
     gpg-agent.pinentryFlavor = "tty";
@@ -27,14 +27,9 @@ in {
       package = pkgs.gnupg.override {pinentry = pkgs.pinentry;};
     };
     zathura.enable = true;
-    kitty = {
-      enable = true;
-      extraConfig = "enable_audio_bell no";
-    };
     bash = {
       enable = true;
       shellAliases = {
-        s = "kitty +kitten ssh";
         zat = "zathura";
         nsp = "nix-shell -p";
       };
