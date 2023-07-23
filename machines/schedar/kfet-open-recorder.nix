@@ -11,6 +11,8 @@
         $STATE_DIRECTORY/db.sqlite
     '';
     serviceConfig = {
+      Restart = "always";
+      RestartSec = 5;
       DynamicUser = true;
       StateDirectory = "kfet-open-recorder";
     };

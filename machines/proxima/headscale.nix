@@ -26,6 +26,10 @@
         client_id = "headscale";
         client_secret_path = config.age.secrets."oidc_headscale_secret".path;
         #allowed_domains = [ "sinavir.fr" ];
+        scope = ["openid" "profile" "email" "groups"];
+        allowed_groups = [
+          "headscale"
+        ];
         extra_params.client_id = "headscale";
       };
     };

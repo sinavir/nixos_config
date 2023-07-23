@@ -21,6 +21,12 @@ let
         };
         imports = [agenix];
       };
+      algedi = {
+        deployment = {
+          targetHost = "algedi.sinavir.fr";
+        };
+        imports = [agenix];
+      };
       schedar = {
         deployment = {
           targetHost = "schedar";

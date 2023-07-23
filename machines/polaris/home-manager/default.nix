@@ -42,8 +42,10 @@ in {
   };
 
   home.packages = with pkgs; [
-    (python3.withPackages (ps: [ps.black ps.isort ps.pylint ps.numpy ps.scipy ps.matplotlib]))
-    nodePackages.pyright
+    (python3.withPackages (ps: [ps.black ps.isort ps.numpy ps.scipy ps.matplotlib]))
+    ruff
+    nodePackages.bash-language-server
+    shellcheck
     nix-output-monitor
     discord
     firefox-wayland

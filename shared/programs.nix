@@ -18,6 +18,8 @@
     screen
     npins
     nix-index
+    tcpdump
+    dhcpdump
     nixpkgs-fmt
     tree
     unzip

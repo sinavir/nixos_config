@@ -40,12 +40,25 @@
       "r4yJZDHjwNtH8wkR" = {
         "name" = "BdA";
       };
+    } // mapAddPrefix "https://framagenda.org/remote.php/dav/public-calendars/" {
+      "dSYCtdC6bgyWpKyt" = {
+        "name" = "BDS";
+      };
     };
   };
 in {
   services.nginx = {
     enable = true;
     virtualHosts."rz.sinavir.fr" = {
+      forceSSL = true;
+      enableACME = true;
+      locations = {
+        "/" = {
+          proxyPass = "http://localhost:8443/";
+        };
+      };
+    };
+    virtualHosts."pub.calendar.sinavir.fr" = {
       forceSSL = true;
       enableACME = true;
       locations = {

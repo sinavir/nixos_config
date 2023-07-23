@@ -64,24 +64,16 @@
       \   ] ,
       \}
 
-      let g:ale_python_pyright_config = {
-      \ 'pyright': {
-      \   'disableLanguageServices': v:true,
-      \ },
-      \}
-
       let g:ale_linters = {
-      \   'python': [
-      \       'pylint',
-      \       'pyright',
-      \   ],
       \   'rust': [
       \       'analyzer',
       \   ],
+      \   'python': [
+      \       'ruff',
+      \   ],
+      \   'sh': ['language_server'],
       \}
 
-      let g:ale_rust_rustfmt_executable = '${pkgs.rustfmt}/bin/rustfmt'
-      let g:ale_rust_analyzer_executable = '${pkgs.rust-analyzer}/bin/rust-analyzer'
       let g:ale_fix_on_save = 1
 
     '';

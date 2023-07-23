@@ -38,15 +38,16 @@ in {
   };
   services.nginx = {
     enable = true;
-    virtualHosts."rz.sinavir.fr" = {
+    # Don't forget to change authelias settings if changing something
+    virtualHosts."priv.calendar.sinavir.fr" = {
       forceSSL = true;
       enableACME = true;
       locations = {
-        "/radicale/" = {
+        "/" = {
           proxyPass = "http://localhost:5232/";
           extraConfig = ''
             include ${authelia-snippets.authrequest-basic};
-            proxy_set_header  X-Script-Name /radicale;
+            proxy_set_header  X-Script-Name /;
             proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header  X-Remote-User $user;
             proxy_set_header  Host $host;

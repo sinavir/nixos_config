@@ -7,17 +7,12 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ../../shared
     ./bootloader.nix
     ./ernestophone.nix
-    ./kfet-open-recorder.nix
     ./hardware-configuration.nix
-    ./ntfy.nix
     ./secrets
     ./networking.nix
-    ./monitoring.nix
-    ./headscale.nix
   ];
 
   networking.hostName = "algedi"; # Define your hostname.

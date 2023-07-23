@@ -9,6 +9,7 @@ let
         "schedar"
         "capella"
         "proxima"
+        "algedi"
       ]);
 in {
   "ntfy.age".publicKeys =  keys;

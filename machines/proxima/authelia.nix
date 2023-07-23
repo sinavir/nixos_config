@@ -35,7 +35,7 @@ in {
       };
       access_control.rules = [
         {
-          domain = "rz.sinavir.fr";
+          domain = "priv.calendar.sinavir.fr";
           policy = "one_factor";
           subject = ["group:radicale"];
         }

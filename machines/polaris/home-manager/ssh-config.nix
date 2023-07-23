@@ -11,7 +11,7 @@
     };
     "capella" = {
       user = "root";
-      hostname = "capella.internal.sinavir.fr";
+      hostname = "capella.server";
     };
     "rigel" = {
       user = "root";

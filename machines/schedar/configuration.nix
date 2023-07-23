@@ -8,11 +8,12 @@
   imports =
     [
       ./knot.nix
+      ./backups.nix
       ./networking.nix
       ./secrets
-      ./wishper
       ../../shared
       ./hardware-configuration.nix
+      ./netbox-dgnum.nix
     ];
 
   boot.loader.grub = {
